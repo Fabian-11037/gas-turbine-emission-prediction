@@ -35,12 +35,10 @@ En Windows el desarrollo no usa Gunicorn; Render lo usa en Linux.
 
 ## Render
 
-Opcion recomendada: cree un repositorio que contenga el contenido de esta carpeta
-en su raiz. Conectelo en Render y cree un Blueprint usando `render.yaml`.
+Conecte el repositorio indicado en Render y cree un Blueprint usando `render.yaml`.
 No se requiere disco persistente, secretos ni descarga del dataset al arrancar.
 
-Si comparte un repositorio con los otros proyectos, cree un Web Service y defina
-Root Directory como `CO_NOx_Dashboard`:
+Si crea un Web Service manualmente, deje Root Directory vacio y use:
 
 - Runtime: Python; version 3.12.10.
 - Build Command: `pip install -r requirements.txt`.
@@ -110,12 +108,6 @@ el protocolo o la familia seleccionada.
 ```text
 python -m unittest discover -s tests -p test_*.py
 ```
-
-La comprobacion visual opcional `tools/check_ui.py` requiere
-`requirements-dev.txt` y Microsoft Edge instalado. No se ejecuta en Render.
-Verifica las tres pestanas en escritorio, 390 y 360 pixeles, prediccion,
-validacion de humedad, cambio de modelo, tablas plegables y descarga de CSV.
-Las capturas quedan en `tests/screenshots/` y no se incluyen en el paquete.
 
 Los graficos utilizan datos reales. Histogramas, correlaciones y tablas usan
 todos los registros filtrados; dispersiones muestran hasta 2.200 puntos con
