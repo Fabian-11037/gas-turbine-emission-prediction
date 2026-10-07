@@ -56,6 +56,14 @@ en Render: conecte el repositorio indicado y confirme el Blueprint en su cuenta.
 Documentacion: https://render.com/docs/deploy-flask,
 https://render.com/docs/blueprint-spec y https://dash.plotly.com/installation.
 
+## Jupyter Book en GitHub Pages
+
+El informe cientifico esta en `book/`, separado de la aplicacion Dash. Su workflow
+es `.github/workflows/publish-book.yml` y sus dependencias estan en
+`book/requirements.txt`. Publica las salidas guardadas sin ejecutar ni reentrenar
+el notebook. Las instrucciones de activacion y actualizacion estan en
+`book/README.md`; el dashboard sigue desplegandose exclusivamente en Render.
+
 ## Actualizaciones sin dependencias del notebook
 
 Cambios de texto y bibliografia: `dashboard/context.py` y `data/literatura.json`.

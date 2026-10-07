@@ -1,0 +1,65 @@
+name: Publicar Jupyter Book
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'book/**'
+      - '.github/workflows/publish-book.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages-book
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Construir libro sin reentrenamiento
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: book/requirements.txt
+      - name: Instalar dependencias del libro
+        run: python -m pip install -r book/requirements.txt
+      - name: Verificar que el notebook tiene salidas guardadas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          nb = json.loads(Path('book/gas_turbine_eda_hilo_conductor_redaccion.ipynb').read_text(encoding='utf-8'))
+          cells = [c for c in nb['cells'] if c['cell_type'] == 'code']
+          assert cells, 'El notebook no contiene celdas de codigo.'
+          assert all(c.get('execution_count') is not None for c in cells), 'Hay celdas sin ejecutar.'
+          assert not any(o['output_type'] == 'error' for c in cells for o in c.get('outputs', [])), 'Hay errores guardados.'
+          print(f'{len(nb["cells"])} celdas; {len(cells)} celdas de codigo ejecutadas, sin errores.')
+          PY
+      - name: Construir HTML desde las salidas existentes
+        run: jupyter-book build book --warningiserror --keep-going
+      - name: Verificar entrada del sitio
+        run: test -s book/_build/html/index.html
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: book/_build/html
+
+  deploy:
+    name: Publicar en GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Desplegar HTML
+        id: deployment
+        uses: actions/deploy-pages@v4

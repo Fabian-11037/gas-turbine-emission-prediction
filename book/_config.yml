@@ -1,0 +1,24 @@
+title: Estimación de emisiones de CO y NOx en una turbina de gas
+author: Proyecto de Machine Learning
+language: es
+only_build_toc_files: true
+exclude_patterns:
+  - _build/**
+  - README.md
+  - requirements.txt
+execute:
+  execute_notebooks: 'off'
+repository:
+  url: https://github.com/Fabian-11037/gas-turbine-emission-prediction
+  branch: main
+  path_to_book: book
+html:
+  baseurl: https://Fabian-11037.github.io/gas-turbine-emission-prediction/
+  use_download_button: true
+  use_repository_button: true
+  use_issues_button: true
+sphinx:
+  config:
+    language: es
+    nb_execution_mode: 'off'
+    suppress_warnings: [myst.header]
