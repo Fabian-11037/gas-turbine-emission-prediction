@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "n_original": 36733,
+  "sensores": [
+    {
+      "id": "AT",
+      "nombre": "Temperatura ambiente",
+      "unidad": "°C",
+      "min": -6.2348,
+      "max": 37.103,
+      "ejemplo": 18.838
+    },
+    {
+      "id": "AP",
+      "nombre": "Presión ambiente",
+      "unidad": "mbar",
+      "min": 985.85,
+      "max": 1036.6,
+      "ejemplo": 1012.6
+    },
+    {
+      "id": "AH",
+      "nombre": "Humedad relativa",
+      "unidad": "%",
+      "min": 24.085,
+      "max": 100.2,
+      "ejemplo": 78.053
+    },
+    {
+      "id": "AFDP",
+      "nombre": "Presión diferencial del filtro",
+      "unidad": "mbar",
+      "min": 2.0874,
+      "max": 7.6106,
+      "ejemplo": 4.0951
+    },
+    {
+      "id": "GTEP",
+      "nombre": "Presión de escape",
+      "unidad": "mbar",
+      "min": 17.698,
+      "max": 40.716,
+      "ejemplo": 24.833
+    },
+    {
+      "id": "TIT",
+      "nombre": "Temperatura de entrada",
+      "unidad": "°C",
+      "min": 1002.9,
+      "max": 1100.9,
+      "ejemplo": 1088.1
+    },
+    {
+      "id": "TAT",
+      "nombre": "Temperatura de salida",
+      "unidad": "°C",
+      "min": 511.04,
+      "max": 550.61,
+      "ejemplo": 550.13
+    },
+    {
+      "id": "TEY",
+      "nombre": "Rendimiento energético",
+      "unidad": "MWh",
+      "min": 100.02,
+      "max": 179.5,
+      "ejemplo": 133.45
+    },
+    {
+      "id": "CDP",
+      "nombre": "Presión del compresor",
+      "unidad": "mbar",
+      "min": 9.8518,
+      "max": 15.159,
+      "ejemplo": 12.003
+    }
+  ],
+  "protocolo": {
+    "anios": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015
+    ],
+    "longitud_bloque": 168,
+    "margen_purga": 24,
+    "n_folds": 5,
+    "semilla": 42,
+    "n_desarrollo": 27570,
+    "n_prueba": 7411,
+    "n_purga_prueba": 1752,
+    "fraccion_prueba": 0.20175319195274005,
+    "familias_finales": {
+      "CO": "Ridge",
+      "NOX": "Ridge"
+    },
+    "predictores": [
+      "AT",
+      "AP",
+      "AH",
+      "AFDP",
+      "GTEP",
+      "TIT",
+      "TAT",
+      "TEY",
+      "CDP"
+    ],
+    "prueba_utilizada_para_seleccion": false,
+    "prueba_historica_previamente_evaluada": true,
+    "validacion": "cinco folds de bloques mezclados, balanceados por anio, purga en cada ajuste",
+    "refit": "solo desarrollo elegible; no incluye prueba ni margen excluido de prueba",
+    "metricas_CV": "condicionadas a hiperparametros, no CV anidada",
+    "alcance": "estimacion contemporanea de condiciones representadas, no extrapolacion futura"
+  },
+  "diccionario_objetivos": {
+    "CO": "Monóxido de carbono",
+    "NOX": "Óxidos de nitrógeno"
+  },
+  "unidades_objetivos": "mg/m³",
+  "ejemplo_indice": 12558,
+  "fuentes_SHA256": {
+    "data\\gt_2011.csv": "d87ceef9aa59533cc7d924d10de241b1b06ecd11f9b26bab59191ea0f8a76b9a",
+    "data\\gt_2012.csv": "be54b9d0e1a7de40c55d32fa489e75de892b000c066b5a09f09a19124ee29100",
+    "data\\gt_2013.csv": "13c437bb440ec2045bd12057e6654c41dd4107a661eac16ba2e878e897a08f9e",
+    "data\\gt_2014.csv": "c2a03c92c9c3207aad0c6be7de8d9b5b4bfa4720ad0efb2c1f21b6cec4d3f3fa",
+    "data\\gt_2015.csv": "9b08f35fde0d4b138232a605db4093c2b8bf9d6757e6f1fbd9534ad616c13591",
+    "informe_resultados\\validacion_bloques_168_purga_24\\resultados.csv": "eebb6d772c6fec91639007a8f567b6c4fb9c59d18a74dcd69b627949c77a8431",
+    "informe_resultados\\validacion_bloques_168_purga_24\\asignacion_particiones.csv": "6787160a172584d841fb482e517cf6edaab28a270c07685b5b96ab1abe0ad9f8",
+    "informe_resultados\\validacion_bloques_168_purga_24\\modelo_CO_Ridge.joblib": "00cb92605b2f3eddc241d01c0fe31c66b2cf7c87279a9be4da5a3791365dd53b",
+    "informe_resultados\\validacion_bloques_168_purga_24\\modelo_NOX_Ridge.joblib": "191b7484a25bc4621d106bd6fd25e132887cc04979646249d99e1b1f6de2988b",
+    "informe_resultados\\validacion_bloques_168_purga_24\\modelo_CO_SVR_lineal.joblib": "f975d079a7d21a9e4c2b75cf0a38c3ca88954ea1b21c128fbcef8468ef61c051",
+    "informe_resultados\\validacion_bloques_168_purga_24\\modelo_NOX_SVR_lineal.joblib": "fed1f160b2a71eb0f393227ec1f6cb34541d9c6b0ab270f202d4134a5245ac0a",
+    "informe_resultados\\validacion_bloques_168_purga_24\\modelo_CO_Media.joblib": "cfa17478fcbb925d1d8d5e6cc0a861c42e0d278441cd01000fc2046d05b7d84f",
+    "informe_resultados\\validacion_bloques_168_purga_24\\modelo_NOX_Media.joblib": "e7fd2e620824b646853456071f312690112fcd84edbfb8c245d6810938468ab6"
+  },
+  "inferencia": "Coeficientes en unidades originales; equivalencia comprobada en las 36.733 filas.",
+  "entrenamiento": "No se realiza ajuste ni selección de modelos en el dashboard."
+}

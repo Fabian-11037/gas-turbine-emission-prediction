@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "modelos": [
+    {
+      "id": "ridge",
+      "nombre": "Ridge",
+      "adaptador": "linear_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "coeficientes": [
+            -0.033529531472817106,
+            -0.004304513576364479,
+            -0.0056425528283492645,
+            -0.06219514605605942,
+            0.0754863650636299,
+            -0.07785083406776966,
+            -0.0752431858179703,
+            -0.14645736259118577,
+            1.4949008823427157
+          ],
+          "intercepto": 132.89708211030575
+        },
+        "NOX": {
+          "coeficientes": [
+            -1.7425720029036937,
+            -0.2734637229178557,
+            -0.23411118955148977,
+            0.6157519670279581,
+            -0.13900062267573254,
+            1.5181185513766149,
+            -1.633658040587814,
+            -1.9330611646269733,
+            -3.7301726795089447
+          ],
+          "intercepto": -54.16583306481657
+        }
+      },
+      "seleccionado_por_cv": true,
+      "descripcion": "Regresión lineal con regularización L2.",
+      "error_max_exportacion": {
+        "CO": 6.128431095930864e-14,
+        "NOX": 3.410605131648481e-13
+      }
+    },
+    {
+      "id": "svr_lineal",
+      "nombre": "SVR lineal",
+      "adaptador": "linear_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "coeficientes": [
+            -0.03388347549230305,
+            -0.0049770061037426256,
+            -0.005587039737858242,
+            -0.0666963977723425,
+            0.06776637180349485,
+            -0.07758461678449724,
+            -0.07959840158847209,
+            -0.14970207140746453,
+            1.5437067314975956
+          ],
+          "intercepto": 135.7393370274199
+        },
+        "NOX": {
+          "coeficientes": [
+            -1.7379978733338737,
+            -0.27174400957474903,
+            -0.2320516941470871,
+            0.5630276732891127,
+            -0.137358582492424,
+            1.512312788342757,
+            -1.6489162421381405,
+            -1.9433552727775663,
+            -3.5746913123481296
+          ],
+          "intercepto": -41.87298244451398
+        }
+      },
+      "seleccionado_por_cv": false,
+      "descripcion": "Regresión de soporte vectorial con kernel lineal.",
+      "error_max_exportacion": {
+        "CO": 6.750155989720952e-14,
+        "NOX": 3.907985046680551e-13
+      }
+    },
+    {
+      "id": "media",
+      "nombre": "Media",
+      "adaptador": "linear_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "coeficientes": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "intercepto": 2.3214850230979325
+        },
+        "NOX": {
+          "coeficientes": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "intercepto": 64.72451385564018
+        }
+      },
+      "seleccionado_por_cv": false,
+      "descripcion": "Referencia constante: media del desarrollo.",
+      "error_max_exportacion": {
+        "CO": 0.0,
+        "NOX": 0.0
+      }
+    }
+  ]
+}
