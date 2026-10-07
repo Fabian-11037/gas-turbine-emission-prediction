@@ -3,7 +3,7 @@ from functools import lru_cache
 import json
 import numpy as np
 import pandas as pd
-from .repository import DATA, validate_inputs
+from .repository import DATA, observations, validate_inputs
 
 
 class LinearPredictor:
@@ -23,6 +23,22 @@ class LinearPredictor:
         x = validate_inputs(frame,self.predictors).to_numpy(dtype=float)
         return pd.DataFrame({t:x @ np.asarray(d['coeficientes']) + d['intercepto']
                              for t,d in self.specification['respuestas'].items()},index=frame.index)
+
+    def permutation_importance(self, frame, target, repeats=10, seed=42):
+        x = frame[self.predictors].to_numpy(dtype=float)
+        definition = self.specification['respuestas'][target]
+        beta = np.asarray(definition['coeficientes'],dtype=float)
+        residual = x @ beta + definition['intercepto'] - frame[target].to_numpy(dtype=float)
+        baseline = np.mean(residual**2)
+        rng = np.random.default_rng(seed)
+        rows = []
+        for j, sensor in enumerate(self.predictors):
+            # For a linear predictor this is exactly a full prediction after permutation.
+            changes = [np.mean((residual + beta[j]*(rng.permutation(x[:,j])-x[:,j]))**2)-baseline
+                       for _ in range(repeats)]
+            rows.append({'sensor':sensor,'aumento_MSE':float(np.mean(changes)),
+                         'desviacion':float(np.std(changes,ddof=1))})
+        return pd.DataFrame(rows).sort_values('aumento_MSE',ascending=False).reset_index(drop=True)
 
 
 ADAPTERS = {'linear_v1':LinearPredictor}
@@ -50,3 +66,12 @@ def predictor(model_id):
 
 def predict(model_id, frame):
     return predictor(model_id).predict(frame)
+
+
+@lru_cache(maxsize=32)
+def feature_importance(model_id, target):
+    adapter = predictor(model_id)
+    if not hasattr(adapter,'permutation_importance'):
+        return None
+    holdout = observations().loc[observations().particion.eq('prueba_bloques')]
+    return adapter.permutation_importance(holdout,target)

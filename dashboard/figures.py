@@ -129,6 +129,17 @@ def residual_histogram(frame, target, family):
     return style(f,'Distribución de residuos · prueba','Observado − estimado (mg/m³)','Registros')
 
 
+def feature_importance(frame, target):
+    ordered = frame.sort_values('aumento_MSE')
+    fig = go.Figure(go.Bar(x=ordered.aumento_MSE,y=ordered.sensor,orientation='h',
+                          error_x={'type':'data','array':ordered.desviacion},
+                          marker_color=TARGET_COLOR[target],
+                          hovertemplate='%{y}<br>Aumento de MSE: %{x:.3f}<extra></extra>'))
+    fig.add_vline(x=0,line_color=GRAY)
+    return style(fig,f'Importancia por permutación · {target}',
+                 'Aumento de MSE ((mg/m³)²)','Sensor')
+
+
 def partition_chart():
     f = go.Figure()
     for label,n,color in [('Desarrollo',27570,TEAL),('Prueba',7411,CORAL),('Purga',1752,GRAY)]:

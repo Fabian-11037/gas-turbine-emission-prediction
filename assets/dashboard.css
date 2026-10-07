@@ -15,6 +15,8 @@ h4 { font-size:14px; margin-top:16px; }
 p { margin-bottom:14px; }
 .app-shell { max-width:1440px; margin:auto; background:white; min-height:100vh; }
 .app-header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:25px 38px 22px; border-bottom:1px solid var(--line); }
+.app-header>div:first-child { min-width:0; max-width:1000px; }
+.app-header h1 { overflow-wrap:break-word; }
 .eyebrow { font-size:10px; color:var(--muted); font-weight:650; margin-bottom:9px; }
 .header-meta { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:12px; white-space:nowrap; }
 .live-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); }

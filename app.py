@@ -7,7 +7,8 @@ from dashboard.models import registry
 from dashboard.repository import manifest
 
 ROOT = Path(__file__).resolve().parent
-app = Dash(__name__,assets_folder=str(ROOT/'assets'),title='CO y NOx | Turbina de gas',
+TITLE = 'Emisiones de Turbinas de Gas: Predicción de CO y NOx a partir de Datos Operativos'
+app = Dash(__name__,assets_folder=str(ROOT/'assets'),title=TITLE,
            update_title='Actualizando…',suppress_callback_exceptions=True)
 server = app.server
 server.config['MAX_CONTENT_LENGTH'] = 4*1024*1024
@@ -20,7 +21,7 @@ def health():
 
 app.layout = html.Div([
     html.Header([html.Div([html.P('PROYECTO DE MACHINE LEARNING',className='eyebrow'),
-                          html.H1(['CO y NOx',html.Span(' · Turbina de gas')])]),
+                          html.H1(TITLE)]),
                  html.Div([html.Span(className='live-dot'),html.Span('Datos UCI · 2011–2015')],className='header-meta')],className='app-header'),
     dcc.Tabs(id='main-tabs',value='contexto',children=[
         dcc.Tab(label='Contexto',value='contexto'),dcc.Tab(label='EDA',value='eda'),

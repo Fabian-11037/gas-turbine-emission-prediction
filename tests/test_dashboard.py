@@ -3,9 +3,9 @@ import base64
 import unittest
 import numpy as np
 import pandas as pd
-from app import app
+from app import TITLE,app
 from dashboard import eda,model_view
-from dashboard.models import predict,registry
+from dashboard.models import feature_importance,predict,predictor,registry
 from dashboard.repository import observations,predictions,sample_frame,sensors
 
 
@@ -17,6 +17,9 @@ class DashboardTest(unittest.TestCase):
             self.assertEqual(response.status_code,200,path)
             response.close()
         self.assertEqual(client.get('/healthz').json['dataset'],36733)
+        self.assertEqual(app.title,TITLE)
+        layout = client.get('/_dash-layout').json
+        self.assertEqual(layout['props']['children'][0]['props']['children'][0]['props']['children'][1]['props']['children'],TITLE)
 
     def test_registry_and_no_training_dependencies(self):
         import sys
@@ -76,6 +79,37 @@ class DashboardTest(unittest.TestCase):
             model_view.parse_batch('data:text/csv;base64,bad!','ridge')
         values = [s['ejemplo'] for s in sensors()]
         self.assertEqual(len(model_view.estimate('ridge',values)[0]),2)
+
+    def test_importance_for_every_model_and_target(self):
+        for mid in registry():
+            for target in ['CO','NOX']:
+                importance = feature_importance(mid,target)
+                self.assertEqual(set(importance.sensor),set(s['id'] for s in sensors()))
+                self.assertTrue(np.isfinite(importance[['aumento_MSE','desviacion']]).all().all())
+                self.assertTrue(importance.aumento_MSE.is_monotonic_decreasing)
+                output = model_view.importance_results(mid,target)
+                self.assertEqual(len(output),3)
+                self.assertEqual(len(output[0].data[0].y),9)
+                if mid == 'media':
+                    np.testing.assert_array_equal(importance.aumento_MSE,0)
+                    np.testing.assert_array_equal(importance.desviacion,0)
+
+    def test_linear_permutation_equals_full_prediction(self):
+        frame = observations().loc[lambda d:d.particion.eq('prueba_bloques') & d.AH.between(0,100)].head(100)
+        sensor = registry()['ridge']['predictores'][0]
+        for target in ['CO','NOX']:
+            baseline = np.mean((predict('ridge',frame)[target]-frame[target])**2)
+            rng = np.random.default_rng(42)
+            changes = []
+            for _ in range(10):
+                shuffled = frame.copy()
+                shuffled[sensor] = rng.permutation(frame[sensor].to_numpy())
+                changes.append(np.mean((predict('ridge',shuffled)[target]-frame[target])**2)-baseline)
+            importance = predictor('ridge').permutation_importance(frame,target)
+            value = importance.set_index('sensor').loc[sensor]
+            self.assertAlmostEqual(value.aumento_MSE,np.mean(changes),places=10)
+            self.assertAlmostEqual(value.desviacion,np.std(changes,ddof=1),places=10)
+            pd.testing.assert_frame_equal(importance,predictor('ridge').permutation_importance(frame,target))
 
 
 if __name__ == '__main__':

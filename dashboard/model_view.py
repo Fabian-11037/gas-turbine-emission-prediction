@@ -7,7 +7,7 @@ import pandas as pd
 from dash import Input,Output,State,ctx,dcc,html,no_update
 from . import figures as f
 from .components import disclosure,graph,metric,notice,number,table
-from .models import predict,registry
+from .models import feature_importance,predict,registry
 from .repository import intervals,predictions,range_warnings,results,sample_frame,sensors
 
 MAX_ROWS = 2000
@@ -50,6 +50,10 @@ def layout():
         dcc.Loading(html.Div([graph('model-stage-chart'),graph('model-prediction-chart')],className='chart-grid'),type='circle',color=f.TEAL),
         html.P('La dispersión presenta hasta 2.200 puntos; las métricas utilizan los 7.411 registros de prueba. La barra CV muestra media ± desviación entre pliegues, no un intervalo de confianza.',className='caption'),
         disclosure('Comparación entre modelos · entrenamiento, validación y prueba',html.Div(id='model-comparison')),
+        disclosure('Importancia de variables · modelo y emisión seleccionados',[
+            dcc.Loading(graph('model-importance-chart'),type='circle',color=f.TEAL),
+            html.P(id='model-importance-note',className='caption'),
+            disclosure('Valores de importancia por sensor',html.Div(id='model-importance-table'))]),
         disclosure('Diagnóstico de errores',[
             graph('model-residual-chart'),html.Div(id='model-residual-summary'),
             html.P('Residuo = observado − estimado. Las predicciones negativas se conservan sin recorte y se señalan: no tienen interpretación como concentración física.',className='caption')]),
@@ -89,6 +93,23 @@ def estimate(model_id, values):
     return [metric('CO (mg/m³)',number(y.CO.iloc[0])),metric('NOx (mg/m³)',number(y.NOX.iloc[0]))],notes
 
 
+def importance_results(model_id, target):
+    importance = feature_importance(model_id,target)
+    if importance is None:
+        return f.empty('Importancia no disponible para este modelo.'),'El adaptador del modelo no proporciona esta interpretación.',''
+    note = ('Cada sensor se permuta individualmente en los 7.411 registros originales de prueba, '
+            'con 10 repeticiones y semilla 42. Un mayor aumento de MSE indica mayor dependencia predictiva; '
+            'valores negativos indican que la permutación redujo el error. Las barras de error muestran '
+            'la desviación entre repeticiones, no un intervalo de confianza. Los sensores correlacionados '
+            'pueden compartir importancia y la permutación puede generar combinaciones poco realistas. '
+            'No representa causalidad ni la dirección del efecto. Es un diagnóstico posterior a la evaluación: '
+            'no se utiliza para seleccionar variables ni modelos con la prueba. El predictor de media '
+            'no utiliza sensores y, por tanto, tiene importancia cero.')
+    return (f.feature_importance(importance,target),note,
+            table(importance,{'sensor':'Sensor','aumento_MSE':'Aumento de MSE ((mg/m³)²)',
+                              'desviacion':'Desviación entre repeticiones'}))
+
+
 def parse_batch(contents, model_id):
     if not isinstance(contents,str) or len(contents) > MAX_BYTES*1.4:
         raise ValueError('El archivo supera el límite de 2 MB.')
@@ -113,6 +134,9 @@ def parse_batch(contents, model_id):
 
 
 def register(app):
+    app.callback(Output('model-importance-chart','figure'),Output('model-importance-note','children'),
+                 Output('model-importance-table','children'),Input('model-select','value'),
+                 Input('model-target','value'))(importance_results)
     app.callback(Output('model-description','children'),Output('model-metrics','children'),Output('model-ci','children'),
                  Output('model-stage-chart','figure'),Output('model-prediction-chart','figure'),
                  Output('model-comparison','children'),Output('model-residual-chart','figure'),Output('model-residual-summary','children'),

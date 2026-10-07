@@ -74,6 +74,18 @@ originales. Se verifico la equivalencia con los modelos scikit-learn en las
 como un pickle y no necesitan scikit-learn, joblib ni bibliotecas del notebook.
 Los modelos conservan el ajuste original solo en desarrollo.
 
+La pestana Modelos incluye importancia por permutacion para cada familia y
+objetivo: aumento de MSE en los 7.411 registros originales de prueba, con diez
+repeticiones (semilla 42). No reentrena ni usa la prueba para seleccionar sensores.
+El calculo lineal es equivalente a predecir tras cada permutacion. Se conserva
+la poblacion original de evaluacion, sin aplicar los filtros de nuevas entradas.
+La dispersion entre repeticiones no es un intervalo de confianza; la correlacion
+entre sensores limita la interpretacion y no se infiere causalidad.
+Los adaptadores futuros pueden implementar
+`permutation_importance(frame, target, repeats=10, seed=42)` devolviendo columnas
+`sensor`, `aumento_MSE` y `desviacion`. Si no lo implementan, la interfaz indica
+que la importancia no esta disponible sin impedir el uso del modelo.
+
 Para actualizar los modelos y datos desde el proyecto original, use un entorno
 local con sus dependencias de entrenamiento:
 
