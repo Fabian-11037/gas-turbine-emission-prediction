@@ -75,8 +75,9 @@ prediccion = predecir(
 
 `sensores` es un DataFrame con AT, AP, AH, AFDP, GTEP, TIT, TAT, TEY y CDP.
 Los joblib se cargan solo desde fuentes confiables y con el entorno fijado.
-Los modelos del segundo entregable no sustituyen automaticamente los tres
-comparadores actuales del dashboard ni modifican las dependencias de Render.
+Las siete familias del dashboard se actualizan mediante `tools/export_project.py`,
+que verifica y copia los artefactos a `data/models/`. Publicar el JBook no actualiza
+por si solo ese registro ni ejecuta entrenamiento durante el despliegue de Render.
 
 Referencias oficiales:
 https://jupyterbook.org/v1/publish/gh-pages.html

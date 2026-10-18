@@ -1,12 +1,16 @@
 """Integridad de datos, equivalencia de prediccion y contratos de callbacks."""
 import base64
 import unittest
+import hashlib
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 import numpy as np
 import pandas as pd
 from app import TITLE,app
 from dashboard import eda,model_view
-from dashboard.models import feature_importance,predict,predictor,registry
-from dashboard.repository import observations,predictions,sample_frame,sensors
+from dashboard.models import artifact_path,feature_importance,predict,predictor,registry,_cached_predictor
+from dashboard.repository import importances,observations,predictions,results,sample_frame,sensors,optimization_results
 
 
 class DashboardTest(unittest.TestCase):
@@ -23,10 +27,14 @@ class DashboardTest(unittest.TestCase):
 
     def test_registry_and_no_training_dependencies(self):
         import sys
-        self.assertEqual(set(registry()),{'ridge','svr_lineal','media'})
-        self.assertNotIn('sklearn',sys.modules)
-        self.assertNotIn('joblib',sys.modules)
+        self.assertEqual(set(registry()),{'knn','ridge','lasso','decision_tree','random_forest','xgboost','svr_lineal'})
         self.assertNotIn('block_model',sys.modules)
+        self.assertNotIn('regression_entregable2',sys.modules)
+        self.assertNotIn('deap',sys.modules)
+        self.assertEqual(len(results()),14)
+        self.assertEqual(len(optimization_results()),56)
+        selected=results().loc[lambda d:d.seleccionado_por_CV].set_index('objetivo').modelo.to_dict()
+        self.assertEqual(selected,{'CO':'Random Forest','NOX':'XGBoost'})
 
     def test_equivalence_with_saved_test_predictions(self):
         df = observations()
@@ -43,11 +51,12 @@ class DashboardTest(unittest.TestCase):
     def test_inference_validation(self):
         sample = sample_frame()
         np.testing.assert_allclose(predict('ridge',sample),predict('ridge',sample[sample.columns[::-1]]))
-        for column,value in [('AT',np.nan),('AP',-1),('AH',101)]:
-            bad = sample.copy()
-            bad[column] = value
-            with self.assertRaises(ValueError):
-                predict('ridge',bad)
+        for mid in registry():
+            for column,value in [('AT',np.nan),('AP',-1),('AH',101)]:
+                bad = sample.copy()
+                bad[column] = value
+                with self.assertRaises(ValueError):
+                    predict(mid,bad)
         with self.assertRaises(ValueError):
             predict('ridge',sample.drop(columns='AT'))
 
@@ -65,16 +74,20 @@ class DashboardTest(unittest.TestCase):
         for mid in registry():
             for target in ['CO','NOX']:
                 out = model_view.model_results(mid,target)
-                self.assertEqual(len(out),8)
+                self.assertEqual(len(out),10)
                 self.assertEqual(len(out[1]),5)
+                self.assertEqual(len(out[5].children.children[1].children),7)
+                self.assertEqual(len(out[8].children.children[1].children),2)
+                self.assertEqual(len(out[9].children.children[1].children),28)
 
     def test_batch_and_predict_form(self):
         csv = sample_frame().to_csv(index=False)
         content = 'data:text/csv;base64,'+base64.b64encode(csv.encode()).decode()
-        out,warnings,negative = model_view.parse_batch(content,'svr_lineal')
-        self.assertEqual(len(out),1)
-        self.assertEqual(warnings,[])
-        np.testing.assert_allclose(out[['CO_predicho','NOX_predicho']],predict('svr_lineal',sample_frame()))
+        for mid in registry():
+            out,warnings,negative = model_view.parse_batch(content,mid)
+            self.assertEqual(len(out),1)
+            self.assertEqual(warnings,[])
+            np.testing.assert_allclose(out[['CO_predicho','NOX_predicho']],predict(mid,sample_frame()))
         with self.assertRaises(ValueError):
             model_view.parse_batch('data:text/csv;base64,bad!','ridge')
         values = [s['ejemplo'] for s in sensors()]
@@ -90,26 +103,48 @@ class DashboardTest(unittest.TestCase):
                 output = model_view.importance_results(mid,target)
                 self.assertEqual(len(output),3)
                 self.assertEqual(len(output[0].data[0].y),9)
-                if mid == 'media':
-                    np.testing.assert_array_equal(importance.aumento_MSE,0)
-                    np.testing.assert_array_equal(importance.desviacion,0)
+        self.assertEqual(len(importances()),126)
+        self.assertTrue(importances().n.eq(7411).all())
+        self.assertTrue(importances().repeticiones.eq(10).all())
 
-    def test_linear_permutation_equals_full_prediction(self):
-        frame = observations().loc[lambda d:d.particion.eq('prueba_bloques') & d.AH.between(0,100)].head(100)
+    def test_precomputed_permutation_equals_native_prediction(self):
+        frame = observations().loc[lambda d:d.particion.eq('prueba_bloques')]
         sensor = registry()['ridge']['predictores'][0]
         for target in ['CO','NOX']:
-            baseline = np.mean((predict('ridge',frame)[target]-frame[target])**2)
+            estimator=predictor('ridge').estimators[target]
+            baseline = np.mean((estimator.predict(frame[registry()['ridge']['predictores']])-frame[target])**2)
             rng = np.random.default_rng(42)
             changes = []
             for _ in range(10):
                 shuffled = frame.copy()
                 shuffled[sensor] = rng.permutation(frame[sensor].to_numpy())
-                changes.append(np.mean((predict('ridge',shuffled)[target]-frame[target])**2)-baseline)
-            importance = predictor('ridge').permutation_importance(frame,target)
+                changes.append(np.mean((estimator.predict(shuffled[registry()['ridge']['predictores']])-frame[target])**2)-baseline)
+            importance = feature_importance('ridge',target)
             value = importance.set_index('sensor').loc[sensor]
             self.assertAlmostEqual(value.aumento_MSE,np.mean(changes),places=10)
             self.assertAlmostEqual(value.desviacion,np.std(changes,ddof=1),places=10)
-            pd.testing.assert_frame_equal(importance,predictor('ridge').permutation_importance(frame,target))
+            with patch('dashboard.models.predictor',side_effect=AssertionError('Debe leer la evidencia precalculada.')):
+                pd.testing.assert_frame_equal(importance,feature_importance('ridge',target))
+
+    def test_artifact_integrity_and_path_validation(self):
+        with TemporaryDirectory(prefix='artifact-',dir=Path(__file__).resolve().parent) as temp:
+            root=Path(temp)
+            (root/'models').mkdir()
+            path=root/'models'/'test.joblib'
+            path.write_bytes(b'test')
+            with patch('dashboard.models.DATA',root):
+                with self.assertRaises(ValueError):
+                    artifact_path({'ruta':'models/test.joblib','sha256':'0'*64})
+                with self.assertRaises(ValueError):
+                    artifact_path({'ruta':'../test.joblib','sha256':'0'*64})
+                self.assertEqual(artifact_path({'ruta':'models/test.joblib','sha256':hashlib.sha256(b'test').hexdigest()}),path)
+
+    def test_inference_never_fits_and_cache_is_bounded(self):
+        from sklearn.pipeline import Pipeline
+        with patch.object(Pipeline,'fit',side_effect=AssertionError('No se permite entrenamiento.')):
+            for mid in registry():
+                self.assertEqual(predict(mid,sample_frame()).shape,(1,2))
+        self.assertLessEqual(_cached_predictor.cache_info().currsize,3)
 
 
 if __name__ == '__main__':

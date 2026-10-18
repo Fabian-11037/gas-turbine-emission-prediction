@@ -99,13 +99,13 @@ def annual_summary(df, target):
 
 
 def stage_scores(row):
-    f = go.Figure(go.Bar(x=['Entrenamiento','CV (media)','Prueba'],
+    f = go.Figure(go.Bar(x=['Entrenamiento','CV externa','Prueba'],
                         y=[row.R2_train,row.R2_CV_promedio,row.R2_test],
                         marker_color=[GRAY,TEAL,CORAL],
                         error_y={'type':'data','array':[0,row.R2_CV_std,0]},
                         hovertemplate='%{x}<br>R²: %{y:.3f}<extra></extra>'))
     f.add_hline(y=0,line_color='#dce3e7')
-    return style(f,'R² por etapa · CV ± 1 desviación estándar',None,'R²')
+    return style(f,'R² por etapa · CV externa ± 1 DE',None,'R²')
 
 
 def observed_predictions(frame, target, family):

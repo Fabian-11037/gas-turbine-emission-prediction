@@ -72,7 +72,7 @@ def audit_table(target):
         ['sensor','R2_OOF','RMSE_OOF','MAE_OOF','reduccion_RMSE_vs_Dummy_pct']].sort_values('R2_OOF',ascending=False)
     return [table(audit,{'sensor':'Sensor','R2_OOF':'R² OOF','RMSE_OOF':'RMSE OOF','MAE_OOF':'MAE OOF',
                          'reduccion_RMSE_vs_Dummy_pct':'Reducción RMSE vs media (%)'}),
-            html.P('Ridge individual con α=1 y los cinco pliegues del notebook. Esta auditoría usa todo el desarrollo de 2011–2015 y no cambia con los filtros de años. No mide aporte incremental al modelo completo ni garantiza ausencia de fuga.',className='caption')]
+            html.P('Ridge individual con α=1 fijo y cinco pliegues por bloques, sin búsqueda de hiperparámetros. Esta auditoría usa todo el desarrollo de 2011–2015 y no cambia con los filtros de años. No mide aporte incremental al modelo completo ni garantiza ausencia de fuga.',className='caption')]
 
 
 def register(app):

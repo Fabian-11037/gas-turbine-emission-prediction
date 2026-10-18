@@ -1,77 +1,81 @@
-"""Registro extensible: artefactos JSON y adaptadores independientes de la interfaz."""
+"""Registro de pipelines entrenados: inferencia local sin dependencias del JBook."""
 from functools import lru_cache
+import hashlib
 import json
-import numpy as np
+from threading import RLock
 import pandas as pd
-from .repository import DATA, observations, validate_inputs
+from .repository import DATA, importances, validate_inputs
+
+_MODEL_LOCK = RLock()
 
 
-class LinearPredictor:
-    def __init__(self, specification):
-        self.specification = specification
-        self.predictors = specification['predictores']
-        if len(set(self.predictors)) != len(self.predictors):
-            raise ValueError('Predictores duplicados en el registro.')
-        for target, definition in specification['respuestas'].items():
-            beta = np.asarray(definition['coeficientes'],dtype=float)
-            if len(beta) != len(self.predictors) or not np.isfinite(beta).all():
-                raise ValueError(f'Coeficientes inválidos para {target}.')
-            if not np.isfinite(definition['intercepto']):
-                raise ValueError(f'Intercepto inválido para {target}.')
-
-    def predict(self, frame):
-        x = validate_inputs(frame,self.predictors).to_numpy(dtype=float)
-        return pd.DataFrame({t:x @ np.asarray(d['coeficientes']) + d['intercepto']
-                             for t,d in self.specification['respuestas'].items()},index=frame.index)
-
-    def permutation_importance(self, frame, target, repeats=10, seed=42):
-        x = frame[self.predictors].to_numpy(dtype=float)
-        definition = self.specification['respuestas'][target]
-        beta = np.asarray(definition['coeficientes'],dtype=float)
-        residual = x @ beta + definition['intercepto'] - frame[target].to_numpy(dtype=float)
-        baseline = np.mean(residual**2)
-        rng = np.random.default_rng(seed)
-        rows = []
-        for j, sensor in enumerate(self.predictors):
-            # For a linear predictor this is exactly a full prediction after permutation.
-            changes = [np.mean((residual + beta[j]*(rng.permutation(x[:,j])-x[:,j]))**2)-baseline
-                       for _ in range(repeats)]
-            rows.append({'sensor':sensor,'aumento_MSE':float(np.mean(changes)),
-                         'desviacion':float(np.std(changes,ddof=1))})
-        return pd.DataFrame(rows).sort_values('aumento_MSE',ascending=False).reset_index(drop=True)
+def artifact_path(response):
+    path=(DATA/response['ruta']).resolve()
+    if not path.is_relative_to((DATA/'models').resolve()) or not path.is_file():
+        raise ValueError('Ruta de modelo no válida o artefacto ausente.')
+    if hashlib.sha256(path.read_bytes()).hexdigest()!=response['sha256']:
+        raise ValueError('La huella del artefacto no coincide con el registro.')
+    return path
 
 
-ADAPTERS = {'linear_v1':LinearPredictor}
+class PipelinePredictor:
+    def __init__(self,specification):
+        import joblib
+        self.predictors=specification['predictores']
+        self.estimators={}
+        for target,response in specification['respuestas'].items():
+            payload=joblib.load(artifact_path(response))
+            if (payload['formato']!='gas-turbine-entregable2-v1' or
+                payload['predictores']!=self.predictors or payload['objetivo']!=target or
+                payload['familia']!=specification['nombre'] or payload['n_ajuste']!=specification['n_ajuste']):
+                raise ValueError('Metadatos del modelo incompatibles con el registro.')
+            self.estimators[target]=payload['estimador']
+
+    def predict(self,frame):
+        x=validate_inputs(frame,self.predictors)
+        return pd.DataFrame({t:m.predict(x) for t,m in self.estimators.items()},index=frame.index)
+
+
+ADAPTERS={'sklearn_pipeline_v1':PipelinePredictor}
 
 
 @lru_cache(maxsize=1)
 def registry():
-    payload = json.loads((DATA/'modelos.json').read_text(encoding='utf-8'))
-    if payload['version'] != 1:
+    payload=json.loads((DATA/'modelos.json').read_text(encoding='utf-8'))
+    if payload['version']!=2:
         raise ValueError('Versión del registro no soportada.')
-    definitions = payload['modelos']
-    if len({m['id'] for m in definitions}) != len(definitions):
+    definitions=payload['modelos']
+    if len({m['id'] for m in definitions})!=len(definitions):
         raise ValueError('Identificadores de modelos duplicados.')
     for m in definitions:
-        if m['adaptador'] not in ADAPTERS:
-            raise ValueError(f"Adaptador no implementado: {m['adaptador']}")
+        if m['adaptador'] not in ADAPTERS or set(m['respuestas'])!={'CO','NOX'}:
+            raise ValueError('Adaptador o respuestas no válidos.')
+        if len(set(m['predictores']))!=9:
+            raise ValueError('El modelo debe declarar los nueve sensores sin duplicados.')
+        for response in m['respuestas'].values():
+            artifact_path(response)
     return {m['id']:m for m in definitions}
 
 
-@lru_cache(maxsize=8)
-def predictor(model_id):
-    definition = registry()[model_id]
+@lru_cache(maxsize=3)
+def _cached_predictor(model_id):
+    definition=registry()[model_id]
     return ADAPTERS[definition['adaptador']](definition)
 
 
-def predict(model_id, frame):
+def predictor(model_id):
+    # Avoid duplicate cold loads on concurrent requests.
+    with _MODEL_LOCK:
+        return _cached_predictor(model_id)
+
+
+def predict(model_id,frame):
     return predictor(model_id).predict(frame)
 
 
-@lru_cache(maxsize=32)
-def feature_importance(model_id, target):
-    adapter = predictor(model_id)
-    if not hasattr(adapter,'permutation_importance'):
-        return None
-    holdout = observations().loc[observations().particion.eq('prueba_bloques')]
-    return adapter.permutation_importance(holdout,target)
+def feature_importance(model_id,target):
+    family=registry()[model_id]['nombre']
+    frame=importances()
+    result=frame.loc[(frame.modelo==family)&(frame.objetivo==target),
+                     ['sensor','aumento_MSE','desviacion']]
+    return result.sort_values('aumento_MSE',ascending=False).reset_index(drop=True).copy()

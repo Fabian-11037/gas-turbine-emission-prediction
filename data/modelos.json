@@ -1,10 +1,10 @@
 {
-  "version": 1,
+  "version": 2,
   "modelos": [
     {
-      "id": "ridge",
-      "nombre": "Ridge",
-      "adaptador": "linear_v1",
+      "id": "knn",
+      "nombre": "KNN",
+      "adaptador": "sklearn_pipeline_v1",
       "predictores": [
         "AT",
         "AP",
@@ -18,45 +18,257 @@
       ],
       "respuestas": {
         "CO": {
-          "coeficientes": [
-            -0.033529531472817106,
-            -0.004304513576364479,
-            -0.0056425528283492645,
-            -0.06219514605605942,
-            0.0754863650636299,
-            -0.07785083406776966,
-            -0.0752431858179703,
-            -0.14645736259118577,
-            1.4949008823427157
-          ],
-          "intercepto": 132.89708211030575
+          "ruta": "models/CO_KNN.joblib",
+          "sha256": "c4ba35a1fed9e8085da36b1f6b6ee7c7095fb10ec67015bcf99695fa98af6076",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "n_neighbors": 24,
+            "weights": "distance"
+          },
+          "seleccionado_por_cv": false
         },
         "NOX": {
-          "coeficientes": [
-            -1.7425720029036937,
-            -0.2734637229178557,
-            -0.23411118955148977,
-            0.6157519670279581,
-            -0.13900062267573254,
-            1.5181185513766149,
-            -1.633658040587814,
-            -1.9330611646269733,
-            -3.7301726795089447
-          ],
-          "intercepto": -54.16583306481657
+          "ruta": "models/NOX_KNN.joblib",
+          "sha256": "5cdbcc66d0e33011073f7859e0b5db920523a0a8195a684789e55c1bcbf8ca25",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "n_neighbors": 24,
+            "weights": "distance"
+          },
+          "seleccionado_por_cv": false
         }
       },
-      "seleccionado_por_cv": true,
+      "n_ajuste": 27570,
+      "descripcion": "Regresión por vecinos próximos sobre sensores estandarizados.",
+      "error_max_exportacion": {
+        "CO": 3.552713678800501e-15,
+        "NOX": 1.4210854715202004e-14
+      }
+    },
+    {
+      "id": "ridge",
+      "nombre": "Ridge",
+      "adaptador": "sklearn_pipeline_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "ruta": "models/CO_Ridge.joblib",
+          "sha256": "92bd0603e9dc13d0e38af51f63e228e266c49c54c3adbda80719ab35161706d4",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "alpha": 1.0
+          },
+          "seleccionado_por_cv": false
+        },
+        "NOX": {
+          "ruta": "models/NOX_Ridge.joblib",
+          "sha256": "53a4431fc515684529f39617fd4ec7584e436ad29c8fbe344d4e5bba558dcece",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "alpha": 1.0
+          },
+          "seleccionado_por_cv": false
+        }
+      },
+      "n_ajuste": 27570,
       "descripcion": "Regresión lineal con regularización L2.",
       "error_max_exportacion": {
-        "CO": 6.128431095930864e-14,
-        "NOX": 3.410605131648481e-13
+        "CO": 1.7763568394002505e-15,
+        "NOX": 1.4210854715202004e-14
+      }
+    },
+    {
+      "id": "lasso",
+      "nombre": "Lasso",
+      "adaptador": "sklearn_pipeline_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "ruta": "models/CO_Lasso.joblib",
+          "sha256": "196f01deaf42d2817de965fc08d8e34af23366f1faf77f3267a1496c26a4fbbc",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "alpha": 0.0001
+          },
+          "seleccionado_por_cv": false
+        },
+        "NOX": {
+          "ruta": "models/NOX_Lasso.joblib",
+          "sha256": "a07cc141fb43a06c9971ae85eefd8e0545cef612ca1e20ca02ca755d34d55212",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "alpha": 0.0001
+          },
+          "seleccionado_por_cv": false
+        }
+      },
+      "n_ajuste": 27570,
+      "descripcion": "Regresión lineal con regularización L1.",
+      "error_max_exportacion": {
+        "CO": 1.7763568394002505e-15,
+        "NOX": 1.4210854715202004e-14
+      }
+    },
+    {
+      "id": "decision_tree",
+      "nombre": "Decision Tree",
+      "adaptador": "sklearn_pipeline_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "ruta": "models/CO_Decision_Tree.joblib",
+          "sha256": "be28ee62bd1558e5f086c734fe66f464f532f13b6e8d3bdf5ff2b9b8005ddd87",
+          "optimizador": "Genetico",
+          "parametros": {
+            "max_depth": 8,
+            "min_samples_leaf": 25
+          },
+          "seleccionado_por_cv": false
+        },
+        "NOX": {
+          "ruta": "models/NOX_Decision_Tree.joblib",
+          "sha256": "5bb181a95718148b650feebedcd7f96c043f1f594a5d46a6bf87f2e98447a3e4",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "max_depth": 16,
+            "min_samples_leaf": 25
+          },
+          "seleccionado_por_cv": false
+        }
+      },
+      "n_ajuste": 27570,
+      "descripcion": "Árbol de regresión con profundidad y tamaño de hoja ajustados.",
+      "error_max_exportacion": {
+        "CO": 1.7763568394002505e-15,
+        "NOX": 1.4210854715202004e-14
+      }
+    },
+    {
+      "id": "random_forest",
+      "nombre": "Random Forest",
+      "adaptador": "sklearn_pipeline_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "ruta": "models/CO_Random_Forest.joblib",
+          "sha256": "5ac7265ba84accf5fde98656054978baa0d7099bb7c0befea5d3e4269da21f58",
+          "optimizador": "Genetico",
+          "parametros": {
+            "n_estimators": 80,
+            "max_depth": 12,
+            "min_samples_leaf": 20
+          },
+          "seleccionado_por_cv": true
+        },
+        "NOX": {
+          "ruta": "models/NOX_Random_Forest.joblib",
+          "sha256": "6b660e7877396785665372e9e789612e8db040d0164bdaec674dd7d71ac12443",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "n_estimators": 80,
+            "max_depth": 12,
+            "min_samples_leaf": 5
+          },
+          "seleccionado_por_cv": false
+        }
+      },
+      "n_ajuste": 27570,
+      "descripcion": "Ensamble de árboles de regresión con muestreo bootstrap.",
+      "error_max_exportacion": {
+        "CO": 1.7763568394002505e-15,
+        "NOX": 1.4210854715202004e-14
+      }
+    },
+    {
+      "id": "xgboost",
+      "nombre": "XGBoost",
+      "adaptador": "sklearn_pipeline_v1",
+      "predictores": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "respuestas": {
+        "CO": {
+          "ruta": "models/CO_XGBoost.joblib",
+          "sha256": "6afa83894f05a9dc1dedaf3a62cd34b5bef09d11f91e70d4e4f3caac55a990be",
+          "optimizador": "Grid",
+          "parametros": {
+            "n_estimators": 80,
+            "max_depth": 6,
+            "learning_rate": 0.05
+          },
+          "seleccionado_por_cv": false
+        },
+        "NOX": {
+          "ruta": "models/NOX_XGBoost.joblib",
+          "sha256": "4f95f7c8b0c9c5a66e0e22dbfd792a3518f2cfd1455e2d8194c1791a4327cd78",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "n_estimators": 160,
+            "max_depth": 6,
+            "learning_rate": 0.1
+          },
+          "seleccionado_por_cv": true
+        }
+      },
+      "n_ajuste": 27570,
+      "descripcion": "Árboles potenciados por gradiente; inferencia CPU.",
+      "error_max_exportacion": {
+        "CO": 0.0,
+        "NOX": 0.0
       }
     },
     {
       "id": "svr_lineal",
       "nombre": "SVR lineal",
-      "adaptador": "linear_v1",
+      "adaptador": "sklearn_pipeline_v1",
       "predictores": [
         "AT",
         "AP",
@@ -70,91 +282,31 @@
       ],
       "respuestas": {
         "CO": {
-          "coeficientes": [
-            -0.03388347549230305,
-            -0.0049770061037426256,
-            -0.005587039737858242,
-            -0.0666963977723425,
-            0.06776637180349485,
-            -0.07758461678449724,
-            -0.07959840158847209,
-            -0.14970207140746453,
-            1.5437067314975956
-          ],
-          "intercepto": 135.7393370274199
+          "ruta": "models/CO_SVR_lineal.joblib",
+          "sha256": "72c34752277baa65cf340609dfcc8fb829fb70734d3b8996cf98a20ac22f66e9",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "C": 1.0,
+            "epsilon": 0.05
+          },
+          "seleccionado_por_cv": false
         },
         "NOX": {
-          "coeficientes": [
-            -1.7379978733338737,
-            -0.27174400957474903,
-            -0.2320516941470871,
-            0.5630276732891127,
-            -0.137358582492424,
-            1.512312788342757,
-            -1.6489162421381405,
-            -1.9433552727775663,
-            -3.5746913123481296
-          ],
-          "intercepto": -41.87298244451398
+          "ruta": "models/NOX_SVR_lineal.joblib",
+          "sha256": "7ba0b3a282f1937ba6b85de9868fd442cab85ccbdaf76549ff7f78e70e38e9e1",
+          "optimizador": "Bayesiano",
+          "parametros": {
+            "C": 1.0,
+            "epsilon": 0.05
+          },
+          "seleccionado_por_cv": false
         }
       },
-      "seleccionado_por_cv": false,
-      "descripcion": "Regresión de soporte vectorial con kernel lineal.",
+      "n_ajuste": 27570,
+      "descripcion": "SVR lineal con pérdida ε-insensible cuadrática y penalización L2.",
       "error_max_exportacion": {
-        "CO": 6.750155989720952e-14,
-        "NOX": 3.907985046680551e-13
-      }
-    },
-    {
-      "id": "media",
-      "nombre": "Media",
-      "adaptador": "linear_v1",
-      "predictores": [
-        "AT",
-        "AP",
-        "AH",
-        "AFDP",
-        "GTEP",
-        "TIT",
-        "TAT",
-        "TEY",
-        "CDP"
-      ],
-      "respuestas": {
-        "CO": {
-          "coeficientes": [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0
-          ],
-          "intercepto": 2.3214850230979325
-        },
-        "NOX": {
-          "coeficientes": [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0
-          ],
-          "intercepto": 64.72451385564018
-        }
-      },
-      "seleccionado_por_cv": false,
-      "descripcion": "Referencia constante: media del desarrollo.",
-      "error_max_exportacion": {
-        "CO": 0.0,
-        "NOX": 0.0
+        "CO": 1.7763568394002505e-15,
+        "NOX": 1.4210854715202004e-14
       }
     }
   ]

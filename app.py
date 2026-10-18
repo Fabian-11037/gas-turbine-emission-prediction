@@ -25,10 +25,10 @@ app.layout = html.Div([
                  html.Div([html.Span(className='live-dot'),html.Span('Datos UCI · 2011–2015')],className='header-meta')],className='app-header'),
     dcc.Tabs(id='main-tabs',value='contexto',children=[
         dcc.Tab(label='Contexto',value='contexto'),dcc.Tab(label='EDA',value='eda'),
-        dcc.Tab(label='Modelos base',value='modelos')],className='main-tabs',parent_className='main-tabs-parent',mobile_breakpoint=0),
+        dcc.Tab(label='Modelos',value='modelos')],className='main-tabs',parent_className='main-tabs-parent',mobile_breakpoint=0),
     html.Main(id='page-content',children=context.layout(),className='main-content'),
     html.Footer([html.Span('Estimación contemporánea · Investigación académica'),
-                 html.Span('Bloques 168 · Purga 24 · CV 5 pliegues')],className='app-footer')
+                 html.Span('Bloques 168 · Purga 24 · CV anidada 5 × 3')],className='app-footer')
 ],className='app-shell')
 
 

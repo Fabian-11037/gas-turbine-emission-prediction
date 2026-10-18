@@ -35,6 +35,16 @@ def intervals():
 
 
 @lru_cache(maxsize=1)
+def importances():
+    return pd.read_csv(DATA/'importancia_permutacion.csv')
+
+
+@lru_cache(maxsize=1)
+def optimization_results():
+    return pd.read_csv(DATA/'optimizacion.csv')
+
+
+@lru_cache(maxsize=1)
 def sensor_audit():
     return pd.read_csv(DATA/'auditoria_predictiva_univariada.csv')
 
