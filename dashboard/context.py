@@ -19,7 +19,7 @@ def layout():
     comparison = json.loads((DATA/'literatura_metodologia.json').read_text(encoding='utf-8'))
     reference = results().loc[lambda d:d.seleccionado_por_CV,
                               ['objetivo','modelo','R2_test','RMSE_test']]
-    interpretation = [html.Div([html.H4(item['titulo']),html.P(item['diferencia']),
+    interpretation = [html.Div([html.H4(html.A(item['titulo'],href=item['enlace'],target='_blank',rel='noopener noreferrer')),html.P(item['diferencia']),
                                 html.P(item['interpretacion'])]) for item in comparison['dimensiones']]
     literature_rows = []
     for p in literature:
@@ -65,6 +65,10 @@ def layout():
                       html.Div([html.Div([html.Strong('Regresión y ensambles'),html.P('Comparadores consolidados, no una contribución original por sí mismos.')]),
                                 html.Div([html.Strong('Protocolos distintos'),html.P('Filtrado, especialización por periodos e historial de sensores modifican la comparación.')]),
                                 html.Div([html.Strong('Originalidad por comprobar'),html.P('La propuesta propia sigue pendiente; las siete familias son benchmarks con antecedentes.')])],className='literature-summary'),
+                      disclosure('Estudios, modelos y desempeño reportado',[
+                          html.Div(html.Table([html.Thead(html.Tr([html.Th(t) for t in ['Estudio','Modelos / enfoque','Resultado reportado','Validación / cautela']])),
+                                               html.Tbody(literature_rows)]),className='table-scroll'),
+                          notice('Kochueva, Sinap, Jhinaoui y Aslan: contraste de metodología y tablas del texto completo. En los demás antecedentes se conserva el nivel de evidencia indicado. No se han reproducido esos experimentos; ausencia de documentación no demuestra fuga de información.')],identifier='literature-studies'),
                       disclosure('Diferencias metodológicas y posibles explicaciones',[
                           html.H4('Referencia vigente del proyecto: prueba por bloques'),
                           table(reference,labels={'objetivo':'Emisión','modelo':'Modelo',
@@ -72,10 +76,6 @@ def layout():
                           html.P(comparison['alcance'],className='caption'),
                           *interpretation,
                           notice(comparison['reproduccion'])],identifier='literature-methods'),
-                      disclosure('Estudios, modelos y desempeño reportado',[
-                          html.Div(html.Table([html.Thead(html.Tr([html.Th(t) for t in ['Estudio','Modelos / enfoque','Resultado reportado','Validación / cautela']])),
-                                               html.Tbody(literature_rows)]),className='table-scroll'),
-                          notice('Kochueva, Sinap, Jhinaoui y Aslan: contraste de metodología y tablas del texto completo. En los demás antecedentes se conserva el nivel de evidencia indicado. No se han reproducido esos experimentos; ausencia de documentación no demuestra fuga de información.')],identifier='literature-studies'),
                       disclosure('Catálogo bibliográfico · 50 registros',html.Div(html.Table([
                           html.Thead(html.Tr([html.Th('Año'),html.Th('Artículo'),html.Th('Publicación')])),html.Tbody(corpus)]),className='table-scroll'))],className='literature-section')
     ])

@@ -27,12 +27,14 @@ class LiteratureTest(unittest.TestCase):
 
     def test_methodology_caveats_and_dimensions(self):
         comparison = json.loads((DATA / 'literatura_metodologia.json').read_text(encoding='utf-8'))
-        self.assertEqual(len(comparison['dimensiones']), 6)
+        self.assertEqual(len(comparison['dimensiones']), 4)
         self.assertEqual(comparison['revision'], '2026-10-18')
         text = json.dumps(comparison, ensure_ascii=False)
-        for phrase in ['168 registros', '24 vecinos', '5 × 3', 'no garantiza independencia',
-                       'no demuestra', 'nueve sensores', 'SSE/SST', 'hipótesis', 'presupuesto']:
+        for phrase in ['168 registros', '24 vecinos', '5 × 3', 'no demuestra',
+                       'nueve sensores', 'plausibles', 'presupuesto']:
             self.assertIn(phrase, text)
+        for item in comparison['dimensiones']:
+            self.assertEqual(urlparse(item['enlace']).scheme, 'https')
 
     def test_context_disclosures_and_reference(self):
         component = layout()
@@ -48,6 +50,7 @@ class LiteratureTest(unittest.TestCase):
                 visit(props.get('children'))
         visit(component)
         self.assertEqual(set(found), {'literature-methods', 'literature-studies'})
+        self.assertEqual(list(found), ['literature-studies', 'literature-methods'])
         self.assertFalse(found['literature-methods'].open)
         table = found['literature-methods'].children[1].children[1]
         self.assertEqual(len(table.children.children[1].children), 2)
