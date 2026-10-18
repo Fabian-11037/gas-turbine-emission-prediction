@@ -5,7 +5,7 @@ import pandas as pd
 from dash import html
 from .components import disclosure,graph,metric,notice,table
 from .figures import partition_chart
-from .repository import DATA,bibliography,manifest,sensors
+from .repository import DATA,bibliography,manifest,results,sensors
 
 
 def layout():
@@ -16,10 +16,18 @@ def layout():
                                  {'Variable':'anio / posición / bloque','Significado':'Controles de descripción y partición',
                                   'Unidad':'Año / registro','Papel':'No son predictores'}])
     literature = json.loads((DATA/'literatura.json').read_text(encoding='utf-8'))
+    comparison = json.loads((DATA/'literatura_metodologia.json').read_text(encoding='utf-8'))
+    reference = results().loc[lambda d:d.seleccionado_por_CV,
+                              ['objetivo','modelo','R2_test','RMSE_test']]
+    interpretation = [html.Div([html.H4(item['titulo']),html.P(item['diferencia']),
+                                html.P(item['interpretacion'])]) for item in comparison['dimensiones']]
     literature_rows = []
     for p in literature:
         literature_rows.append(html.Tr([html.Td(html.A(p['estudio'],href=p['enlace'],target='_blank',rel='noopener noreferrer')),
-                                       html.Td(p['modelos']),html.Td(p['resultado']),html.Td(p['validacion'])]))
+                                       html.Td(p['modelos']),html.Td(p['resultado']),
+                                       html.Td([html.P(p['validacion']),
+                                                html.P(p['comparacion'],className='caption')]
+                                               if p.get('comparacion') else p['validacion'])]))
     corpus = []
     for r in bibliography().itertuples(index=False):
         enlace = str(r.enlace)
@@ -53,14 +61,21 @@ def layout():
             html.P('R² mide variación explicada. RMSE penaliza especialmente errores grandes; MAE expresa el error absoluto medio. RMSE y MAE están en mg/m³. MAPE no se prioriza para CO por valores próximos a cero.')]),
         html.Section([html.Div([html.H3('Literatura: lo que ya se ha probado'),
                                html.Span('Síntesis del notebook',className='subtle')],className='section-heading'),
-                      html.P('Regresión, ensambles de árboles, modelos simbólicos e híbridos aparecen como antecedentes. Sus cifras no son comparables directamente cuando cambian datos, unidades o particiones.'),
+                      html.P('Los mayores R² publicados no constituyen por sí solos un ranking de modelos. La población evaluada, las entradas y las particiones condicionan el resultado.'),
                       html.Div([html.Div([html.Strong('Regresión y ensambles'),html.P('Comparadores consolidados, no una contribución original por sí mismos.')]),
-                                html.Div([html.Strong('Desplazamiento entre años'),html.P('La validación debe responder al escenario de generalización previsto.')]),
+                                html.Div([html.Strong('Protocolos distintos'),html.P('Filtrado, especialización por periodos e historial de sensores modifican la comparación.')]),
                                 html.Div([html.Strong('Originalidad por comprobar'),html.P('La propuesta propia sigue pendiente; las siete familias son benchmarks con antecedentes.')])],className='literature-summary'),
+                      disclosure('Diferencias metodológicas y posibles explicaciones',[
+                          html.H4('Referencia vigente del proyecto: prueba por bloques'),
+                          table(reference,labels={'objetivo':'Emisión','modelo':'Modelo',
+                                                  'R2_test':'R² prueba','RMSE_test':'RMSE prueba · mg/m³'},digits=4),
+                          html.P(comparison['alcance'],className='caption'),
+                          *interpretation,
+                          notice(comparison['reproduccion'])],identifier='literature-methods'),
                       disclosure('Estudios, modelos y desempeño reportado',[
                           html.Div(html.Table([html.Thead(html.Tr([html.Th(t) for t in ['Estudio','Modelos / enfoque','Resultado reportado','Validación / cautela']])),
                                                html.Tbody(literature_rows)]),className='table-scroll'),
-                          notice('Cifras tomadas de la revisión existente. Cuando proceden del resumen bibliográfico o el protocolo no está verificado, se indica expresamente. No se han reproducido esos experimentos.')]),
+                          notice('Kochueva, Sinap, Jhinaoui y Aslan: contraste de metodología y tablas del texto completo. En los demás antecedentes se conserva el nivel de evidencia indicado. No se han reproducido esos experimentos; ausencia de documentación no demuestra fuga de información.')],identifier='literature-studies'),
                       disclosure('Catálogo bibliográfico · 50 registros',html.Div(html.Table([
                           html.Thead(html.Tr([html.Th('Año'),html.Th('Artículo'),html.Th('Publicación')])),html.Tbody(corpus)]),className='table-scroll'))],className='literature-section')
     ])

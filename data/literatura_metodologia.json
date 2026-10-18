@@ -1,0 +1,37 @@
+{
+  "revision": "2026-10-18",
+  "alcance": "Comparación descriptiva de publicaciones y protocolo vigente; no constituye reproducción, revisión sistemática ni prueba de superioridad. Las pruebas provisionales no forman parte de los resultados publicados del proyecto.",
+  "dimensiones": [
+    {
+      "titulo": "Proximidad y unidad de partición",
+      "diferencia": "El proyecto reserva bloques de 168 registros con exclusión de 24 vecinos, tanto frente a prueba como dentro de la CV anidada 5 × 3. Una división por registros puede conservar observaciones próximas en ajuste y evaluación.",
+      "interpretacion": "Ante la persistencia local observada en el EDA, esa proximidad puede facilitar la interpolación. La purga solo reduce proximidad: no garantiza independencia. Si una publicación no describe bloques o purga, su ausencia de documentación no demuestra mezcla aleatoria ni fuga de información. No se cuantificó este efecto mediante una réplica controlada."
+    },
+    {
+      "titulo": "Población y tratamiento de extremos",
+      "diferencia": "Se conservan las emisiones extremas en el proyecto; los escenarios con IQR de la literatura evalúan otra selección de observaciones. El escenario Raw de Sinap elimina esta diferencia específica, pero no las demás.",
+      "interpretacion": "Los extremos influyen especialmente en RMSE. Filtrarlos puede reducir el error observado sin demostrar mejor predicción de toda la operación. Tampoco garantiza aumentar R²: el filtrado cambia tanto el error como la varianza del objetivo. Un valor extremo no se identifica automáticamente con un error de medición."
+    },
+    {
+      "titulo": "Periodos, regímenes y cambio de distribución",
+      "diferencia": "La prueba del proyecto contiene bloques de los cinco años y se usa un modelo por emisión, sin año como predictor. Separar periodos para ajustar modelos o reservar 2015 completo responde a escenarios distintos.",
+      "interpretacion": "La especialización puede representar cambios no descritos por los sensores. Una prueba cronológica exige transferir a condiciones posteriores no representadas, mientras que los bloques mezclados evalúan condiciones representadas. Ningún protocolo es universalmente más difícil; los cambios anuales no prueban por sí solos la causa de una diferencia de rendimiento."
+    },
+    {
+      "titulo": "Información disponible para predecir",
+      "diferencia": "Se usan nueve sensores contemporáneos, sin emisiones observadas como entradas ni características históricas. Catch22 incorpora información de ventanas de sensores; otros estudios emplean datos de distintas plantas.",
+      "interpretacion": "Cambiar las entradas cambia el problema y la información disponible. Un historial estrictamente disponible al predecir no implica fuga por sí mismo, pero queda fuera del alcance tabular contemporáneo adoptado. Los resultados de otra planta o de otro contaminante no constituyen un benchmark directo."
+    },
+    {
+      "titulo": "Modelo, búsqueda y evaluación",
+      "diferencia": "El proyecto compara siete familias y cuatro búsquedas por emisión, con espacios y presupuestos acotados. Las publicaciones incluyen ensambles, selección de características o tratamientos adicionales no reproducidos aquí.",
+      "interpretacion": "La capacidad, el presupuesto y el procedimiento de selección pueden contribuir a las diferencias, además de la partición. No se puede atribuir toda la brecha al algoritmo ni al protocolo sin igualar datos, entradas, filtros, particiones y presupuesto en un experimento controlado."
+    },
+    {
+      "titulo": "Métrica e incertidumbre de la comparación",
+      "diferencia": "Se distinguen ajuste, media de CV externa, R² OOF agregado y prueba. R² es 1 − SSE/SST: depende también de la dispersión del objetivo en el conjunto evaluado. R y R², ppm y mg/m³, y errores normalizados no son intercambiables.",
+      "interpretacion": "Un R² mayor en otra población no demuestra menor error bajo nuestro diseño. La validación anidada separa ajuste y evaluación de hiperparámetros, pero la selección posterior entre procedimientos puede introducir optimismo. La prueba histórica ya fue consultada y los intervalos de modelos fijos no incorporan toda la selección; las explicaciones planteadas siguen siendo hipótesis, no una descomposición causal de la brecha."
+    }
+  ],
+  "reproduccion": "Una comparación equivalente requiere las mismas observaciones elegibles, nueve entradas disponibles, filtros ajustados solo en desarrollo, idénticos bloques y márgenes, búsqueda interna, presupuesto y métricas en unidades originales. El efecto de cada cambio debe evaluarse por separado y reportar su incertidumbre. No corresponde cambiar el protocolo solo para acercarse a un R² publicado ni interpretar una cifra aislada como superioridad."
+}
