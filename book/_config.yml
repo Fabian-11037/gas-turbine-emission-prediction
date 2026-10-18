@@ -6,6 +6,9 @@ exclude_patterns:
   - _build/**
   - README.md
   - requirements.txt
+  - requirements-training.txt
+  - training/**
+  - informe_resultados/**
 execute:
   execute_notebooks: 'off'
 repository:

@@ -1,0 +1,143 @@
+{
+  "modelos": [
+    {
+      "objetivo": "CO",
+      "familia": "KNN",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/CO_KNN.joblib",
+      "seleccionado_global": false,
+      "sha256": "c4ba35a1fed9e8085da36b1f6b6ee7c7095fb10ec67015bcf99695fa98af6076"
+    },
+    {
+      "objetivo": "CO",
+      "familia": "Ridge",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/CO_Ridge.joblib",
+      "seleccionado_global": false,
+      "sha256": "92bd0603e9dc13d0e38af51f63e228e266c49c54c3adbda80719ab35161706d4"
+    },
+    {
+      "objetivo": "CO",
+      "familia": "Lasso",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/CO_Lasso.joblib",
+      "seleccionado_global": false,
+      "sha256": "196f01deaf42d2817de965fc08d8e34af23366f1faf77f3267a1496c26a4fbbc"
+    },
+    {
+      "objetivo": "CO",
+      "familia": "Decision Tree",
+      "optimizador": "Genetico",
+      "ruta": "modelos/CO_Decision_Tree.joblib",
+      "seleccionado_global": false,
+      "sha256": "be28ee62bd1558e5f086c734fe66f464f532f13b6e8d3bdf5ff2b9b8005ddd87"
+    },
+    {
+      "objetivo": "CO",
+      "familia": "Random Forest",
+      "optimizador": "Genetico",
+      "ruta": "modelos/CO_Random_Forest.joblib",
+      "seleccionado_global": true,
+      "sha256": "5ac7265ba84accf5fde98656054978baa0d7099bb7c0befea5d3e4269da21f58"
+    },
+    {
+      "objetivo": "CO",
+      "familia": "XGBoost",
+      "optimizador": "Grid",
+      "ruta": "modelos/CO_XGBoost.joblib",
+      "seleccionado_global": false,
+      "sha256": "6afa83894f05a9dc1dedaf3a62cd34b5bef09d11f91e70d4e4f3caac55a990be"
+    },
+    {
+      "objetivo": "CO",
+      "familia": "SVR lineal",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/CO_SVR_lineal.joblib",
+      "seleccionado_global": false,
+      "sha256": "72c34752277baa65cf340609dfcc8fb829fb70734d3b8996cf98a20ac22f66e9"
+    },
+    {
+      "objetivo": "NOX",
+      "familia": "KNN",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/NOX_KNN.joblib",
+      "seleccionado_global": false,
+      "sha256": "5cdbcc66d0e33011073f7859e0b5db920523a0a8195a684789e55c1bcbf8ca25"
+    },
+    {
+      "objetivo": "NOX",
+      "familia": "Ridge",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/NOX_Ridge.joblib",
+      "seleccionado_global": false,
+      "sha256": "53a4431fc515684529f39617fd4ec7584e436ad29c8fbe344d4e5bba558dcece"
+    },
+    {
+      "objetivo": "NOX",
+      "familia": "Lasso",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/NOX_Lasso.joblib",
+      "seleccionado_global": false,
+      "sha256": "a07cc141fb43a06c9971ae85eefd8e0545cef612ca1e20ca02ca755d34d55212"
+    },
+    {
+      "objetivo": "NOX",
+      "familia": "Decision Tree",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/NOX_Decision_Tree.joblib",
+      "seleccionado_global": false,
+      "sha256": "5bb181a95718148b650feebedcd7f96c043f1f594a5d46a6bf87f2e98447a3e4"
+    },
+    {
+      "objetivo": "NOX",
+      "familia": "Random Forest",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/NOX_Random_Forest.joblib",
+      "seleccionado_global": false,
+      "sha256": "6b660e7877396785665372e9e789612e8db040d0164bdaec674dd7d71ac12443"
+    },
+    {
+      "objetivo": "NOX",
+      "familia": "XGBoost",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/NOX_XGBoost.joblib",
+      "seleccionado_global": true,
+      "sha256": "4f95f7c8b0c9c5a66e0e22dbfd792a3518f2cfd1455e2d8194c1791a4327cd78"
+    },
+    {
+      "objetivo": "NOX",
+      "familia": "SVR lineal",
+      "optimizador": "Bayesiano",
+      "ruta": "modelos/NOX_SVR_lineal.joblib",
+      "seleccionado_global": false,
+      "sha256": "7ba0b3a282f1937ba6b85de9868fd442cab85ccbdaf76549ff7f78e70e38e9e1"
+    }
+  ],
+  "versiones": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "statsmodels": "0.15.0",
+    "joblib": "1.6.0",
+    "xgboost": "3.4.1",
+    "deap": "1.4.4",
+    "threadpoolctl": "3.7.0"
+  },
+  "predictores": [
+    "AT",
+    "AP",
+    "AH",
+    "AFDP",
+    "GTEP",
+    "TIT",
+    "TAT",
+    "TEY",
+    "CDP"
+  ],
+  "n_ajuste": 27570,
+  "n_prueba": 7411,
+  "criterio": "MSE medio de cinco folds externos anidados; prueba no usada para seleccion",
+  "prueba_historica_examinada_previamente": true
+}

@@ -1,0 +1,12 @@
+{
+  "numpy": "2.5.3",
+  "pandas": "3.0.6",
+  "scipy": "1.18.1",
+  "scikit-learn": "1.9.1",
+  "matplotlib": "3.11.2",
+  "statsmodels": "0.15.0",
+  "joblib": "1.6.0",
+  "xgboost": "3.4.1",
+  "deap": "1.4.4",
+  "threadpoolctl": "3.7.0"
+}

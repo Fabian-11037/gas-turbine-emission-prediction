@@ -5,3 +5,6 @@ __pycache__/
 .env.*
 tests/screenshots/
 book/_build/
+book/informe_resultados/entregable2_anidada/corridas/
+book/informe_resultados/validacion_bloques_168_purga_24/
+book/informe_resultados/analisis_temporal_2011_2015/

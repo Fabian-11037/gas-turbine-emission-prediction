@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "semilla": 42,
+  "bloque": 168,
+  "purga": 24,
+  "folds_externos": 5,
+  "folds_internos": 3,
+  "random_evaluaciones": 4,
+  "bayes_evaluaciones": 5,
+  "gen_poblacion": 4,
+  "gen_generaciones": 2,
+  "gen_cruce": 0.7,
+  "gen_mutacion": 0.3,
+  "gen_mutacion_gen": 0.5,
+  "gen_torneo": 2,
+  "gen_elites": 1,
+  "datos_sha256": "37f4a5300b407f5cab5f9ea2ef9302b111e93dc659f7262b820c79ba1ea6b9ae",
+  "codigo_sha256": "63d302fb07214cedfff7d1b9be5233694d35adeef22c77cda326c88c2cab229f"
+}

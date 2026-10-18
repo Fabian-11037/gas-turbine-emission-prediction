@@ -1,13 +1,16 @@
 # Informe cientifico en GitHub Pages
 
 Esta carpeta contiene la copia del notebook ejecutado, `_config.yml`, `_toc.yml`
-y las dependencias de publicacion. Conserva las 50 celdas, sus tablas y figuras.
-El notebook del proyecto original no se modifica.
+y las dependencias de publicacion. La seccion de modelos incorpora siete familias
+de regresion y cuatro optimizadores por respuesta con validacion anidada 5 x 3.
+La copia del proyecto fuente y la del libro contienen el mismo informe actualizado.
 
 La publicacion es estatica: `execute_notebooks: 'off'`. Construir el libro no
 ejecuta codigo, no consulta datos externos y no reentrena modelos. No es necesario
-incluir datos crudos, scripts de entrenamiento, modelos joblib, entornos Python
-ni los archivos auxiliares de edicion del notebook.
+instalar dependencias de entrenamiento para publicar. Se incluye el codigo en
+`training/`, resultados comprimidos y catorce pipelines en
+`informe_resultados/entregable2_anidada/modelos/` para su reutilizacion.
+Ninguno se importa al arrancar el dashboard.
 
 ## Activacion inicial
 
@@ -41,9 +44,39 @@ Abra `book/_build/html/index.html`. Esa carpeta generada no se sube a Git:
 el workflow construye y publica el HTML. No actualice automaticamente a
 Jupyter Book 2: el informe usa la configuracion y el motor Sphinx de la version 1.
 
-La descarga del notebook conserva codigo y salidas, pero no es un paquete
-autonomo de entrenamiento. Para volver a ejecutarlo se requiere el material
-reproducible del proyecto original, no incluido en esta publicacion estatica.
+## Reproducir o usar los modelos
+
+Descargue o clone el repositorio completo; el notebook aislado no incluye sus
+modulos, datos ni modelos. En un entorno Python 3.12 independiente:
+
+```text
+python -m pip install -r book/requirements-training.txt
+```
+
+Ejecute el notebook desde `book/`. Lee los datos completos ya incluidos en
+`data/observaciones.csv.gz` de la raiz del repositorio, sin descargar UCI ni
+depender de la carpeta original Gas Turbine Project. Por defecto reutiliza los
+resultados guardados. `REENTRENAR = True` ejecuta o reanuda la evaluacion anidada;
+los puntos de control se conservan localmente en `corridas/` y no se publican.
+Si cambia el espacio, presupuesto o codigo, utilice otra carpeta de salida.
+
+El registro JSON documenta rutas, familias, objetivos, versiones y SHA256.
+Para inferencia desde `book/`, con los nueve sensores disponibles:
+
+```python
+import sys
+sys.path.insert(0, 'training')
+from regression_entregable2 import predecir
+prediccion = predecir(
+    'informe_resultados/entregable2_anidada/modelos/CO_Ridge.joblib',
+    sensores,
+)
+```
+
+`sensores` es un DataFrame con AT, AP, AH, AFDP, GTEP, TIT, TAT, TEY y CDP.
+Los joblib se cargan solo desde fuentes confiables y con el entorno fijado.
+Los modelos del segundo entregable no sustituyen automaticamente los tres
+comparadores actuales del dashboard ni modifican las dependencias de Render.
 
 Referencias oficiales:
 https://jupyterbook.org/v1/publish/gh-pages.html
