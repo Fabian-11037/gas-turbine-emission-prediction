@@ -1,0 +1,2 @@
+# Preserve training-code fingerprints across Windows and Linux checkouts.
+book/training/*.py text eol=lf
