@@ -36,6 +36,30 @@ class DashboardTest(unittest.TestCase):
         selected=results().loc[lambda d:d.seleccionado_por_CV].set_index('objetivo').modelo.to_dict()
         self.assertEqual(selected,{'CO':'Kernel operativo','NOX':'Kernel operativo'})
 
+    def test_prediction_loading_and_control_recovery(self):
+        def components(component):
+            if isinstance(component,(list,tuple)):
+                for child in component:
+                    yield from components(child)
+            elif hasattr(component,'to_plotly_json'):
+                yield component
+                yield from components(getattr(component,'children',None))
+
+        nodes = {node.id:node for node in components(model_view.layout()) if getattr(node,'id',None)}
+        for component_id in ['prediction-result','batch-feedback']:
+            loading = nodes[f'{component_id}-loading']
+            self.assertEqual(loading.target_components,{component_id:'children'})
+            self.assertEqual(loading.custom_spinner.role,'status')
+            self.assertEqual(loading.custom_spinner.to_plotly_json()['props']['aria-live'],'polite')
+        callback = next(c for c in app._callback_list if 'prediction-result.children' in c['output'])
+        running = callback['running']
+        controls = ['predict-button','reset-inputs','model-select']+[f"sensor-{s['id']}" for s in sensors()]
+        for component_id in controls:
+            self.assertIs(running['running'][f'{component_id}.disabled'],True)
+            self.assertIs(running['runningOff'][f'{component_id}.disabled'],False)
+        self.assertEqual(running['running']['predict-button.children'],'Calculando…')
+        self.assertEqual(running['runningOff']['predict-button.children'],'Calcular estimación')
+
     def test_equivalence_with_saved_test_predictions(self):
         df = observations()
         holdout = predictions()

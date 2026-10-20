@@ -155,6 +155,28 @@ GitHub Pages usa `.github/workflows/publish-book.yml` y `book/requirements.txt`,
 sin ejecutar ni reentrenar el notebook. Las dependencias para reentrenarlo estan
 en `book/requirements-training.txt`, separadas del servicio. Consulte `book/README.md`.
 
+## Curvas de aprendizaje
+
+Cada modelo y emision tiene una curva de entrenamiento y validacion, con R2 y RMSE.
+Se consulta `data/curvas_aprendizaje.csv` y su archivo de metodologia; Render no
+reentrena modelos ni necesita dependencias adicionales. Las franjas son una
+desviacion entre cinco pliegues, no intervalos de confianza.
+
+Para regenerar las curvas en el entorno de entrenamiento:
+
+```text
+python book/training/learning_curves.py --workers 2
+python tools/export_learning_figures.py
+```
+
+Se incorporan bloques completos disponibles de cada ano, del 20% al 100%, con los
+mismos cinco pliegues y purga de 24 registros. Los subconjuntos son anidados y
+comunes a todas las familias. Se mantiene la configuracion interna de cada
+pliegue; cada escalado y el cross-fitting del kernel se ajustan localmente.
+El punto al 100% reutiliza las metricas externas ya guardadas. No interviene la
+prueba ni se reemplazan modelos. El cache reanudable se guarda fuera del servicio,
+en `tmp/curvas_aprendizaje`, o en la ruta indicada mediante `--cache`.
+
 ## Validacion y limites
 
 Las pruebas cubren las ocho familias, predicciones individuales y por lote,

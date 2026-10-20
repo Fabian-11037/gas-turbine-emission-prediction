@@ -45,6 +45,11 @@ def optimization_results():
 
 
 @lru_cache(maxsize=1)
+def learning_curves():
+    return pd.read_csv(DATA/'curvas_aprendizaje.csv')
+
+
+@lru_cache(maxsize=1)
 def sensor_audit():
     return pd.read_csv(DATA/'auditoria_predictiva_univariada.csv')
 

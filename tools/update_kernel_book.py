@@ -6,7 +6,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from dashboard.kernel_content import (ARCHITECTURE, MATHEMATICS, CONTRIBUTION,
+from dashboard.kernel_content import (ARCHITECTURE, TREE_MODELS, MATHEMATICS, CONTRIBUTION,
     SELECTION, STATISTICAL_METHOD, STATISTICAL_INTERPRETATION)
 
 
@@ -96,7 +96,7 @@ def refresh_text(path, notebook):
                      if c['cell_type'] == 'code' and c.get('id') not in {'kernel-statistics-code', 'kernel-results-code'}]
     texts = {
         'kernel-intro': '### 4.10 Propuesta: stacking con kernel operativo\n\n'+ARCHITECTURE+
-            '\n\n![Arquitectura del kernel operativo](../assets/kernel_arquitectura.svg)\n',
+            '\n\n![Arquitectura del kernel operativo](../assets/kernel_arquitectura.svg)\n\n'+TREE_MODELS.replace('### ', '#### '),
         'kernel-math': '#### 4.10.1 Fundamentos matemáticos\n\n'+MATHEMATICS.replace('### ', '##### '),
         'kernel-results-text': '#### 4.10.2 Configuraciones y resultados\n\n'
             'Se mantienen las divisiones de datos anteriores. Las referencias son **Random Forest para CO '
@@ -136,7 +136,7 @@ def update():
         return
     new_cells = [
         cell('markdown', '### 4.10 Propuesta: stacking con kernel operativo\n\n'+ARCHITECTURE+
-            '\n\n![Arquitectura del kernel operativo](../assets/kernel_arquitectura.svg)\n', 'kernel-intro'),
+            '\n\n![Arquitectura del kernel operativo](../assets/kernel_arquitectura.svg)\n\n'+TREE_MODELS.replace('### ', '#### '), 'kernel-intro'),
         cell('markdown', '#### 4.10.1 Fundamentos matemáticos\n\n'+MATHEMATICS.replace('### ', '##### '), 'kernel-math'),
         cell('markdown', '#### 4.10.2 Configuraciones y resultados\n\nLos comparadores anteriores se conservan. '
             'Esta ampliación mantiene las mismas particiones e incorpora una búsqueda de 24 configuraciones por emisión. '

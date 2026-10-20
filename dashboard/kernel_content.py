@@ -7,6 +7,24 @@ A los nueve sensores se añaden dos variables: la caída de temperatura **TIT �
 Se entrena un modelo independiente para cada emisión. Se prueban 24 configuraciones y se elige la de menor error en la validación interna. Ridge aprende con predicciones obtenidas sin usar el registro que se intenta estimar (*OOF*), con una separación adicional entre grupos (*cross-fitting*). Se mantienen bloques de 168 registros, margen de 24 y validación externa de cinco grupos e interna de tres. El ajuste final usa solo los 27.570 registros de desarrollo.
 """
 
+TREE_MODELS = r"""### Qué es Extra Trees y cómo se diferencia
+
+Un **árbol de regresión** separa registros mediante reglas sobre los sensores, como «TIT por debajo de un límite». Cada recorrido termina en una **hoja**, cuya estimación se aprende de los registros que contiene.
+
+Un **Extra Tree** propone límites aleatorios para las divisiones y elige el mejor entre esos candidatos. **Extra Trees** reúne muchos de estos árboles y promedia sus estimaciones; nuestra rama usa **200**.
+
+| Modelo | Cómo construye y combina los árboles |
+|---|---|
+| Árbol de decisión | Un solo árbol; en cada división busca un límite que reduzca el error. |
+| Random Forest | Construye árboles independientes con muestras con reemplazo y promedia sus resultados. Una muestra con reemplazo puede repetir registros y omitir otros. |
+| Extra Trees | Introduce límites aleatorios candidatos y promedia los árboles. En nuestra configuración, cada árbol usa todo el entrenamiento disponible, sin remuestreo. |
+| XGBoost | Añade árboles en secuencia: cada nuevo árbol corrige errores del conjunto anterior. |
+
+La diversidad puede ayudar a compensar errores al promediar, pero **no garantiza superioridad ni elimina el sobreajuste**. En el kernel, Extra Trees aporta reglas que complementan la semejanza entre registros usada por SVR.
+
+Referencias: [ensambles](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees), [Extra Trees](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html) y [Random Forest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html), documentación de scikit-learn.
+"""
+
 MATHEMATICS = r"""### Variables operativas
 
 $$

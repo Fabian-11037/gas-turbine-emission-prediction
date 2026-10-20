@@ -24,26 +24,58 @@
 ## 3. EDA: qué mostrar y qué decir
 
 - **Calidad:** mostrar la tabla de faltantes y los controles de coherencia. No hay valores faltantes en la muestra de desarrollo; se revisan duplicados y humedad ligeramente superior al 100% sin corregirla arbitrariamente.
+
+![Figura 1. Matriz de faltantes en desarrollo. El blanco indica datos observados; no hay celdas faltantes.](figuras_guia/calidad.png)
+
 - **Distribuciones:** usar el histograma y las cajas. CO presenta una cola hacia concentraciones elevadas: hay episodios altos menos frecuentes que pueden producir errores grandes.
 - **Extremos:** explicar que un valor alejado de lo habitual no es necesariamente erróneo. Se mantienen para evaluar también situaciones difíciles de interés operativo.
+
+![Figura 2. Histogramas y cajas de CO y NOx en desarrollo. La cola derecha de CO y los puntos alejados permiten señalar los episodios extremos.](figuras_guia/distribuciones_objetivos.png)
+
 - **Relaciones:** mostrar una dispersión y el mapa de correlaciones. Algunas variables se mueven juntas y pueden compartir información; esto no significa que una cause el cambio de la otra.
+
+![Figura 3. Correlaciones de Pearson y Spearman en desarrollo. El signo y el color indican la dirección de la asociación, no causalidad.](figuras_guia/correlaciones.png)
+
+![Figura 4. Detalle de las relaciones de AT y AP con las emisiones en desarrollo. Los hexágonos más claros concentran más registros.](figuras_guia/relaciones_detalle.png "ancho=265")
+
 - **Estructura conjunta:** PCA resume los sensores y KMeans agrupa situaciones parecidas. Son herramientas para describir condiciones, no etiquetas confirmadas de estados físicos de la turbina.
+
+![Figura 5. PCA de los sensores de desarrollo: variación acumulada y proyección coloreada por año. La superposición muestra condiciones compartidas entre años.](figuras_guia/pca.png)
+
 - **Dependencia temporal:** emisiones de registros vecinos se parecen. La ACF de primer rezago está entre 0,525 y 0,773 para CO y entre 0,864 y 0,894 para NOx. Esta persistencia motiva la evaluación por bloques.
+
+![Figura 6. Ejemplo de ACF: CO y NOx en 2011. La semejanza entre registros próximos es más persistente en NOx; el rezago cero siempre vale uno.](figuras_guia/acf_ejemplo.png)
+
 - **Cambio anual más importante:** NOx baja de 70,01 mg/m³ en 2013 a 60,07 en 2014 y 59,89 en 2015. La caída 2013–2014 es de 9,94 mg/m³.
 - **No confundir promedios con distribuciones:** NOx tiene promedios parecidos en 2014 y 2015, pero cambia su mediana y su dispersión.
 - **CO no aumenta de forma uniforme:** su promedio es 1,57 en 2011, 2,36 en 2012, 2,72 en 2013, 2,08 en 2014 y 3,13 mg/m³ en 2015.
+
+![Figura 7. Evolución y cajas anuales de 2011 a 2015. A la izquierda, observaciones y media móvil; a la derecha, cajas con extremos omitidos solo visualmente.](figuras_guia/evolucion.png)
+
 - **Estacionalidad:** no se detecta un ciclo regular significativo de 24 o 168 registros con el método aplicado. Esto no contradice la persistencia local ni las diferencias anuales.
 - **Lectura de la gráfica cíclica:** el eje horizontal indica la posición que vuelve a empezar cada 24 o 168 registros. El vertical muestra el cambio estimado alrededor de cero, no la concentración promedio. No son horas del día verificadas.
+
+![Figura 8. Componentes cíclicas estimadas por año para 24 y 168 registros. Las curvas muestran los patrones ajustados; la conclusión se apoya en las pruebas estadísticas, no solo en su forma.](figuras_guia/estacionalidad.png)
+
 - **Mensaje de cierre del EDA:** los datos tienen extremos, relaciones no lineales, dependencia entre vecinos y cambios anuales; la validación debe respetar esa estructura.
 
 ## 4. Entrenamiento y validación
 
 - **Regresión supervisada:** el modelo aprende con ejemplos que contienen sensores y emisiones medidas, para estimar una cantidad numérica.
 - **Separación de datos:** desarrollo, 27.570 registros; prueba, 7.411; margen excluido, 1.752. La reserva de prueba es aproximadamente el 20% de los registros originales.
+
+![Figura 9. Distribución real de desarrollo, prueba y exclusiones en cada año. Los grupos de prueba aparecen en distintos puntos de 2011 a 2015.](figuras_guia/particion.png)
+
 - **Bloques de 168:** se apartan grupos de observaciones próximas, no filas aisladas. Esto reduce una evaluación excesivamente fácil entre vecinos muy parecidos.
 - **Margen de 24:** se excluyen hasta 24 posiciones a cada lado de la prueba o validación. Es una separación de seguridad entre ajuste y evaluación, no una afirmación de que la dependencia termine exactamente ahí.
+
+![Figura 10. Detalle del bloque reservado y sus márgenes. Se apartan hasta 24 posiciones a cada lado tanto en prueba como en validación.](figuras_guia/validacion_interna.png)
+
 - **Validación cruzada:** se repite el entrenamiento dejando un grupo fuera cada vez.
 - **Validación anidada 5 × 3:** los tres grupos internos eligen configuraciones; los cinco grupos externos evalúan ese procedimiento. Así, ajustar controles y medir desempeño no se hacen con los mismos registros de evaluación.
+
+![Figura 11. Cinco pliegues externos: cambia el conjunto de validación, mientras la prueba permanece reservada fuera del ajuste.](figuras_guia/validacion_externa.png)
+
 - **Por qué no LOYO como protocolo principal:** dejar un año completo fuera evalúa un periodo desconocido. Aquí interesa estimar condiciones representadas en los cinco años. LOYO sería pertinente para una pregunta de transferencia a otro periodo.
 - **Prevención de fuga:** no se incluyen las emisiones como entradas; el escalado se aprende solo en cada entrenamiento y se respetan bloques y márgenes.
 - **Modelos de referencia:** Ridge, Lasso, KNN, árbol de decisión, Random Forest, XGBoost y SVR lineal. Todos se evalúan por separado para CO y NOx.
@@ -53,7 +85,16 @@
 ## 5. Propuesta: kernel operativo
 
 - **Arquitectura en una frase:** «Dos modelos ven los mismos sensores de maneras diferentes; un tercero aprende a combinar sus estimaciones».
+
+![Figura 12. Arquitectura del kernel operativo. Los sensores y las dos variables calculadas alimentan Extra Trees y SVR; Ridge combina sus predicciones.](figuras_guia/arquitectura.png "ancho=210")
+
 - **Extra Trees:** 200 árboles que aplican reglas sobre los sensores y promedian sus resultados.
+- **Qué es un árbol de regresión:** una secuencia de reglas como «TIT por debajo de un límite». El recorrido termina en una hoja, que estima la emisión a partir de los registros de entrenamiento que llegaron allí.
+- **Qué cambia en un Extra Tree:** propone límites aleatorios para dividir los datos y elige el mejor entre esos candidatos. Extra Trees combina muchos de esos árboles; la predicción final es su promedio. Fuente: [ExtraTreesRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html).
+- **Frente a un árbol de decisión:** no depende de un único conjunto de reglas. Al promediar árboles diferentes, sus errores pueden compensarse.
+- **Frente a Random Forest:** ambos promedian árboles independientes. Random Forest busca mejores límites en cada división y, en nuestro ajuste, remuestrea registros con reemplazo: algunos se repiten y otros no entran en un árbol. Extra Trees añade aleatoriedad a los límites y usa todo el entrenamiento disponible para cada árbol, sin ese remuestreo. Fuente: [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html).
+- **Frente a XGBoost:** Extra Trees construye árboles independientes y promedia; XGBoost los añade en secuencia para corregir errores del conjunto anterior. Fuente: [métodos de ensamble](https://scikit-learn.org/stable/modules/ensemble.html).
+- **Por qué se combina con SVR:** los árboles representan reglas sobre condiciones de operación y SVR representa semejanzas entre registros. Pueden aportar información complementaria; la diversidad no garantiza mejor rendimiento ni elimina el sobreajuste.
 - **SVR con kernel RBF:** estima usando la semejanza con situaciones de referencia; los grupos de sensores tienen distintos pesos para definir esa semejanza.
 - **Ridge como combinador:** aprende cuánto usar de cada predicción, evitando pesos excesivos.
 - **Dos variables adicionales:** diferencia de temperatura de entrada y salida, y esa diferencia multiplicada por TEY. Se calculan con las entradas existentes.
@@ -74,20 +115,71 @@
 - **Elección:** kernel operativo para ambas emisiones, por su menor MSE de validación entre las ocho familias publicadas.
 - **CO:** frente a Random Forest, R² de prueba sube de 0,7260 a 0,7491. La mejora es significativa en validación, pero no en prueba: p ajustado 0,0345 y 0,5092, respectivamente.
 - **NOx:** frente a XGBoost, R² de prueba sube de 0,7969 a 0,8242. La mejora es significativa tanto en validación como en prueba: p ajustado 0,0018 y 0,0004.
+
+![Figura 13. R² del kernel operativo por etapa para cada emisión. La barra de error resume la desviación entre los cinco pliegues externos.](figuras_guia/etapas_kernel.png)
+
 - **Importancia de sensores en el kernel:** TIT, TAT y TEY encabezan CO; TIT, AT y TEY encabezan NOx. Es dependencia predictiva del modelo, no una jerarquía de causas físicas.
+
+![Figura 14. Importancia por permutación del kernel operativo en prueba. Una barra mayor indica que desordenar ese sensor aumenta más el error del modelo.](figuras_guia/importancia_kernel.png)
+
 - **Sobreajuste:** entrenamiento supera validación y prueba. La brecha sigue presente; no se afirma haber eliminado el problema.
 - **Literatura:** mostrar Sinap, Kochueva y Jhinaoui para explicar diferencias de filtrado, periodos o historial. No comparar sus cifras como si todos hubieran respondido al mismo examen.
 - **Cierre sugerido:** «La propuesta mejora el desempeño numérico para ambas emisiones; la evidencia de mejora es consistente para NOx. Para CO, la prueba todavía no confirma una ventaja significativa sobre Random Forest».
+
+### 6.1. Curvas de aprendizaje
+
+- **Qué muestran:** cómo cambia el desempeño cuando el modelo dispone de más registros para aprender. Se calculan para los ocho modelos, por separado para CO y NOx.
+- **Eje horizontal:** cantidad media de registros usados para entrenar en cada pliegue. Se incorporan aproximadamente 20%, 40%, 60%, 80% y 100% de los bloques disponibles de cada año.
+- **Eje vertical:** R²; un valor mayor indica mejor desempeño. En el dashboard también puede seleccionarse RMSE, donde un valor menor es mejor.
+- **Dos líneas:** gris para entrenamiento y verde para validación. Cada punto es el promedio de cinco pliegues; las franjas muestran una desviación estándar entre ellos, no un intervalo de confianza.
+- **Cómo leer la brecha:** una línea de entrenamiento alta y otra de validación más baja sugiere sobreajuste. Si la validación mejora y la brecha se reduce al añadir datos, la generalización mejora. Si ambas se estabilizan con resultados modestos, más datos por sí solos podrían no resolver la limitación del modelo.
+- **Cómo se calculan:** se conservan los grupos de validación y el margen de 24 registros. La configuración elegida dentro de cada pliegue se mantiene fija; el escalado vuelve a aprenderse con cada subconjunto. En el kernel, Ridge recibe predicciones internas fuera de muestra.
+- **Qué significa el 100%:** utiliza todo el entrenamiento disponible dentro de cada pliegue, no los 27.570 registros del ajuste final. Por eso su R² de entrenamiento no tiene que coincidir con la tabla principal. El conjunto de prueba no se utiliza en estas curvas.
+
+- **KNN:** el R² de entrenamiento permanece en 1 y la validación mejora al añadir datos, pero persiste una brecha amplia. Ajustar perfectamente los registros conocidos no garantiza estimar bien otros registros.
+
+![Figura 15. Curvas de aprendizaje de KNN para CO y NOx. Gris: entrenamiento; verde: validación; franjas: variación entre los cinco pliegues.](figuras_guia/curva_knn.png)
+
+- **Ridge:** las líneas se acercan, pero el R² final de validación es aproximadamente 0,539 para CO y 0,493 para NOx. Una brecha pequeña no equivale por sí sola a un buen desempeño.
+
+![Figura 16. Curvas de aprendizaje de Ridge para CO y NOx, con la misma evaluación por bloques.](figuras_guia/curva_ridge.png)
+
+- **Lasso:** presenta un patrón parecido a Ridge: menor separación con más datos, pero resultados de validación modestos. La cercanía de las curvas no basta para preferirlo a los modelos no lineales.
+
+![Figura 17. Curvas de aprendizaje de Lasso para CO y NOx, con configuración fija dentro de cada pliegue.](figuras_guia/curva_lasso.png)
+
+- **Árbol de decisión:** la validación mejora al incorporar bloques, especialmente para NOx, pero mantiene una diferencia frente al entrenamiento. Más datos ayudan sin resolver por completo la dificultad para generalizar.
+
+![Figura 18. Curvas de aprendizaje del árbol de decisión para CO y NOx.](figuras_guia/curva_decision_tree.png)
+
+- **Random Forest:** la validación mejora y la separación se reduce con más datos. Al final, la brecha es mayor para NOx que para CO; el promedio de árboles no elimina todo el sobreajuste.
+
+![Figura 19. Curvas de aprendizaje de Random Forest para CO y NOx.](figuras_guia/curva_random_forest.png)
+
+- **XGBoost:** añadir datos eleva la validación y reduce la brecha. La diferencia no desaparece, por lo que el alto ajuste inicial de entrenamiento no debe presentarse como capacidad de predicción.
+
+![Figura 20. Curvas de aprendizaje de XGBoost para CO y NOx.](figuras_guia/curva_xgboost.png)
+
+- **SVR lineal:** se aproxima al patrón de Ridge y Lasso. Sus curvas cercanas, con desempeño moderado, son compatibles con una limitación de la relación lineal y no solo con falta de registros.
+
+![Figura 21. Curvas de aprendizaje de SVR lineal para CO y NOx.](figuras_guia/curva_svr_lineal.png)
+
+- **Kernel operativo:** entre el 20% y el 100%, el R² medio de validación sube de 0,6414 a 0,7097 para CO y de 0,6724 a 0,7815 para NOx. La brecha se reduce en ambas emisiones, pero persiste. La tendencia observada no garantiza que continúe con datos adicionales.
+
+![Figura 22. Curvas de aprendizaje del kernel operativo para CO y NOx. El combinador se entrena con predicciones internas fuera de muestra.](figuras_guia/curva_kernel_operativo.png)
+
+- **Lectura conjunta:** no se busca únicamente que las líneas coincidan. Los modelos lineales tienen menor separación, pero el kernel alcanza mejor validación. La elección combina capacidad predictiva y control del sobreajuste.
 
 ## 7. Guion breve de exposición
 
 - **Apertura:** explicar cómo la planta genera electricidad y por qué necesita seguir sus emisiones.
 - **Problema de datos:** presentar los nueve sensores, las dos emisiones y la concentración en mg/m³.
-- **EDA:** seleccionar distribución, cambio anual de NOx y dependencia entre vecinos; cerrar con la ausencia de un ciclo fijo detectado.
-- **Validación:** mostrar la figura de bloques y el margen, y explicar los dos niveles de validación con una sola frase cada uno.
+- **EDA:** seleccionar distribución (figura 2), cambio anual de NOx (figura 7) y dependencia entre vecinos (figura 6); cerrar con la ausencia de un ciclo fijo detectado (figura 8).
+- **Validación:** mostrar los bloques y el margen (figuras 9 a 11), y explicar los dos niveles de validación con una sola frase cada uno.
 - **Comparadores:** describir las familias y la regla de selección, sin leer cada hiperparámetro.
-- **Propuesta:** mostrar el diagrama del kernel y explicar las dos variables operativas y la combinación de modelos.
-- **Resultados:** presentar R², RMSE, MAE y la diferencia entre CO y NOx en significancia.
+- **Propuesta:** mostrar el diagrama del kernel (figura 12) y explicar las dos variables operativas y la combinación de modelos.
+- **Resultados:** presentar R², RMSE, MAE y la diferencia entre CO y NOx en significancia; apoyar la lectura con las figuras 13 y 14.
+- **Aprendizaje:** mostrar la curva del kernel operativo (figura 22), explicar los dos ejes y la diferencia entre entrenamiento y validación. Usar las figuras 15 a 21 para contrastar los demás modelos.
 - **Conclusión:** utilidad potencial, límites de una sola turbina y necesidad de datos nuevos para una aplicación operativa.
 
 ## 8. Conceptos de datos y EDA
@@ -159,6 +251,8 @@
 - **Purga o margen:** retirar vecinos próximos a validación o prueba. No cambia las observaciones que se evalúan.
 - **LOYO:** dejar un año fuera por turno; estudia transferencia a un periodo no visto.
 - **Sobreajuste:** buen ajuste sobre ejemplos de entrenamiento que no se sostiene en otros registros. **Generalización:** desempeño en datos no usados para aprender.
+- **Curva de aprendizaje:** muestra el desempeño al aumentar la cantidad de datos usados para entrenar; no representa el paso de horas ni las iteraciones del algoritmo.
+- **Franja de variación entre pliegues:** representa cuánto cambian las puntuaciones al evaluar grupos distintos. La franja de una desviación estándar no equivale a un intervalo de confianza ni demuestra significancia estadística.
 - **Extrapolación:** estimar fuera de las condiciones cubiertas por el entrenamiento; exige cautela.
 - **Regularización:** penalización que limita complejidad o pesos excesivos. **L1** suma magnitudes absolutas y puede dejar pesos en cero; **L2** suma cuadrados y los reduce de manera gradual.
 - **Grid Search:** probar toda una lista de combinaciones. **Random Search:** elegir algunas al azar.

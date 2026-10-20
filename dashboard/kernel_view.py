@@ -4,7 +4,7 @@ from functools import lru_cache
 from dash import Input, Output, dcc, html
 from .components import disclosure, table
 from .repository import DATA
-from .kernel_content import (ARCHITECTURE, MATHEMATICS, CONTRIBUTION, SELECTION,
+from .kernel_content import (ARCHITECTURE, TREE_MODELS, MATHEMATICS, CONTRIBUTION, SELECTION,
     STATISTICAL_METHOD, STATISTICAL_INTERPRETATION)
 
 
@@ -29,11 +29,12 @@ def render(model_id, target, section):
     if model_id != 'kernel_operativo':
         return {'display': 'none'}, None
     if section == 'arquitectura':
-        return {}, html.Div([
+        return {}, html.Div([html.Div([
             html.Figure([html.Img(src='/assets/kernel_arquitectura.svg',
                 alt='Sensores y dos variables derivadas alimentan Extra Trees y SVR ponderado; Ridge combina ambas predicciones.'),
                 html.Figcaption('Misma arquitectura; un modelo independiente por contaminante.', className='caption')]),
-            dcc.Markdown(ARCHITECTURE, mathjax=True)], className='kernel-architecture')
+            dcc.Markdown(ARCHITECTURE, mathjax=True)], className='kernel-architecture'),
+            dcc.Markdown(TREE_MODELS,className='kernel-markdown')])
     if section == 'aporte':
         return {}, dcc.Markdown(CONTRIBUTION, mathjax=True, className='kernel-markdown')
     if section == 'evidencia':

@@ -9,7 +9,7 @@ from . import figures as f
 from .components import disclosure,graph,metric,notice,number,table
 from .models import feature_importance,predict,registry
 from .repository import intervals,optimization_results,predictions,range_warnings,results,sample_frame,sensors
-from . import kernel_view
+from . import kernel_view,learning
 
 MAX_ROWS = 2000
 MAX_BYTES = 2*1024*1024
@@ -26,6 +26,14 @@ MODEL_EXPLANATIONS = {
 
 def default_model():
     return next(mid for mid, model in registry().items() if model['respuestas']['CO']['seleccionado_por_cv'])
+
+
+def prediction_loading(children, component_id, message):
+    return dcc.Loading(children,id=f'{component_id}-loading',delay_show=100,delay_hide=150,
+        target_components={component_id:'children'},
+        custom_spinner=html.Div([html.Span(className='prediction-spinner',**{'aria-hidden':'true'}),
+                                 html.Span(message)],className='prediction-progress',role='status',
+                                **{'aria-live':'polite'}))
 
 
 def layout():
@@ -46,9 +54,11 @@ def layout():
                                 html.Div([html.Button('Calcular estimación',id='predict-button',n_clicks=0,className='primary-button'),
                                           html.Button('Registro de ejemplo',id='reset-inputs',n_clicks=0,className='text-button')],className='command-row'),
                                 html.P('El ejemplo corresponde a un registro real de desarrollo.',className='caption')]),
-                  html.Section([html.H3('Resultado'),html.Div([metric('CO (mg/m³)','—'),metric('NOx (mg/m³)','—')],
+                  html.Section([html.H3('Resultado'),prediction_loading(html.Div([
+                                html.Div([metric('CO (mg/m³)','—'),metric('NOx (mg/m³)','—')],
                                   id='prediction-result',className='prediction-values'),
-                                html.Div(id='prediction-feedback',role='status',className='prediction-feedback'),
+                                html.Div(id='prediction-feedback',role='status',className='prediction-feedback')],
+                                className='prediction-output'),'prediction-result','Calculando CO y NOx…'),
                                 notice('Estimación de apoyo; no sustituye una medición certificada de emisiones.',kind='warning')],
                                className='prediction-panel')],className='prediction-grid'),
         disclosure('Predicciones por lote · CSV',[
@@ -57,13 +67,24 @@ def layout():
                       html.Button('Descargar plantilla',id='template-button',n_clicks=0,className='text-button'),
                       html.Button('Descargar estimaciones',id='batch-download-button',n_clicks=0,disabled=True,className='secondary-button')],className='command-row'),
             html.P('Sensores: AT, AP, AH, AFDP, GTEP, TIT, TAT, TEY y CDP. CSV UTF-8, máximo 2 MB y 2.000 filas. Los archivos no se almacenan en el servidor.',className='caption'),
-            html.Div(id='batch-feedback',role='status'),dcc.Store(id='batch-store'),
+            prediction_loading(html.Div(id='batch-feedback',role='status',className='batch-output'),
+                               'batch-feedback','Calculando predicciones del archivo…'),dcc.Store(id='batch-store'),
             dcc.Download(id='template-download'),dcc.Download(id='batch-download')]),
         html.Div([html.Div([html.H3('Desempeño del modelo'),html.Span('Métricas históricas · protocolo fijo',className='subtle')]),
                   dcc.RadioItems(id='model-target',options=[{'label':'CO','value':'CO'},{'label':'NOx','value':'NOX'}],value='CO',className='segmented')],className='section-heading results-heading'),
         html.Div(id='model-metrics',className='metric-strip'),html.P(id='model-ci',className='caption'),
         dcc.Loading(html.Div([graph('model-stage-chart'),graph('model-prediction-chart')],className='chart-grid'),type='circle',color=f.TEAL),
         html.P('CV externa resume cinco grupos de evaluación: se muestra el promedio y su variación. Las métricas de prueba usan 7.411 registros; la figura muestra hasta 2.200.',className='caption'),
+        disclosure('Curva de aprendizaje · modelo y emisión seleccionados',[
+            html.Div([html.H3('Aprendizaje con más datos'),
+                dcc.RadioItems(id='learning-metric',options=[{'label':'R²','value':'R2'},
+                    {'label':'RMSE','value':'RMSE'}],value='R2',className='segmented')],className='section-heading'),
+            dcc.Loading(graph('model-learning-chart'),type='circle',color=f.TEAL),
+            html.P(id='model-learning-note',className='caption'),
+            html.P('Se añaden bloques completos de cada año, conservando el margen de 24 registros. '
+                   'La configuración se mantiene fija dentro de cada pliegue; los escalados y el combinador se vuelven a ajustar solo con su entrenamiento. '
+                   'La prueba no participa en estas curvas.',className='caption'),
+            disclosure('Valores por tamaño de entrenamiento',html.Div(id='model-learning-table'))]),
         disclosure('Significado de los indicadores',[
             html.P('R² resume cuánto mejora el modelo frente a estimar siempre el promedio: 1 es un ajuste perfecto y un valor negativo es peor que esa referencia. No es un porcentaje de predicciones correctas.'),
             html.P('MAE es el tamaño medio del error. RMSE da más peso a los errores grandes. Ambos se expresan en mg/m³; un valor menor es mejor. MSE es el promedio de errores al cuadrado y se utiliza para elegir configuraciones.'),
@@ -185,6 +206,9 @@ def parse_batch(contents, model_id):
 
 def register(app):
     kernel_view.register(app)
+    app.callback(Output('model-learning-chart','figure'),Output('model-learning-note','children'),
+                 Output('model-learning-table','children'),Input('model-select','value'),
+                 Input('model-target','value'),Input('learning-metric','value'))(learning.render)
     app.callback(Output('model-importance-chart','figure'),Output('model-importance-note','children'),
                  Output('model-importance-table','children'),Input('model-select','value'),
                  Input('model-target','value'))(importance_results)
@@ -200,7 +224,12 @@ def register(app):
 
     @app.callback(Output('prediction-result','children'),Output('prediction-feedback','children'),
                   Input('predict-button','n_clicks'),Input('model-select','value'),Input('reset-inputs','n_clicks'),
-                  *[Input(f"sensor-{s['id']}",'value') for s in sensors()])
+                  *[Input(f"sensor-{s['id']}",'value') for s in sensors()],
+                  running=[(Output('predict-button','disabled'),True,False),
+                           (Output('predict-button','children'),'Calculando…','Calcular estimación'),
+                           (Output('reset-inputs','disabled'),True,False),
+                           (Output('model-select','disabled'),True,False),
+                           *[(Output(f"sensor-{s['id']}",'disabled'),True,False) for s in sensors()]])
     def prediction_callback(clicks,model_id,reset_count,*values):
         blank = [metric('CO (mg/m³)','—'),metric('NOx (mg/m³)','—')]
         if not clicks or ctx.triggered_id in ['model-select','reset-inputs',None]:

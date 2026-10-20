@@ -19,6 +19,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class KernelTests(unittest.TestCase):
+    def test_tree_explanation_matches_book(self):
+        from dashboard.kernel_content import TREE_MODELS
+        for phrase in ['árbol de regresión','Extra Tree','200','Árbol de decisión',
+                       'Random Forest','reemplazo','sin remuestreo','XGBoost','sobreajuste']:
+            self.assertIn(phrase,TREE_MODELS)
+        notebook = json.loads((ROOT/'book/gas_turbine_eda_hilo_conductor_redaccion.ipynb').read_text(encoding='utf-8'))
+        intro = next(c for c in notebook['cells'] if c.get('id')=='kernel-intro')
+        self.assertIn(TREE_MODELS.replace('### ','#### '),''.join(intro['source']))
+
     def test_operational_interpretation_matches_book(self):
         from dashboard.kernel_content import MATHEMATICS
         for phrase in ['Posible interpretación operativa', 'no necesariamente mayor eficiencia',
