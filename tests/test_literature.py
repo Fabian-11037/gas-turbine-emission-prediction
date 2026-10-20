@@ -28,10 +28,10 @@ class LiteratureTest(unittest.TestCase):
     def test_methodology_caveats_and_dimensions(self):
         comparison = json.loads((DATA / 'literatura_metodologia.json').read_text(encoding='utf-8'))
         self.assertEqual(len(comparison['dimensiones']), 4)
-        self.assertEqual(comparison['revision'], '2026-10-18')
+        self.assertEqual(comparison['revision'], '2026-10-20')
         text = json.dumps(comparison, ensure_ascii=False)
-        for phrase in ['168 registros', '24 vecinos', '5 × 3', 'no demuestra',
-                       'nueve sensores', 'plausibles', 'presupuesto']:
+        for phrase in ['168 registros', '24 vecinos', '5 × 3',
+                       'nueve sensores', 'posibles explicaciones', 'mismos datos']:
             self.assertIn(phrase, text)
         for item in comparison['dimensiones']:
             self.assertEqual(urlparse(item['enlace']).scheme, 'https')
@@ -57,7 +57,7 @@ class LiteratureTest(unittest.TestCase):
         studies = found['literature-studies'].children[1].children[0]
         self.assertEqual(len(studies.children.children[1].children), 9)
         selected = results().loc[lambda d:d.seleccionado_por_CV]
-        self.assertEqual(set(selected.modelo), {'Random Forest', 'XGBoost'})
+        self.assertEqual(set(selected.modelo), {'Kernel operativo'})
 
     @unittest.skipUnless((ROOT / 'book' / 'gas_turbine_eda_hilo_conductor_redaccion.ipynb').exists(),
                          'El despliegue minimo no incluye el JBook')

@@ -1,0 +1,49 @@
+{
+  "revision": "2026-10-20",
+  "orientacion": "delta R2 = kernel menos referencia; positivo favorece kernel",
+  "hipotesis": "Igualdad bilateral de MSE",
+  "alfa": 0.05,
+  "replicas": 20000,
+  "semilla": 42,
+  "bloque_principal": 168,
+  "bloques_sensibilidad": [
+    336,
+    672
+  ],
+  "n_prueba": 7411,
+  "purga_validacion": 24,
+  "folds_externos": 5,
+  "folds_internos": 3,
+  "prueba_reutilizada": true,
+  "modelos_entrenados": 0,
+  "referencias": [
+    {
+      "objetivo": "CO",
+      "referencia": "Random Forest",
+      "optimizador_referencia": "Genetico"
+    },
+    {
+      "objetivo": "NOX",
+      "referencia": "XGBoost",
+      "optimizador_referencia": "Bayesiano"
+    }
+  ],
+  "criterio_referencia": "Menor MSE externo por emision entre los comparadores publicados, excluyendo kernel.",
+  "ajuste": "Holm2 conjunto para CO y NOX; prueba y CV se ajustan por separado.",
+  "limitacion": "Inferencia exploratoria; reserva previamente consultada y seleccion adaptativa.",
+  "metodo_bootstrap": "Pareado por bloques originales dentro de cada anio, mezcla anual fija; p bilateral centrado bajo H0.",
+  "codigo_sha256": "96e61e4cf4dfc641baf4c42d05d7040dfa9112776d62e92e69252ae092bf9b92",
+  "fuentes_sha256": {
+    "data\\resultados.csv": "191ade7621f5ac201bb151ff901ce7ed5a7ec7efd978998caa4c8e34857780c7",
+    "data\\observaciones.csv.gz": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+    "book\\informe_resultados\\entregable2_anidada\\asignacion_particiones.csv.gz": "ee103169ad0df51e65408c0408e06ec64ba61acb6573067b0f186ede27946b94",
+    "data\\predicciones_prueba.csv.gz": "ae9635f95a55b850014609d5c076f0b5577ddec0300f57770dd5beb35ca7919a",
+    "book\\informe_resultados\\entregable2_anidada\\predicciones_OOF.csv.gz": "8fbff44e77c5f9900df982a1971cb2f039bc6ed68fa861d7b870941f8fa58f33",
+    "book\\informe_resultados\\entregable2_anidada\\validacion_externa.csv.gz": "dadbadc687c9093082a73adf97218f1a7b21f05f855ef5deac19554162e9a367",
+    "book\\informe_resultados\\kernel_operativo\\etapas.csv": "aeaac6c896f82a299d923cc4ee162077c1009133816bc7a1825a455d2efe19b3",
+    "book\\informe_resultados\\kernel_operativo\\predicciones_OOF_CO.csv.gz": "1de75d558cc02a1792755789c713adcbf75b6cac3906f4e0a1f9cdeb0ae72dd1",
+    "book\\informe_resultados\\kernel_operativo\\predicciones_prueba_CO.csv.gz": "4715e66205ad6d20e7a4c11512e61c4f9cbbe1eb29ea5bfe78b317be52308d0f",
+    "book\\informe_resultados\\kernel_operativo\\predicciones_OOF_NOX.csv.gz": "9c69d588d571847e4f31442cdb19917d7706818410f978a31fcf60594d2f6313",
+    "book\\informe_resultados\\kernel_operativo\\predicciones_prueba_NOX.csv.gz": "443b0bb21e2642a875548275be850480376078aca73872aa0f76e3eba4d0271e"
+  }
+}

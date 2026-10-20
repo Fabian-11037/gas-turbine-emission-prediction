@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 820" role="img" aria-labelledby="title desc">
+<title id="title">Arquitectura del kernel operativo</title>
+<desc id="desc">Nueve sensores, dos variables derivadas y dos ramas paralelas: Extra Trees y SVR con pesos operativos. Ridge combina sus predicciones para estimar la emisión.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#63777c" stroke-width="1.4"/></marker></defs>
+<g fill="none" stroke="#63777c" stroke-width="2.3" marker-end="url(#arrow)">
+<path d="M280 115 V152"/><path d="M280 278 V300 H138 V332"/><path d="M280 300 H422 V332"/>
+<path d="M138 515 V552 H280 V586"/><path d="M422 515 V552 H280"/><path d="M280 686 V734"/>
+</g>
+<g font-family="Arial, sans-serif" text-anchor="middle" fill="#20373c">
+<rect x="80" y="15" width="400" height="100" rx="5" fill="#f4f7f8" stroke="#c8d4d8"/>
+<text x="280" y="48" font-size="25" font-weight="bold">9 sensores de operación</text>
+<text x="280" y="77" font-size="22">AT · AP · AH · AFDP · GTEP</text><text x="280" y="102" font-size="22">TIT · TAT · TEY · CDP</text>
+<rect x="80" y="154" width="400" height="124" rx="5" fill="#fff" stroke="#c8d4d8"/>
+<text x="280" y="187" font-size="25" font-weight="bold">Dos variables calculadas</text>
+<text x="280" y="220" font-size="23">ΔT = TIT − TAT</text><text x="280" y="250" font-size="23">I = TEY × ΔT</text>
+<rect x="15" y="335" width="245" height="180" rx="5" fill="#eef7f6" stroke="#137b7d"/>
+<text x="138" y="374" font-size="28" font-weight="bold">Extra Trees</text>
+<text x="138" y="411" font-size="23">11 variables</text><text x="138" y="445" font-size="23">200 árboles</text><text x="138" y="482" font-size="23">Predicción ET</text>
+<rect x="300" y="335" width="245" height="180" rx="5" fill="#fff4ef" stroke="#bd6954"/>
+<text x="422" y="374" font-size="28" font-weight="bold">SVR RBF</text>
+<text x="422" y="411" font-size="23">11 variables</text><text x="422" y="445" font-size="23">Pesos por grupo</text><text x="422" y="482" font-size="23">Predicción SVR</text>
+<rect x="80" y="588" width="400" height="98" rx="5" fill="#f4f7f8" stroke="#63777c"/>
+<text x="280" y="627" font-size="27" font-weight="bold">Ridge</text><text x="280" y="662" font-size="23">Combina ambas predicciones</text>
+<rect x="130" y="736" width="300" height="65" rx="5" fill="#137b7d"/>
+<text x="280" y="778" font-size="27" font-weight="bold" fill="#fff">CO o NOx estimado</text>
+</g></svg>

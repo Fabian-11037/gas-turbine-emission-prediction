@@ -1,7 +1,9 @@
 # Dashboard CO y NOx
 
+Guia de presentacion y glosario: [Guia de sustentacion](docs/guia_sustentacion.md).
+
 Aplicacion Dash Plotly con tres pestanas: contexto, EDA y modelos. Inferencia
-con siete familias y catorce pipelines ya entrenados; nunca entrena en Render.
+con ocho familias y dieciseis estimadores ya entrenados; nunca entrena en Render.
 
 Repositorio: https://github.com/Fabian-11037/gas-turbine-emission-prediction.
 Esta carpeta es un repositorio independiente del proyecto que la contiene.
@@ -9,13 +11,16 @@ Los archivos del servicio estan en la raiz remota: Root Directory se deja vacio.
 
 ## Modelos y evidencias
 
-- KNN, Ridge, Lasso, Decision Tree, Random Forest, XGBoost y SVR lineal.
+- KNN, Ridge, Lasso, Decision Tree, Random Forest, XGBoost, SVR lineal y Kernel operativo.
 - Un regresor por familia y emision, con escalado de sensores y respuesta incluido.
 - Validacion anidada: cinco pliegues externos y tres internos, bloques de 168
   registros y purga de 24 posiciones originales en ambos niveles.
 - Ajuste final en 27.570 registros; prueba historica de 7.411, sin ajuste con prueba.
 - Grid, Random, Bayesiano y Genetico: 28 procedimientos por emision.
-- Seleccion por MSE externo: Random Forest para CO y XGBoost para NOx.
+- Benchmark inicial: Random Forest para CO y XGBoost para NOx, por MSE externo.
+- Ampliacion: kernel operativo ET + SVR ponderado con Ridge; 24 configuraciones
+  por emision y cross-fitting purgado adicional. Tiene el menor MSE externo entre
+  las ocho familias publicadas para ambas respuestas. No se selecciona por prueba.
 
 Cada familia del selector utiliza su instancia seleccionada por CV para cada
 objetivo. La emision elegida filtra metricas, diagnosticos e importancia; la
@@ -32,11 +37,12 @@ examinada: no es validacion prospectiva ni evidencia de superioridad estadistica
 app.py                         Entrada local y WSGI (app:server)
 dashboard/                     Interfaz, datos y adaptadores de inferencia
 assets/                        Estilos y ajuste de graficos
-data/models/                   Catorce pipelines verificados mediante SHA256
+data/models/                   Dieciseis estimadores verificados mediante SHA256
+emission_models/               Transformaciones e inferencia portable del kernel
 data/modelos.json              Registro extensible y metadatos por objetivo
 data/resultados.csv            Mejor estrategia de cada familia y emision
 data/optimizacion.csv           Los 56 procedimientos de CV anidada
-data/importancia_permutacion.csv Importancia precalculada, 126 filas
+data/importancia_permutacion.csv Importancia precalculada, 144 filas
 data/                          Observaciones, predicciones, intervalos y literatura
 requirements.txt               Dependencias fijadas de inferencia
 render.yaml                    Configuracion de despliegue
@@ -67,7 +73,9 @@ Conecte el repositorio en Render mediante Blueprint y `render.yaml`, o configure
 - `OPENBLAS_NUM_THREADS=1`, `OMP_NUM_THREADS=1`, `MKL_NUM_THREADS=1`.
 
 No se requieren secretos, disco persistente ni descarga de datos al arrancar.
-Los pipelines se cargan bajo demanda con una cache de hasta tres familias.
+Los pipelines se cargan bajo demanda con una cache de una familia. El kernel
+carga y libera un objetivo a la vez; sus dos bosques no permanecen en memoria.
+La inferencia se serializa para limitar picos de memoria con usuarios simultaneos.
 Los optimizadores, DEAP, Matplotlib y Jupyter no son dependencias de produccion.
 Se usa `xgboost-cpu`, la distribucion oficial de inferencia/entrenamiento CPU sin
 las dependencias GPU de la distribucion completa:
@@ -96,18 +104,49 @@ prueba, diez repeticiones y semilla 42. Es un diagnostico posterior; no se utili
 para seleccionar variables o modelos. Su desviacion no es un intervalo de confianza.
 Los sensores correlacionados limitan su interpretacion; no implica causalidad.
 La exportacion no llama a `fit` ni vuelve a optimizar, pero el calculo de importancia
-puede tardar unos minutos. Nada de esto se ejecuta durante el despliegue.
+puede tardar varios minutos. Nada de esto se ejecuta durante el despliegue.
+`tools/export_kernel.py` reutiliza evidencia estable de `book/informe_resultados/`
+y artefactos portables, sin necesitar la carpeta de ensayos provisionales. Para
+acelerar solo la importancia evalua el mismo RBF por bloques y comprueba su
+equivalencia numerica con el SVR nativo; no modifica los modelos guardados.
 
 Una nueva familia de pipelines compatible puede incorporarse al registro y al
 exportador; otro formato de modelo requiere un adaptador en `dashboard/models.py`.
 Los selectores y las vistas se generan desde metadatos, no desde listas de botones.
 Actualice tambien las leyendas cientificas de seleccion si cambia el protocolo.
 
-Para desplegar solo Dash, bastan `app.py`, `dashboard/`, `assets/`, `data/`,
+Para desplegar solo Dash, bastan `app.py`, `dashboard/`, `emission_models/`, `assets/`, `data/`,
 `requirements.txt` y `render.yaml`; no necesita `book/`, `tools/` ni los CSV
 originales por ano. `Gas Turbine Project` no es una dependencia de ejecucion.
 
 ## Jupyter Book
+
+El EDA incluye una vista de estacionalidad para CO y NOx, por ano y poblacion.
+Consume `data/estacionalidad_pruebas.csv`, `estacionalidad_perfiles.csv.gz` y
+`estacionalidad_metodologia.json`; no requiere Statsmodels en Render.
+Para regenerar esas evidencias en el entorno de entrenamiento:
+
+```text
+python book/training/seasonality_analysis.py
+```
+
+Se contrastan armonicos de 24 y 168 posiciones originales, con tendencia lineal,
+Wald-HAC (336 rezagos y sensibilidad a 168) y Holm sobre 40 contrastes por
+poblacion. Sin fechas exactas no se confirman ciclos de calendario. El JBook
+presenta la metodologia, tablas ejecutadas y figuras de la misma evidencia.
+
+La explicacion del kernel se mantiene en `dashboard/kernel_content.py`.
+`python tools/update_kernel_book.py` sincroniza esos textos con la seccion 4.10
+sin reentrenar modelos ni reejecutar el notebook completo. Actualiza unicamente
+las tablas estadisticas desde CSV estables cuando cambia la evidencia.
+
+Kernel operativo es la seleccion vigente para ambas emisiones y el valor inicial
+del selector. La pestana Evidencia compara CO frente a Random Forest y NOx frente
+a XGBoost, los mejores comparadores publicados por MSE externo, excluyendo kernel.
+`data/kernel_significancia*.csv` contiene dos contrastes y la sensibilidad
+de bloques; distingue p nominales y Holm2 conjunto para CO y NOx.
+`python tools/export_kernel_significance.py` regenera estas tablas a partir de
+las predicciones y particiones guardadas, sin entrenar ni depender de la carpeta provisional.
 
 `book/` conserva el informe y sus materiales reproducibles. La publicacion en
 GitHub Pages usa `.github/workflows/publish-book.yml` y `book/requirements.txt`,
@@ -116,7 +155,7 @@ en `book/requirements-training.txt`, separadas del servicio. Consulte `book/READ
 
 ## Validacion y limites
 
-Las pruebas cubren las siete familias, predicciones individuales y por lote,
+Las pruebas cubren las ocho familias, predicciones individuales y por lote,
 equivalencia con los registros de prueba, SHA256, filtros EDA, tablas y callbacks.
 Se comprueba que la inferencia no ajusta pipelines ni importa scripts de entrenamiento.
 Los archivos joblib son propios y confiables; no se aceptan modelos subidos por usuarios.

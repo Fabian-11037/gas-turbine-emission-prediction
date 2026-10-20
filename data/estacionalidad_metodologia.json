@@ -1,0 +1,16 @@
+{
+  "periodos_registros": [
+    24,
+    168
+  ],
+  "HAC_rezagos": [
+    168,
+    336
+  ],
+  "HAC_principal": 336,
+  "contrastes_Holm_por_poblacion": 40,
+  "fecha_calendario_disponible": false,
+  "usa_modelos_predictivos": false,
+  "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+  "codigo_sha256": "d13a7d16d1a4ffb316a120e69111f7c160b9d806f2eb803f11a430a73a81921f"
+}

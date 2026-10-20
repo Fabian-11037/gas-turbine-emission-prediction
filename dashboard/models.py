@@ -2,6 +2,7 @@
 from functools import lru_cache
 import hashlib
 import json
+import gc
 from threading import RLock
 import pandas as pd
 from .repository import DATA, importances, validate_inputs
@@ -13,7 +14,9 @@ def artifact_path(response):
     path=(DATA/response['ruta']).resolve()
     if not path.is_relative_to((DATA/'models').resolve()) or not path.is_file():
         raise ValueError('Ruta de modelo no válida o artefacto ausente.')
-    if hashlib.sha256(path.read_bytes()).hexdigest()!=response['sha256']:
+    with path.open('rb') as source:
+        digest = hashlib.file_digest(source, 'sha256').hexdigest()
+    if digest!=response['sha256']:
         raise ValueError('La huella del artefacto no coincide con el registro.')
     return path
 
@@ -36,7 +39,30 @@ class PipelinePredictor:
         return pd.DataFrame({t:m.predict(x) for t,m in self.estimators.items()},index=frame.index)
 
 
-ADAPTERS={'sklearn_pipeline_v1':PipelinePredictor}
+class StreamingPipelinePredictor:
+    """Carga un contaminante a la vez para no retener dos bosques grandes."""
+    def __init__(self, specification):
+        self.specification = specification
+
+    def predict(self, frame):
+        import joblib
+        spec = self.specification
+        x = validate_inputs(frame, spec['predictores'])
+        result = {}
+        for target, response in spec['respuestas'].items():
+            payload = joblib.load(artifact_path(response))
+            if (payload['formato'] != 'gas-turbine-entregable2-v1' or
+                payload['predictores'] != spec['predictores'] or payload['objetivo'] != target or
+                payload['familia'] != spec['nombre'] or payload['n_ajuste'] != spec['n_ajuste']):
+                raise ValueError('Metadatos del modelo incompatibles con el registro.')
+            result[target] = payload['estimador'].predict(x)
+            del payload
+            gc.collect()
+        return pd.DataFrame(result, index=frame.index)
+
+
+ADAPTERS={'sklearn_pipeline_v1':PipelinePredictor,
+          'sklearn_operational_stream_v1':StreamingPipelinePredictor}
 
 
 @lru_cache(maxsize=1)
@@ -57,7 +83,7 @@ def registry():
     return {m['id']:m for m in definitions}
 
 
-@lru_cache(maxsize=3)
+@lru_cache(maxsize=1)
 def _cached_predictor(model_id):
     definition=registry()[model_id]
     return ADAPTERS[definition['adaptador']](definition)
@@ -70,7 +96,8 @@ def predictor(model_id):
 
 
 def predict(model_id,frame):
-    return predictor(model_id).predict(frame)
+    with _MODEL_LOCK:
+        return predictor(model_id).predict(frame)
 
 
 def feature_importance(model_id,target):

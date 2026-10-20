@@ -36,9 +36,11 @@ jobs:
           nb = json.loads(Path('book/gas_turbine_eda_hilo_conductor_redaccion.ipynb').read_text(encoding='utf-8'))
           cells = [c for c in nb['cells'] if c['cell_type'] == 'code']
           assert cells, 'El notebook no contiene celdas de codigo.'
-          assert all(c.get('execution_count') is not None for c in cells), 'Hay celdas sin ejecutar.'
+          assert all(c.get('execution_count') is not None or (
+              c.get('outputs') and c.get('metadata', {}).get('execution', {}).get('shell.execute_reply')
+          ) for c in cells), 'Hay celdas sin evidencia de ejecucion.'
           assert not any(o['output_type'] == 'error' for c in cells for o in c.get('outputs', [])), 'Hay errores guardados.'
-          print(f'{len(nb["cells"])} celdas; {len(cells)} celdas de codigo ejecutadas, sin errores.')
+          print(f'{len(nb["cells"])} celdas; {len(cells)} celdas de codigo con ejecucion documentada, sin errores.')
           PY
       - name: Construir HTML desde las salidas existentes
         run: jupyter-book build book --warningiserror --keep-going

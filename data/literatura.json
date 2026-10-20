@@ -1,11 +1,69 @@
 [
-  {"estudio":"Coelho et al. (2024)","enlace":"https://doi.org/10.1016/j.fuel.2023.129366","modelos":"Ridge, Lasso, KNN, Cubist, RF, LightGBM, CatBoost y Deep Forest","resultado":"Deep Forest en validación: CO R² 0,5355 / RMSE 1,4508; NOx R² 0,4737 / RMSE 7,6528, según resumen del corpus. Unidades y población completas pendientes de verificar.","validacion":"Búsqueda aleatoria con CV de 5 pliegues; orden temporal no verificado. Deep Forest no es una red neuronal."},
-  {"estudio":"Kochueva y Nikolskii (2021)","enlace":"https://doi.org/10.3390/computation9120139","modelos":"Regresión simbólica, algoritmo genético y clasificación de CO ordinario/extremo","resultado":"R² reportados: CO 0,89 y NOx 0,83. Texto completo: secciones 2–4.","validacion":"NOx: modelos separados para 2011–2013 y 2014–2015, con 30% de prueba dentro de cada periodo. CO: 11.021 observaciones de prueba; umbral de régimen 4,75 mg/m³.","comparacion":"La partición de NOx incorpora datos etiquetados del periodo tardío en su ajuste. La especialización puede representar heterogeneidad que nuestro modelo único por emisión, sin año como predictor, no representa explícitamente; no equivale a transferencia hacia años nuevos."},
-  {"estudio":"Wood (2023)","enlace":"https://doi.org/10.1016/j.fuel.2023.127722","modelos":"Modelos predictivos y análisis de desplazamientos temporales","resultado":"No se transcribe una cifra sin identificar su configuración exacta.","validacion":"Multi-K-fold y evaluación en dos años separados; otra pregunta de generalización."},
-  {"estudio":"Jhinaoui et al. (2024)","enlace":"https://gpps.global/wp-content/uploads/2024/09/GPPS-TC-2024_paper_154.pdf","modelos":"CatBoost + Catch22; TapNet como antecedente neuronal","resultado":"Prueba, tablas 2–3: CatBoost + Catch22, RMSE CO 1,48 y NOx 5,63 mg/m³; TapNet, 1,70 y 7,55. CatBoost: promedios de diez ejecuciones.","validacion":"2011–2013 ajuste (22.191), 2014 validación (7.158), 2015 prueba (7.384). Catch22 usa ventanas de 60 lecturas: nueve sensores más 198 características derivadas.","comparacion":"Predice un año no representado, pero dispone de historial de sensores; nuestro diseño reserva bloques de los cinco años y usa solo nueve entradas contemporáneas. La cercanía de RMSE no prueba equivalencia de modelos ni de dificultad."},
-  {"estudio":"Sinap (2025)","enlace":"https://dergipark.org.tr/en/download/article-file/4286940","modelos":"RF, Extra Trees, SVR, KNN, Voting y Stacking; GB/LightGBM/CatBoost y metaaprendiz XGBoost","resultado":"Tablas 4–5: Stacking Raw, R² CO 0,8026 / NOx 0,8942; con IQR, 0,8556 / 0,9194. RMSE Raw: 1,0359 / 3,7430; IQR: 0,4619 / 2,7669 mg/m³.","validacion":"Secciones 2.5 y 2.7: 80/20, semilla 42, búsqueda bayesiana y SKCV de diez pliegues declarada. No se documenta una separación equivalente por bloques y purga; la estratificación continua y su relación con el holdout no quedan claras.","comparacion":"Raw evita la diferencia por filtrado, pero no iguala particiones ni modelos. IQR cambia la población evaluada. MD presenta cifras incompatibles: NOx/Extra Trees informa RMSE 9,4325 y MSE 8,8972, además de R² = 1,0. No se usa como referencia de precisión perfecta ni se diagnostica la causa sin código."},
-  {"estudio":"Faqih et al. (2023)","enlace":"https://doi.org/10.3390/s23083863","modelos":"XGBoost y KMeans","resultado":"R² NOx 0,9309 y CO 0,7109, según revisión existente.","validacion":"Planta real; identidad UCI no confirmada y partición exacta pendiente. No es un benchmark directo."},
-  {"estudio":"Dirik (2022)","enlace":"https://doi.org/10.1016/j.fuel.2022.124037","modelos":"ANFIS con algoritmo genético","resultado":"R² NOx 0,79933–0,90363 entre proporciones; RMSE mínimo de prueba 5,1571, según resumen. No asociar automáticamente ese mínimo al R² máximo.","validacion":"Compara proporciones de entrenamiento/prueba; fracciones y orden exactos pendientes. Neurodifuso: antecedente, no candidato implementado."},
-  {"estudio":"Lipperheide et al. (2018)","enlace":"https://doi.org/10.1115/1.4040009","modelos":"Modelo semifísico con envejecimiento","resultado":"RMSE 1,27 / 1,84 / 3,01 ppm en tres turbinas, según resumen.","validacion":"Otras plantas y unidades; no comparar estos errores con mg/m³ del proyecto."},
-  {"estudio":"Aslan (2024)","enlace":"https://doi.org/10.24425/bpasts.2024.151956","modelos":"AdaBoost, RF, XGBoost, KNN y regresión lineal","resultado":"El resumen destaca 99,97% de ajuste; la tabla 8 informa R² 0,9204, RMSE 3,95 y MAE 2,17 para AdaBoost.","validacion":"80/20 y búsqueda aleatoria declarados. El etiquetado del objetivo y algunas cifras no permiten construir una comparación inequívoca por emisión.","comparacion":"No interpretar la cifra de entrenamiento como desempeño de prueba ni convertir toda mención de accuracy en R². La lectura de tablas matiza el resumen; se conserva como antecedente con reservas, no como meta reproducida."}
+  {
+    "estudio": "Coelho et al. (2024)",
+    "enlace": "https://doi.org/10.1016/j.fuel.2023.129366",
+    "modelos": "Ridge, Lasso, KNN, Cubist, RF, LightGBM, CatBoost y Deep Forest",
+    "resultado": "Deep Forest en validación: CO R² 0,5355 / RMSE 1,4508; NOx R² 0,4737 / RMSE 7,6528, según resumen del corpus. Unidades y población completas pendientes de verificar.",
+    "validacion": "Búsqueda aleatoria con validación cruzada de cinco grupos; orden temporal no verificado."
+  },
+  {
+    "estudio": "Kochueva y Nikolskii (2021)",
+    "enlace": "https://doi.org/10.3390/computation9120139",
+    "modelos": "Regresión simbólica, algoritmo genético y clasificación de CO ordinario/extremo",
+    "resultado": "R² reportados: CO 0,89 y NOx 0,83. Texto completo: secciones 2–4.",
+    "validacion": "NOx: modelos separados para 2011–2013 y 2014–2015, con 30% de prueba dentro de cada periodo. CO: 11.021 observaciones de prueba; umbral de régimen 4,75 mg/m³.",
+    "comparacion": "Modelos especializados por periodo o nivel de emisión, frente al modelo único por contaminante de este proyecto."
+  },
+  {
+    "estudio": "Wood (2023)",
+    "enlace": "https://doi.org/10.1016/j.fuel.2023.127722",
+    "modelos": "Modelos predictivos y análisis de desplazamientos temporales",
+    "resultado": "KNN: MAE CO 0,8458 y NOx 5,1234 mg/m³, según resumen editorial.",
+    "validacion": "Validación cruzada y evaluación en dos años separados; estudia cambios entre periodos."
+  },
+  {
+    "estudio": "Jhinaoui et al. (2024)",
+    "enlace": "https://gpps.global/wp-content/uploads/2024/09/GPPS-TC-2024_paper_154.pdf",
+    "modelos": "CatBoost + Catch22; TapNet como antecedente neuronal",
+    "resultado": "Prueba, tablas 2–3: CatBoost + Catch22, RMSE CO 1,48 y NOx 5,63 mg/m³; TapNet, 1,70 y 7,55. CatBoost: promedios de diez ejecuciones.",
+    "validacion": "2011–2013 ajuste (22.191), 2014 validación (7.158), 2015 prueba (7.384). Catch22 usa ventanas de 60 lecturas: nueve sensores más 198 características derivadas.",
+    "comparacion": "Añade lecturas anteriores y evalúa un año no usado para entrenar; aquí se reservan bloques de los cinco años."
+  },
+  {
+    "estudio": "Sinap (2025)",
+    "enlace": "https://dergipark.org.tr/en/download/article-file/4286940",
+    "modelos": "RF, Extra Trees, SVR, KNN, Voting y Stacking; GB/LightGBM/CatBoost y metaaprendiz XGBoost",
+    "resultado": "Tablas 4–5: Stacking Raw, R² CO 0,8026 / NOx 0,8942; con IQR, 0,8556 / 0,9194. RMSE Raw: 1,0359 / 3,7430; IQR: 0,4619 / 2,7669 mg/m³.",
+    "validacion": "80/20, semilla 42, búsqueda bayesiana y validación estratificada de diez grupos (SKCV). No se documenta una separación por bloques equivalente.",
+    "comparacion": "Raw usa los datos sin filtrar; IQR retira extremos. El escenario Mahalanobis presenta cifras incompatibles entre MSE y RMSE y no se usa como referencia."
+  },
+  {
+    "estudio": "Faqih et al. (2023)",
+    "enlace": "https://doi.org/10.3390/s23083863",
+    "modelos": "XGBoost y KMeans",
+    "resultado": "R² NOx 0,9309 y CO 0,7109, según revisión existente.",
+    "validacion": "Planta real; no se confirmó que sea el conjunto UCI ni su división de datos."
+  },
+  {
+    "estudio": "Dirik (2022)",
+    "enlace": "https://doi.org/10.1016/j.fuel.2022.124037",
+    "modelos": "ANFIS con algoritmo genético",
+    "resultado": "R² NOx 0,79933–0,90363 entre proporciones; RMSE mínimo de prueba 5,1571, según resumen. No asociar automáticamente ese mínimo al R² máximo.",
+    "validacion": "Compara proporciones de entrenamiento y prueba; el orden no se verificó. Es un modelo neurodifuso, citado solo como antecedente."
+  },
+  {
+    "estudio": "Lipperheide et al. (2018)",
+    "enlace": "https://doi.org/10.1115/1.4040009",
+    "modelos": "Modelo semifísico con envejecimiento",
+    "resultado": "RMSE 1,27 / 1,84 / 3,01 ppm en tres turbinas, según resumen.",
+    "validacion": "Otras plantas y unidades; no comparar estos errores con mg/m³ del proyecto."
+  },
+  {
+    "estudio": "Aslan (2024)",
+    "enlace": "https://doi.org/10.24425/bpasts.2024.151956",
+    "modelos": "AdaBoost, RF, XGBoost, KNN y regresión lineal",
+    "resultado": "El resumen destaca 99,97% de ajuste; la tabla 8 informa R² 0,9204, RMSE 3,95 y MAE 2,17 para AdaBoost.",
+    "validacion": "80/20 y búsqueda aleatoria declarados. El etiquetado del objetivo y algunas cifras no permiten construir una comparación inequívoca por emisión.",
+    "comparacion": "El resultado de entrenamiento no mide el desempeño en datos nuevos; la identificación por emisión no es suficientemente clara."
+  }
 ]

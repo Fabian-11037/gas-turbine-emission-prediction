@@ -27,14 +27,14 @@ class DashboardTest(unittest.TestCase):
 
     def test_registry_and_no_training_dependencies(self):
         import sys
-        self.assertEqual(set(registry()),{'knn','ridge','lasso','decision_tree','random_forest','xgboost','svr_lineal'})
+        self.assertEqual(set(registry()),{'knn','ridge','lasso','decision_tree','random_forest','xgboost','svr_lineal','kernel_operativo'})
         self.assertNotIn('block_model',sys.modules)
         self.assertNotIn('regression_entregable2',sys.modules)
         self.assertNotIn('deap',sys.modules)
-        self.assertEqual(len(results()),14)
+        self.assertEqual(len(results()),16)
         self.assertEqual(len(optimization_results()),56)
         selected=results().loc[lambda d:d.seleccionado_por_CV].set_index('objetivo').modelo.to_dict()
-        self.assertEqual(selected,{'CO':'Random Forest','NOX':'XGBoost'})
+        self.assertEqual(selected,{'CO':'Kernel operativo','NOX':'Kernel operativo'})
 
     def test_equivalence_with_saved_test_predictions(self):
         df = observations()
@@ -62,7 +62,7 @@ class DashboardTest(unittest.TestCase):
 
     def test_eda_filters_and_all_views(self):
         for target in ['CO','NOX']:
-            for view in ['distribuciones','relaciones','temporal','correlaciones']:
+            for view in ['distribuciones','relaciones','temporal','correlaciones','estacionalidad']:
                 output = eda.render(target,[2014,2015],'desarrollo',view,'AT')
                 self.assertEqual(len(output),7)
                 self.assertTrue(output[0].data)
@@ -76,7 +76,7 @@ class DashboardTest(unittest.TestCase):
                 out = model_view.model_results(mid,target)
                 self.assertEqual(len(out),10)
                 self.assertEqual(len(out[1]),5)
-                self.assertEqual(len(out[5].children.children[1].children),7)
+                self.assertEqual(len(out[5].children.children[1].children),8)
                 self.assertEqual(len(out[8].children.children[1].children),2)
                 self.assertEqual(len(out[9].children.children[1].children),28)
 
@@ -103,7 +103,7 @@ class DashboardTest(unittest.TestCase):
                 output = model_view.importance_results(mid,target)
                 self.assertEqual(len(output),3)
                 self.assertEqual(len(output[0].data[0].y),9)
-        self.assertEqual(len(importances()),126)
+        self.assertEqual(len(importances()),144)
         self.assertTrue(importances().n.eq(7411).all())
         self.assertTrue(importances().repeticiones.eq(10).all())
 
@@ -144,7 +144,7 @@ class DashboardTest(unittest.TestCase):
         with patch.object(Pipeline,'fit',side_effect=AssertionError('No se permite entrenamiento.')):
             for mid in registry():
                 self.assertEqual(predict(mid,sample_frame()).shape,(1,2))
-        self.assertLessEqual(_cached_predictor.cache_info().currsize,3)
+        self.assertLessEqual(_cached_predictor.cache_info().currsize,1)
 
 
 if __name__ == '__main__':

@@ -4,8 +4,10 @@ import argparse
 import hashlib
 import json
 import shutil
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 MODELS = [('knn','KNN'),('ridge','Ridge'),('lasso','Lasso'),
           ('decision_tree','Decision Tree'),('random_forest','Random Forest'),
           ('xgboost','XGBoost'),('svr_lineal','SVR lineal')]
@@ -107,6 +109,9 @@ def exportar(book, repeats=10):
     manifest['fuentes_SHA256']={str(p.relative_to(Path(book).resolve())):digest(p) for p in sources}
     (data/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
     print('Exportación terminada: 7 familias, 14 modelos; no se ha entrenado ningún estimador.',flush=True)
+    if (ROOT/'book'/'informe_resultados'/'kernel_operativo'/'registro.json').exists():
+        from tools.export_kernel import exportar_kernel
+        exportar_kernel()
 
 
 if __name__=='__main__':

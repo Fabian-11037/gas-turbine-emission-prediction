@@ -1,0 +1,74 @@
+{
+  "id": "kernel_operativo",
+  "nombre": "Kernel operativo",
+  "adaptador": "sklearn_operational_stream_v1",
+  "predictores": [
+    "AT",
+    "AP",
+    "AH",
+    "AFDP",
+    "GTEP",
+    "TIT",
+    "TAT",
+    "TEY",
+    "CDP"
+  ],
+  "respuestas": {
+    "CO": {
+      "ruta": "models/CO_Kernel_operativo.joblib",
+      "sha256": "3bc0ec1f1351baa93ebf8e1ee27652bfc129cce9ffab6526ea9f4601f742bcc8",
+      "optimizador": "Grid kernel",
+      "parametros": {
+        "ExtraTrees": {
+          "n_estimators": 200,
+          "max_depth": 20,
+          "min_samples_leaf": 2,
+          "max_features": 0.75
+        },
+        "SVR": {
+          "C": 20.0,
+          "gamma": 0.2,
+          "epsilon": 0.1,
+          "pesos": {
+            "environmental": 0.5,
+            "temperature": 1.0,
+            "pressure": 1.0
+          }
+        },
+        "lambda_Ridge": 0.01
+      },
+      "seleccionado_por_cv": true
+    },
+    "NOX": {
+      "ruta": "models/NOX_Kernel_operativo.joblib",
+      "sha256": "98ddf98a9b3e5c9b8f0e7e028f5248f1604b74f27e4cdd026454225d91923880",
+      "optimizador": "Grid kernel",
+      "parametros": {
+        "ExtraTrees": {
+          "n_estimators": 200,
+          "max_depth": 20,
+          "min_samples_leaf": 2,
+          "max_features": 0.75
+        },
+        "SVR": {
+          "C": 20.0,
+          "gamma": 0.2,
+          "epsilon": 0.1,
+          "pesos": {
+            "environmental": 0.5,
+            "temperature": 0.5,
+            "pressure": 2.0
+          }
+        },
+        "lambda_Ridge": 0.001
+      },
+      "seleccionado_por_cv": true
+    }
+  },
+  "n_ajuste": 27570,
+  "descripcion": "Stacking Extra Trees + SVR RBF ponderado por grupos, con variables operativas derivadas y metaaprendiz Ridge.",
+  "error_max_exportacion": {
+    "CO": 3.552713678800501e-15,
+    "NOX": 1.4210854715202004e-14
+  }
+}

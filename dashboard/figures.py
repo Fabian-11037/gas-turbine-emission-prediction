@@ -91,7 +91,7 @@ def block_evolution(df, target):
 def annual_summary(df, target):
     group = df.groupby('anio')[target].agg(['mean','median'])
     f = go.Figure()
-    for col,label,color in [('mean','Media',TEAL),('median','Mediana',CORAL)]:
+    for col,label,color in [('mean','Promedio',TEAL),('median','Mediana',CORAL)]:
         f.add_trace(go.Scatter(x=group.index,y=group[col],mode='lines+markers',name=label,
                               line={'color':color,'width':2}))
     f.update_xaxes(dtick=1)
@@ -105,7 +105,7 @@ def stage_scores(row):
                         error_y={'type':'data','array':[0,row.R2_CV_std,0]},
                         hovertemplate='%{x}<br>R²: %{y:.3f}<extra></extra>'))
     f.add_hline(y=0,line_color='#dce3e7')
-    return style(f,'R² por etapa · CV externa ± 1 DE',None,'R²')
+    return style(f,'R² por etapa · promedio y variación en CV',None,'R²')
 
 
 def observed_predictions(frame, target, family):

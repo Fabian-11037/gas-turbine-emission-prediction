@@ -92,8 +92,8 @@
     "n_purga_prueba": 1752,
     "fraccion_prueba": 0.20175319195274005,
     "familias_finales": {
-      "CO": "Random Forest",
-      "NOX": "XGBoost"
+      "CO": "Kernel operativo",
+      "NOX": "Kernel operativo"
     },
     "predictores": [
       "AT",
@@ -140,7 +140,7 @@
     "informe_resultados\\entregable2_anidada\\resultados_familias.csv.gz": "3606893e0a9222f4dd9e824bdb61c62b3229282da604d9ea8f41882d05ef372f",
     "informe_resultados\\entregable2_anidada\\configuracion.json": "d950b58c74ba8e6fe2dbed393b01f9ea6139eb3851b181c63dfb450ddca3b14b"
   },
-  "inferencia": "Catorce pipelines originales verificados, con transformaciones de sensores y respuesta; sin ajuste en el servidor.",
+  "inferencia": "Dieciséis artefactos verificados: catorce comparadores y dos modelos de kernel operativo, sin ajuste en servidor.",
   "entrenamiento": "No se realiza ajuste ni selección de modelos en el dashboard.",
   "versiones_modelos": {
     "numpy": "2.5.3",

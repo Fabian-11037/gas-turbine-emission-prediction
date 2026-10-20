@@ -1,31 +1,31 @@
 {
-  "revision": "2026-10-18",
-  "alcance": "El proyecto usa nueve sensores, bloques de 168 registros, purga de 24 vecinos y CV anidada 5 × 3. Estas diferencias impiden interpretar los R² publicados como una comparación directa.",
+  "revision": "2026-10-20",
+  "alcance": "Se usan nueve sensores del registro actual, bloques de 168 registros, margen de 24 vecinos y validación anidada 5 × 3. El kernel añade dos variables calculadas. Las diferencias de datos y evaluación ayudan a entender por qué los resultados no coinciden con los artículos.",
   "dimensiones": [
     {
       "titulo": "Sinap (2025): partición y valores extremos",
       "enlace": "https://dergipark.org.tr/en/download/article-file/4286940",
-      "diferencia": "Sinap declara 80/20 y CV de diez pliegues, sin documentar bloques y purga equivalentes. Su Stacking obtiene R² CO/NOx de 0,8026/0,8942 en Raw y 0,8556/0,9194 con IQR; nosotros conservamos los extremos.",
-      "interpretacion": "El filtrado cambia los casos evaluados y puede reducir el error. La partición y el ensamble también pueden influir, pero no se ha aislado su efecto; la documentación no demuestra fuga ni que IQR garantice mejorar R²."
+      "diferencia": "Sinap declara 80/20 y validación de diez grupos. Su Stacking obtiene R² CO/NOx de 0,8026/0,8942 sin filtrar (Raw) y 0,8556/0,9194 con filtrado IQR; aquí se conservan los extremos.",
+      "interpretacion": "Excluir extremos cambia los casos evaluados. También difieren el modelo y la división de datos; no se ha separado el aporte de cada cambio."
     },
     {
       "titulo": "Kochueva y Nikolskii (2021): modelos por periodo y régimen",
       "enlace": "https://doi.org/10.3390/computation9120139",
-      "diferencia": "Reportan R² de 0,89 para CO y 0,83 para NOx. Para NOx ajustan modelos separados de 2011–2013 y 2014–2015; para CO distinguen valores ordinarios y extremos. Nosotros usamos un modelo por emisión.",
-      "interpretacion": "La especialización puede captar diferencias operativas que un modelo único no representa explícitamente. Sin embargo, cambian tanto el método como la evaluación; no se conoce cuánto explica cada diferencia."
+      "diferencia": "Reportan R² CO/NOx de 0,89/0,83. Para NOx separan 2011–2013 de 2014–2015; para CO distinguen niveles ordinarios y extremos. Aquí se usa un modelo por emisión.",
+      "interpretacion": "Especializar modelos puede captar diferencias entre condiciones, pero también cambia la evaluación."
     },
     {
       "titulo": "Jhinaoui et al. (2024): historial de sensores y prueba en 2015",
       "enlace": "https://gpps.global/wp-content/uploads/2024/09/GPPS-TC-2024_paper_154.pdf",
-      "diferencia": "CatBoost + Catch22 añade 198 características de ventanas de 60 lecturas y reserva 2015 como prueba: RMSE CO/NOx de 1,48/5,63 mg/m³. Nosotros usamos nueve sensores contemporáneos y bloques de los cinco años.",
-      "interpretacion": "El historial aporta información adicional, pero la prueba cronológica responde a otra pregunta. La cercanía de los errores no demuestra equivalencia de desempeño."
+      "diferencia": "CatBoost + Catch22 incorpora 198 variables de ventanas de 60 lecturas y prueba en 2015: RMSE CO/NOx de 1,48/5,63 mg/m³. Aquí se usan sensores actuales y bloques de los cinco años.",
+      "interpretacion": "El artículo añade historial y evalúa un año desconocido; responde a una pregunta distinta."
     },
     {
       "titulo": "Aslan (2024): entrenamiento frente a prueba",
       "enlace": "https://doi.org/10.24425/bpasts.2024.151956",
-      "diferencia": "El resumen destaca 99,97% en entrenamiento, mientras la tabla 8 informa R² de 0,9204 para AdaBoost. La presentación no permite asignar inequívocamente ese resultado a cada emisión.",
-      "interpretacion": "La cifra de entrenamiento no es comparable con nuestro R² de prueba. Este artículo se conserva como antecedente, no como una meta numérica por contaminante."
+      "diferencia": "El resumen destaca 99,97% de ajuste en entrenamiento; la tabla 8 informa R² de 0,9204 para AdaBoost, sin una asignación inequívoca por emisión.",
+      "interpretacion": "El ajuste de entrenamiento no se compara con el desempeño en prueba. Se conserva como antecedente."
     }
   ],
-  "reproduccion": "Son explicaciones plausibles, no causas demostradas. Para medir su efecto se necesitan las mismas observaciones, entradas, filtros y particiones, con igual presupuesto de ajuste."
+  "reproduccion": "Estas diferencias son posibles explicaciones. Medir su efecto requiere repetir la comparación con los mismos datos, entradas y divisiones."
 }

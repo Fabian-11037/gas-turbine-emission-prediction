@@ -1,0 +1,477 @@
+{
+  "semilla": 42,
+  "bloque": 168,
+  "purga": 24,
+  "folds_externos": 5,
+  "folds_internos": 3,
+  "crossfit_meta": 3,
+  "crossfit_residuos": 3,
+  "candidatos": {
+    "ET SVR kernel operativo": [
+      {
+        "members": [
+          6,
+          8
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          6,
+          8
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          6,
+          8
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          6,
+          9
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          6,
+          9
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          6,
+          9
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          6,
+          10
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          6,
+          10
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          6,
+          10
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          6,
+          11
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          6,
+          11
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          6,
+          11
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          7,
+          8
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          7,
+          8
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          7,
+          8
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          7,
+          9
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          7,
+          9
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          7,
+          9
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          7,
+          10
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          7,
+          10
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          7,
+          10
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          7,
+          11
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          7,
+          11
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          7,
+          11
+        ],
+        "lambda": 0.1
+      }
+    ],
+    "ET SVR correccion regimen": [
+      {
+        "meta_lambda": 0.001,
+        "regimes": 0,
+        "shrinkage": 0.0
+      },
+      {
+        "meta_lambda": 0.001,
+        "regimes": 2,
+        "shrinkage": 0.1
+      },
+      {
+        "meta_lambda": 0.001,
+        "regimes": 2,
+        "shrinkage": 1.0
+      },
+      {
+        "meta_lambda": 0.001,
+        "regimes": 2,
+        "shrinkage": 10.0
+      },
+      {
+        "meta_lambda": 0.001,
+        "regimes": 3,
+        "shrinkage": 0.1
+      },
+      {
+        "meta_lambda": 0.001,
+        "regimes": 3,
+        "shrinkage": 1.0
+      },
+      {
+        "meta_lambda": 0.001,
+        "regimes": 3,
+        "shrinkage": 10.0
+      },
+      {
+        "meta_lambda": 0.01,
+        "regimes": 0,
+        "shrinkage": 0.0
+      },
+      {
+        "meta_lambda": 0.01,
+        "regimes": 2,
+        "shrinkage": 0.1
+      },
+      {
+        "meta_lambda": 0.01,
+        "regimes": 2,
+        "shrinkage": 1.0
+      },
+      {
+        "meta_lambda": 0.01,
+        "regimes": 2,
+        "shrinkage": 10.0
+      },
+      {
+        "meta_lambda": 0.01,
+        "regimes": 3,
+        "shrinkage": 0.1
+      },
+      {
+        "meta_lambda": 0.01,
+        "regimes": 3,
+        "shrinkage": 1.0
+      },
+      {
+        "meta_lambda": 0.01,
+        "regimes": 3,
+        "shrinkage": 10.0
+      }
+    ],
+    "Stack ET SVR grupos": [
+      {
+        "members": [
+          0,
+          2
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          0,
+          2
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          0,
+          2
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          0,
+          3
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          0,
+          3
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          0,
+          3
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          0,
+          4
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          0,
+          4
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          0,
+          4
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          0,
+          5
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          0,
+          5
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          0,
+          5
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          1,
+          2
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          1,
+          2
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          1,
+          2
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          1,
+          3
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          1,
+          3
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          1,
+          3
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          1,
+          4
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          1,
+          4
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          1,
+          4
+        ],
+        "lambda": 0.1
+      },
+      {
+        "members": [
+          1,
+          5
+        ],
+        "lambda": 0.001
+      },
+      {
+        "members": [
+          1,
+          5
+        ],
+        "lambda": 0.01
+      },
+      {
+        "members": [
+          1,
+          5
+        ],
+        "lambda": 0.1
+      }
+    ]
+  },
+  "pesos_kernel": [
+    [
+      0.5,
+      1.0,
+      1.0
+    ],
+    [
+      0.5,
+      0.5,
+      2.0
+    ],
+    [
+      0.5,
+      2.0,
+      0.5
+    ],
+    [
+      2.0,
+      1.0,
+      1.0
+    ]
+  ],
+  "predictores": [
+    "AT",
+    "AP",
+    "AH",
+    "AFDP",
+    "GTEP",
+    "TIT",
+    "TAT",
+    "TEY",
+    "CDP"
+  ],
+  "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+  "codigo_sha256": {
+    "modelos_kernel_regimen.py": "eff938106a1a1286d3e401df504bdc196588941b695a6e51605b25f32a34363a",
+    "modelos_stacking_grupos.py": "a7ff3099cdf123dea976939ea3414725a4570c17c7c67cfeb5555a635e02d04c",
+    "modelos_cuatro_mejoras.py": "5370637303286596de02b842a21806c82f91b2f2106b077c6797a8031c676366",
+    "modelos_stacking.py": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+    "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a"
+  },
+  "experimento_sha256": "7b9d231a938eadc0c8949fe0e16e1635702acd0fba2736a655ebe32379aec821",
+  "cache_previo_config_sha256": "b5e09ecafdb63931238cb3c0ddec02a3e654d3635db3ed85e70dd7a97a57f8c5",
+  "n_desarrollo": 27570,
+  "n_prueba": 7411,
+  "sin_eliminar_atipicos": true,
+  "prueba_previamente_inspeccionada": true,
+  "versiones": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  }
+}

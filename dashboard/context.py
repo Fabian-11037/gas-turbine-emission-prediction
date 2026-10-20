@@ -10,7 +10,7 @@ from .repository import DATA,bibliography,manifest,results,sensors
 
 def layout():
     diccionario = pd.DataFrame([{'Variable':s['id'],'Significado':s['nombre'],
-                                'Unidad':s['unidad'],'Papel':'Predictor continuo'} for s in sensors()]
+                                'Unidad':s['unidad'],'Papel':'Entrada numérica'} for s in sensors()]
                               + [{'Variable':'CO','Significado':'Monóxido de carbono','Unidad':'mg/m³','Papel':'Objetivo'},
                                  {'Variable':'NOX','Significado':'Óxidos de nitrógeno','Unidad':'mg/m³','Papel':'Objetivo'},
                                  {'Variable':'anio / posición / bloque','Significado':'Controles de descripción y partición',
@@ -40,35 +40,35 @@ def layout():
                          target='_blank',rel='noopener noreferrer',className='source-link')],className='section-heading'),
         html.Div([metric('Observaciones','36.733'),metric('Sensores','9'),metric('Periodo','2011–2015')],className='metric-strip'),
         html.Div([
-            html.Section([html.H3('Pregunta de investigación'),html.P('¿En qué medida los sensores permiten estimar las concentraciones de emisiones en condiciones de operación representadas?'),
-                          html.H3('Relevancia industrial'),html.P('Una estimación basada en sensores puede apoyar el análisis del desempeño y la identificación de condiciones asociadas con mayores emisiones. No sustituye medición, control ambiental ni certificación.'),
-                          html.H3('Unidad de observación'),html.P('Agregaciones horarias publicadas por año. La posición conserva el orden original, pero no es una fecha verificada. Concentraciones en mg/m³; nueve predictores continuos.')]),
+            html.Section([html.H3('Origen del problema'),html.P('Los datos provienen de una turbina de una planta eléctrica en Turquía. La turbina transforma la energía de la combustión en movimiento para generar electricidad; ese proceso también produce CO y NOx.'),
+                          html.H3('Necesidad del negocio'),html.P('El operador necesita conocer las emisiones mientras mantiene la producción de energía. Estimarlas con sensores de operación puede complementar su seguimiento y ayudar a reconocer condiciones de mayor emisión.'),
+                          html.H3('Pregunta de investigación'),html.P('¿Qué tan bien podemos estimar CO y NOx con nueve sensores ambientales y operativos? Se estima la concentración del registro actual, no una emisión futura.'),
+                          html.P(['Contexto técnico: ',html.A('generación con turbinas',href='https://www.energy.gov/hgeo/how-gas-turbine-power-plants-work',target='_blank',rel='noopener noreferrer'),'.'],className='caption')]),
             html.Section([html.H3('Metodología adoptada'),html.Ol([
-                html.Li([html.Strong('Separar bloques'),html.Span('168 registros por bloque, sin cruzar años.')]),
-                html.Li([html.Strong('Reservar prueba'),html.Span('≈20% de bloques, balanceados por año; purga de 24 registros.')]),
-                html.Li([html.Strong('Validación anidada'),html.Span('5 pliegues externos y 3 internos; bloques, purga y escalado dentro de cada ajuste.')]),
-                html.Li([html.Strong('Evaluar y guardar'),html.Span('Ajuste final solo en desarrollo; prueba no decide la familia.')])],className='method-list'),
+                html.Li([html.Strong('Agrupar registros próximos'),html.Span('Bloques de 168 observaciones, separados por año.')]),
+                html.Li([html.Strong('Reservar cerca del 20% para prueba'),html.Span('Se apartan también 24 vecinos de cada lado para reducir semejanzas con el entrenamiento.')]),
+                html.Li([html.Strong('Validar antes de elegir'),html.Span('Cinco grupos evalúan el desempeño; dentro de cada uno, tres grupos permiten ajustar las configuraciones.')]),
+                html.Li([html.Strong('Guardar los modelos'),html.Span('Se entrenan con desarrollo y se evalúan con la prueba reservada.')])],className='method-list'),
                           graph('context-partition',partition_chart())])],className='two-columns context-columns'),
-        notice('La partición mezcla bloques de 2011–2015: estima condiciones representadas, no generalización a años futuros.'),
+        notice('El estudio representa condiciones de 2011–2015 de una turbina. Las estimaciones complementan las mediciones; no certifican cumplimiento ambiental.'),
         disclosure('Diccionario de datos',[
-            table(diccionario),html.P('La disponibilidad de los sensores al momento de la estimación debe verificarse en operación. Los dos objetivos no se usan como entradas.',className='caption')]),
+            table(diccionario),html.P('Cada fila resume una hora de operación. mg/m³ significa miligramos de contaminante por metro cúbico de gas. CO y NOx son los valores que se busca estimar, no entradas del modelo.',className='caption')]),
         disclosure('Validación, calidad y límites',[
-            html.P('Desarrollo: 27.570 registros. Prueba: 7.411. Purga de prueba: 1.752. Semilla 42. Los vecinos excluidos nunca se incorporan al ajuste final.'),
-            html.P('La purga reduce proximidad entre ajuste y evaluación, pero 24 registros no garantizan independencia. LOYO evalúa transferencia a un año no representado: es otra pregunta válida, no un diseño incorrecto por producir menor R².'),
-            html.P('No se retiran extremos solamente por IQR en este proyecto. Los faltantes, duplicados y valores físicamente dudosos se auditan en el notebook. Las diferencias anuales y las emisiones extremas condicionan los errores.'),
-            html.P('Siete familias: KNN, Ridge, Lasso, árbol de decisión, Random Forest, XGBoost y SVR lineal. Cuatro búsquedas por objetivo: Grid, Random, Bayesiana y Genética; 56 procedimientos en total.'),
-            html.P('La búsqueda de hiperparámetros utiliza los pliegues internos y la evaluación utiliza los externos. La selección entre procedimientos puede introducir optimismo adicional. La prueba histórica ya fue inspeccionada; se requiere confirmación externa antes de un uso operativo.'),
-            html.P('R² mide variación explicada. RMSE penaliza especialmente errores grandes; MAE expresa el error absoluto medio. RMSE y MAE están en mg/m³. MAPE no se prioriza para CO por valores próximos a cero.')]),
+            html.P('Se usan 27.570 registros para desarrollo, 7.411 para prueba y se apartan 1.752 vecinos de la prueba. Esta separación, llamada purga, reduce la cercanía entre los datos de entrenamiento y evaluación.'),
+            html.P('La validación cruzada repite el entrenamiento dejando un grupo fuera cada vez. La versión anidada separa la elección de configuraciones de su evaluación. El escalado, que pone los sensores en unidades comparables, se calcula solo con el entrenamiento de cada grupo.'),
+            html.P('Se comparan siete familias conocidas y cuatro métodos para buscar configuraciones: 56 procedimientos en total. El kernel operativo añade dos variables calculadas y combina Extra Trees, SVR y Ridge; se elige para ambas emisiones por su menor error de validación.'),
+            html.P('Se conservan los extremos porque pueden representar episodios reales. Los archivos mantienen el orden de los registros, pero no fechas exactas. Dejar un año completo fuera, o LOYO, mediría la capacidad de predecir un periodo desconocido; aquí se evalúan condiciones representadas en los cinco años.'),
+            html.P('Antes de usarlo en otra planta o periodo se necesita una evaluación con datos nuevos. El proyecto no cuantifica ahorro económico ni reducción efectiva de emisiones.')]),
         html.Section([html.Div([html.H3('Literatura: lo que ya se ha probado'),
                                html.Span('Síntesis del notebook',className='subtle')],className='section-heading'),
-                      html.P('Los mayores R² publicados no constituyen por sí solos un ranking de modelos. La población evaluada, las entradas y las particiones condicionan el resultado.'),
+                      html.P('Los estudios usan distintos datos, sensores y divisiones de entrenamiento y prueba. Sus resultados sirven como referencia, no como una clasificación directamente comparable.'),
                       html.Div([html.Div([html.Strong('Regresión y ensambles'),html.P('Comparadores consolidados, no una contribución original por sí mismos.')]),
-                                html.Div([html.Strong('Protocolos distintos'),html.P('Filtrado, especialización por periodos e historial de sensores modifican la comparación.')]),
-                                html.Div([html.Strong('Originalidad por comprobar'),html.P('La propuesta propia sigue pendiente; las siete familias son benchmarks con antecedentes.')])],className='literature-summary'),
+                                html.Div([html.Strong('Protocolos distintos'),html.P('Algunos filtran extremos, separan periodos o incorporan lecturas anteriores.')]),
+                                html.Div([html.Strong('Propuesta operativa'),html.P('Combina variables operativas y modelos complementarios; esa integración no se identificó en la revisión.')])],className='literature-summary'),
                       disclosure('Estudios, modelos y desempeño reportado',[
                           html.Div(html.Table([html.Thead(html.Tr([html.Th(t) for t in ['Estudio','Modelos / enfoque','Resultado reportado','Validación / cautela']])),
                                                html.Tbody(literature_rows)]),className='table-scroll'),
-                          notice('Kochueva, Sinap, Jhinaoui y Aslan: contraste de metodología y tablas del texto completo. En los demás antecedentes se conserva el nivel de evidencia indicado. No se han reproducido esos experimentos; ausencia de documentación no demuestra fuga de información.')],identifier='literature-studies'),
+                          notice('Se revisaron metodología y tablas completas de Kochueva, Sinap, Jhinaoui y Aslan. Los demás casos indican cuándo la información procede de un resumen.')],identifier='literature-studies'),
                       disclosure('Diferencias metodológicas y posibles explicaciones',[
                           html.H4('Referencia vigente del proyecto: prueba por bloques'),
                           table(reference,labels={'objetivo':'Emisión','modelo':'Modelo',

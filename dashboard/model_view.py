@@ -9,9 +9,23 @@ from . import figures as f
 from .components import disclosure,graph,metric,notice,number,table
 from .models import feature_importance,predict,registry
 from .repository import intervals,optimization_results,predictions,range_warnings,results,sample_frame,sensors
+from . import kernel_view
 
 MAX_ROWS = 2000
 MAX_BYTES = 2*1024*1024
+MODEL_EXPLANATIONS = {
+    'knn':'Estima a partir de registros con sensores parecidos.',
+    'ridge':'Combina los sensores de forma lineal y limita pesos excesivos.',
+    'lasso':'Modelo lineal que puede reducir a cero el peso de algunos sensores.',
+    'decision_tree':'Aplica reglas de decisión según los valores de los sensores.',
+    'random_forest':'Promedia muchos árboles entrenados con muestras distintas.',
+    'xgboost':'Añade árboles que corrigen los errores de los anteriores.',
+    'svr_lineal':'Ajusta una relación lineal tolerando diferencias pequeñas y penalizando las mayores.',
+    'kernel_operativo':'Combina Extra Trees y SVR con Ridge, usando dos variables operativas calculadas.'}
+
+
+def default_model():
+    return next(mid for mid, model in registry().items() if model['respuestas']['CO']['seleccionado_por_cv'])
 
 
 def layout():
@@ -22,20 +36,20 @@ def layout():
                       className='sensor-field') for s in sensors()]
     return html.Div([
         html.Div([html.Div([html.P('03 / MODELOS',className='eyebrow'),html.H2('Estimación de emisiones'),
-                            html.P('Benchmarks de regresión con validación anidada. Las estimaciones no sustituyen mediciones.',className='lead')]),
+                            html.P('Estimaciones de CO y NOx a partir de los sensores de operación.',className='lead')]),
                   html.Div([html.Label('Modelo',htmlFor='model-select'),dcc.Dropdown(id='model-select',
                       options=[{'label':m['nombre'],'value':mid} for mid,m in registry().items()],
-                      value='random_forest',clearable=False)],className='model-selector')],className='section-heading'),
+                      value=default_model(),clearable=False)],className='model-selector')],className='section-heading'),
         html.Div(id='model-description',className='model-description'),
         disclosure('Configuración entrenada · CO y NOx',html.Div(id='model-configuration')),
         html.Div([html.Section([html.H3('Condiciones de operación'),html.Div(inputs,className='sensor-grid'),
                                 html.Div([html.Button('Calcular estimación',id='predict-button',n_clicks=0,className='primary-button'),
                                           html.Button('Registro de ejemplo',id='reset-inputs',n_clicks=0,className='text-button')],className='command-row'),
-                                html.P('El registro inicial es una observación real de desarrollo, no una combinación artificial de medianas.',className='caption')]),
+                                html.P('El ejemplo corresponde a un registro real de desarrollo.',className='caption')]),
                   html.Section([html.H3('Resultado'),html.Div([metric('CO (mg/m³)','—'),metric('NOx (mg/m³)','—')],
                                   id='prediction-result',className='prediction-values'),
                                 html.Div(id='prediction-feedback',role='status',className='prediction-feedback'),
-                                notice('No certifica cumplimiento ambiental. Dentro del rango de cada sensor tampoco se garantiza que la combinación esté representada.',kind='warning')],
+                                notice('Estimación de apoyo; no sustituye una medición certificada de emisiones.',kind='warning')],
                                className='prediction-panel')],className='prediction-grid'),
         disclosure('Predicciones por lote · CSV',[
             html.Div([dcc.Upload(id='batch-upload',children=html.Button('Seleccionar CSV',className='secondary-button'),
@@ -49,10 +63,15 @@ def layout():
                   dcc.RadioItems(id='model-target',options=[{'label':'CO','value':'CO'},{'label':'NOx','value':'NOX'}],value='CO',className='segmented')],className='section-heading results-heading'),
         html.Div(id='model-metrics',className='metric-strip'),html.P(id='model-ci',className='caption'),
         dcc.Loading(html.Div([graph('model-stage-chart'),graph('model-prediction-chart')],className='chart-grid'),type='circle',color=f.TEAL),
-        html.P('La dispersión presenta hasta 2.200 puntos; las métricas utilizan los 7.411 registros de prueba. CV externa: media ± desviación de cinco pliegues anidados, no un intervalo de confianza.',className='caption'),
+        html.P('CV externa resume cinco grupos de evaluación: se muestra el promedio y su variación. Las métricas de prueba usan 7.411 registros; la figura muestra hasta 2.200.',className='caption'),
+        disclosure('Significado de los indicadores',[
+            html.P('R² resume cuánto mejora el modelo frente a estimar siempre el promedio: 1 es un ajuste perfecto y un valor negativo es peor que esa referencia. No es un porcentaje de predicciones correctas.'),
+            html.P('MAE es el tamaño medio del error. RMSE da más peso a los errores grandes. Ambos se expresan en mg/m³; un valor menor es mejor. MSE es el promedio de errores al cuadrado y se utiliza para elegir configuraciones.'),
+            html.P('Entrenamiento mide el ajuste sobre datos usados para aprender; validación y prueba evalúan registros apartados. Una caída marcada fuera del entrenamiento puede indicar sobreajuste: aprender demasiado los detalles de la muestra.')]),
+        kernel_view.layout(),
         disclosure('Comparación entre modelos · entrenamiento, validación y prueba',html.Div(id='model-comparison')),
-        disclosure('Optimización · 28 procedimientos por emisión',[
-            html.Div(id='model-optimization'),html.P('Tiempo histórico total por procedimiento de búsqueda y evaluación, no latencia de inferencia en Render. Los presupuestos de los optimizadores son distintos; estas cifras no demuestran superioridad general de un método.',className='caption')]),
+        disclosure('Optimización de comparadores · 28 procedimientos por emisión',[
+            html.Div(id='model-optimization'),html.P('Se comparan búsquedas de configuraciones: exhaustiva (Grid), aleatoria, guiada por resultados previos (Bayesiana) y evolutiva (Genética). El tiempo corresponde al entrenamiento y la evaluación, no a una predicción.',className='caption')]),
         disclosure('Importancia de variables · modelo y emisión seleccionados',[
             dcc.Loading(graph('model-importance-chart'),type='circle',color=f.TEAL),
             html.P(id='model-importance-note',className='caption'),
@@ -67,10 +86,9 @@ def layout():
 def selection_summary():
     selected=results().loc[lambda d:d.seleccionado_por_CV].set_index('objetivo')
     n=f"{next(iter(registry().values()))['n_ajuste']:,}".replace(',','.')
-    return (f"Selección por MSE externo: {selected.loc['CO','modelo']} para CO y "
-            f"{selected.loc['NOX','modelo']} para NOx. Cada familia conserva su mejor estrategia "
-            f"de búsqueda y un regresor por emisión, ajustados con {n} registros. "
-            'La prueba no decide la selección. Las diferencias puntuales no demuestran superioridad estadística.')
+    return (f"Modelo elegido: {selected.loc['CO','modelo']} para CO y "
+            f"{selected.loc['NOX','modelo']} para NOx, por su menor error de validación. "
+            f"Cada emisión tiene un modelo entrenado con {n} registros de desarrollo.")
 
 
 def model_results(model_id, target):
@@ -81,7 +99,7 @@ def model_results(model_id, target):
                metric('R² prueba',number(row.R2_test)),metric('RMSE prueba',number(row.RMSE_test),'mg/m³'),
                metric('MAE prueba',number(row.MAE_test),'mg/m³')]
     ci = intervals().loc[(intervals().objetivo == target) & (intervals().modelo == family) & (intervals().metrica == 'R2')].iloc[0]
-    ci_text = f"R² de prueba · IC95 % bootstrap por bloques: [{number(ci.IC95_inf)}; {number(ci.IC95_sup)}]. Es incertidumbre de la métrica, no un intervalo para una predicción individual."
+    ci_text = f"R² de prueba · intervalo al 95%: [{number(ci.IC95_inf)}; {number(ci.IC95_sup)}]. Se obtiene remuestreando bloques y resume la incertidumbre del desempeño, no de una predicción individual."
     comparison = results().loc[results().objetivo == target].sort_values('MSE_CV_externo')[
         ['modelo','optimizador','R2_train','R2_CV_promedio','R2_CV_std','R2_OOF','R2_test',
          'RMSE_CV_media','RMSE_CV_std','RMSE_test','MAE_test','seleccionado_por_CV']].copy()
@@ -93,12 +111,12 @@ def model_results(model_id, target):
         'Registros del bloque':int(row.n_serial)}])
     summary = html.Div([
         html.P(f"Sesgo de prueba (estimado − observado): {number(row.sesgo_test)} mg/m³. Predicciones negativas: {int(row.negativos_test)}."),
-        table(diagnostics),html.P('Diagnósticos exploratorios: White usa toda la prueba; BDS y Ljung–Box usan un único bloque continuo, no los 7.411 registros concatenados. Los valores p no miden precisión predictiva y no están corregidos por multiplicidad.',className='caption')])
+        table(diagnostics),html.P('White revisa si la dispersión del error cambia con los sensores; BDS y Ljung–Box buscan dependencia entre errores. Los dos últimos usan un bloque continuo. Sus valores p son exploratorios y no miden precisión predictiva.',className='caption')])
     selected = definition['respuestas'][target]['seleccionado_por_cv']
-    description = [html.Strong(family),html.Span(' · '+definition['descripcion']),
+    description = [html.Strong(family),html.Span(' · '+MODEL_EXPLANATIONS[model_id]),
                    html.Span(f'Seleccionado para {target} por CV externa' if selected else f'Comparador para {target}',className='status-badge')]
     configuration = pd.DataFrame([{'Emisión':t,'Optimizador':r['optimizador'],
-        'Hiperparámetros':str(r['parametros']),'Registros de ajuste':definition['n_ajuste']}
+        'Configuración (hiperparámetros)':str(r['parametros']),'Registros de ajuste':definition['n_ajuste']}
         for t,r in definition['respuestas'].items()])
     optimization = optimization_results().loc[lambda d:d.objetivo == target,
         ['modelo','optimizador','RMSE_CV_media','RMSE_CV_std','MAE_CV_media','MAE_CV_std',
@@ -130,15 +148,13 @@ def estimate(model_id, values):
 
 def importance_results(model_id, target):
     importance = feature_importance(model_id,target)
-    if importance is None:
+    if importance is None or importance.empty:
         return f.empty('Importancia no disponible para este modelo.'),'El adaptador del modelo no proporciona esta interpretación.',''
-    note = ('Importancia precalculada sobre el pipeline entrenado. Cada sensor se permuta individualmente en los 7.411 registros originales de prueba, '
-            'con 10 repeticiones y semilla 42. Un mayor aumento de MSE indica mayor dependencia predictiva; '
-            'valores negativos indican que la permutación redujo el error. Las barras de error muestran '
-            'la desviación entre repeticiones, no un intervalo de confianza. Los sensores correlacionados '
-            'pueden compartir importancia y la permutación puede generar combinaciones poco realistas. '
-            'No representa causalidad ni la dirección del efecto. Es un diagnóstico posterior a la evaluación: '
-            'no se utiliza para seleccionar variables ni modelos con la prueba.')
+    note = ('Se mezclan los valores de un sensor y se observa cuánto aumenta el error, en 10 repeticiones sobre la prueba. '
+            'Un aumento mayor indica que el modelo depende más de ese sensor; las barras muestran la variación entre repeticiones. '
+            'Sensores relacionados pueden compartir importancia. No es una medida causal ni se usó para elegir variables.')
+    if model_id == 'kernel_operativo':
+        note += ' En el kernel se recalculan las dos variables derivadas después de mezclar cada sensor.'
     return (f.feature_importance(importance,target),note,
             table(importance,{'sensor':'Sensor','aumento_MSE':'Aumento de MSE ((mg/m³)²)',
                               'desviacion':'Desviación entre repeticiones'}))
@@ -168,6 +184,7 @@ def parse_batch(contents, model_id):
 
 
 def register(app):
+    kernel_view.register(app)
     app.callback(Output('model-importance-chart','figure'),Output('model-importance-note','children'),
                  Output('model-importance-table','children'),Input('model-select','value'),
                  Input('model-target','value'))(importance_results)
