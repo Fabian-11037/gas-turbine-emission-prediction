@@ -3,6 +3,7 @@ from functools import lru_cache
 import hashlib
 import json
 import gc
+import numpy as np
 from threading import RLock
 import pandas as pd
 from .repository import DATA, importances, validate_inputs
@@ -50,6 +51,9 @@ class StreamingPipelinePredictor:
         x = validate_inputs(frame, spec['predictores'])
         result = {}
         for target, response in spec['respuestas'].items():
+            if response.get('fragmentos'):
+                result[target] = self._predict_parts(response['fragmentos'], x)
+                continue
             payload = joblib.load(artifact_path(response))
             if (payload['formato'] != 'gas-turbine-entregable2-v1' or
                 payload['predictores'] != spec['predictores'] or payload['objetivo'] != target or
@@ -59,6 +63,26 @@ class StreamingPipelinePredictor:
             del payload
             gc.collect()
         return pd.DataFrame(result, index=frame.index)
+
+    @staticmethod
+    def _predict_parts(parts, x):
+        import joblib
+        weights = [part['n_arboles'] for part in parts['arboles']]
+        if len(weights) == 0 or min(weights) <= 0 or sum(weights) != parts['n_arboles']:
+            raise ValueError('Fragmentos de arboles incompatibles con el modelo.')
+        tree_prediction = np.zeros(len(x))
+        # Promedia el mismo bosque por grupos; solo un grupo reside en memoria.
+        for part, count in zip(parts['arboles'], weights):
+            estimator = joblib.load(artifact_path(part))
+            tree_prediction += estimator.predict(x)*(count/parts['n_arboles'])
+            del estimator
+            gc.collect()
+        estimator = joblib.load(artifact_path(parts['svr']))
+        svr_prediction = estimator.predict(x)
+        del estimator
+        gc.collect()
+        meta = joblib.load(artifact_path(parts['meta']))
+        return meta.predict(np.column_stack([tree_prediction, svr_prediction]))
 
 
 ADAPTERS={'sklearn_pipeline_v1':PipelinePredictor,
@@ -80,6 +104,10 @@ def registry():
             raise ValueError('El modelo debe declarar los nueve sensores sin duplicados.')
         for response in m['respuestas'].values():
             artifact_path(response)
+            if response.get('fragmentos'):
+                parts = response['fragmentos']
+                for component in parts['arboles']+[parts['svr'], parts['meta']]:
+                    artifact_path(component)
     return {m['id']:m for m in definitions}
 
 

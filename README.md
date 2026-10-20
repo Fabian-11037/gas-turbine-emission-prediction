@@ -74,7 +74,9 @@ Conecte el repositorio en Render mediante Blueprint y `render.yaml`, o configure
 
 No se requieren secretos, disco persistente ni descarga de datos al arrancar.
 Los pipelines se cargan bajo demanda con una cache de una familia. El kernel
-carga y libera un objetivo a la vez; sus dos bosques no permanecen en memoria.
+promedia cada bosque en cuatro grupos de 50 arboles y carga despues SVR y Ridge.
+Los fragmentos conservan sus propios SHA256; no cambian los estimadores ni sus
+predicciones. Los originales completos se conservan para reproducibilidad.
 La inferencia se serializa para limitar picos de memoria con usuarios simultaneos.
 Los optimizadores, DEAP, Matplotlib y Jupyter no son dependencias de produccion.
 Se usa `xgboost-cpu`, la distribucion oficial de inferencia/entrenamiento CPU sin

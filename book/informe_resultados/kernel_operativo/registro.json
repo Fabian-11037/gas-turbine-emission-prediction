@@ -37,7 +37,40 @@
         },
         "lambda_Ridge": 0.01
       },
-      "seleccionado_por_cv": true
+      "seleccionado_por_cv": true,
+      "fragmentos": {
+        "n_arboles": 200,
+        "arboles": [
+          {
+            "ruta": "models/kernel_parts/CO_trees_0.joblib",
+            "sha256": "f9fb3895ef7f8497cbeb8dce7b77a9e070220651cafc30f3dcde9aa1da0fba04",
+            "n_arboles": 50
+          },
+          {
+            "ruta": "models/kernel_parts/CO_trees_1.joblib",
+            "sha256": "6f26b9402285e018465f4060b330a944c9bec282675ea6c30d4df91e31ddd026",
+            "n_arboles": 50
+          },
+          {
+            "ruta": "models/kernel_parts/CO_trees_2.joblib",
+            "sha256": "8df4a0028802a1c59700d2d9cb50145beaff64ae30c3d69679c71078e7011adb",
+            "n_arboles": 50
+          },
+          {
+            "ruta": "models/kernel_parts/CO_trees_3.joblib",
+            "sha256": "b21a2cfb244b5cd0e1bb1eaded0343483ceb8a885191b672758795c4048707f6",
+            "n_arboles": 50
+          }
+        ],
+        "svr": {
+          "ruta": "models/kernel_parts/CO_svr.joblib",
+          "sha256": "9b10ffd81e1a07a1f19b4a73c791f8abb2ea3c0c0972be8f3c421736f9d22a64"
+        },
+        "meta": {
+          "ruta": "models/kernel_parts/CO_meta.joblib",
+          "sha256": "f2bcc55cee07303914210f59ab4fd38e7e57a29cec949cdb578125ef8b98084f"
+        }
+      }
     },
     "NOX": {
       "ruta": "models/NOX_Kernel_operativo.joblib",
@@ -62,7 +95,40 @@
         },
         "lambda_Ridge": 0.001
       },
-      "seleccionado_por_cv": true
+      "seleccionado_por_cv": true,
+      "fragmentos": {
+        "n_arboles": 200,
+        "arboles": [
+          {
+            "ruta": "models/kernel_parts/NOX_trees_0.joblib",
+            "sha256": "c8ebce7f269a9d2b01cc0b68fb3898c5a56a787e317f2cb930537a7ec0c3e60f",
+            "n_arboles": 50
+          },
+          {
+            "ruta": "models/kernel_parts/NOX_trees_1.joblib",
+            "sha256": "31cedd00e358968ad851ee45a59224d83049675acc33203e54fc87c00c11bc22",
+            "n_arboles": 50
+          },
+          {
+            "ruta": "models/kernel_parts/NOX_trees_2.joblib",
+            "sha256": "9c8af6e837eb200de5f1a8adfdafbc450d9bd2a360639b4957051d9d56db7280",
+            "n_arboles": 50
+          },
+          {
+            "ruta": "models/kernel_parts/NOX_trees_3.joblib",
+            "sha256": "ab41d0627f77828dcf1743947c3f756192e805ec7ed6a9ab5e0c9de99138cea5",
+            "n_arboles": 50
+          }
+        ],
+        "svr": {
+          "ruta": "models/kernel_parts/NOX_svr.joblib",
+          "sha256": "97807133c73d73066d752f1ddea9de384d108ecff7a0a387369bf2fadf326e20"
+        },
+        "meta": {
+          "ruta": "models/kernel_parts/NOX_meta.joblib",
+          "sha256": "d183999c28defa427dfd94dd44d2118abd88ab86f0e40634c9580c1bad05b9f9"
+        }
+      }
     }
   },
   "n_ajuste": 27570,

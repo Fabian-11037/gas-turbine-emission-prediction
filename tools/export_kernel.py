@@ -230,6 +230,8 @@ def exportar_kernel(source=None):
     manifest['inferencia'] = 'Dieciséis artefactos verificados: catorce comparadores y dos modelos de kernel operativo, sin ajuste en servidor.'
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
     print('Kernel publicado: artefactos portables, resultados e importancia; sin reentrenar.', flush=True)
+    from tools.export_kernel_parts import export as export_parts
+    export_parts()
     from tools.export_kernel_significance import export
     export()
 

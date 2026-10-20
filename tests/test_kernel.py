@@ -51,6 +51,18 @@ class KernelTests(unittest.TestCase):
         summary = pd.read_csv(ROOT/'data'/'resultados.csv').query("modelo == 'Kernel operativo'")
         self.assertTrue(np.isfinite(summary[['RMSE_CV_std', 'MAE_CV_media', 'MAE_CV_std']]).all().all())
 
+    def test_chunked_forest_metadata_and_invalid_weights(self):
+        from dashboard.models import artifact_path
+        for target, response in registry()['kernel_operativo']['respuestas'].items():
+            parts = response['fragmentos']
+            self.assertEqual(parts['n_arboles'], 200)
+            self.assertEqual([p['n_arboles'] for p in parts['arboles']], [50]*4)
+            for component in parts['arboles']+[parts['svr'], parts['meta']]:
+                self.assertTrue(artifact_path(component).is_file())
+                self.assertLess(artifact_path(component).stat().st_size, 30*2**20)
+        with self.assertRaises(ValueError):
+            StreamingPipelinePredictor._predict_parts({'n_arboles':200,'arboles':[]}, sample_frame())
+
     def test_streaming_inference_and_original_unit_equation(self):
         from threadpoolctl import threadpool_limits
         self.assertIsInstance(predictor('kernel_operativo'), StreamingPipelinePredictor)
