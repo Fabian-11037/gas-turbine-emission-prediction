@@ -13,7 +13,7 @@ def layout():
                                 'Unidad':s['unidad'],'Papel':'Entrada numérica'} for s in sensors()]
                               + [{'Variable':'CO','Significado':'Monóxido de carbono','Unidad':'mg/m³','Papel':'Objetivo'},
                                  {'Variable':'NOX','Significado':'Óxidos de nitrógeno','Unidad':'mg/m³','Papel':'Objetivo'},
-                                 {'Variable':'anio / posición / bloque','Significado':'Controles de descripción y partición',
+                                 {'Variable':'Año / posición / bloque','Significado':'Controles de descripción y partición',
                                   'Unidad':'Año / registro','Papel':'No son predictores'}])
     literature = json.loads((DATA/'literatura.json').read_text(encoding='utf-8'))
     comparison = json.loads((DATA/'literatura_metodologia.json').read_text(encoding='utf-8'))
