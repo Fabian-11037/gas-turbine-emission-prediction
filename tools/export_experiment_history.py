@@ -67,7 +67,7 @@ def consolidate(source_root):
                 for metric in METRICS:
                     values[f'{metric}_{target}'] = float(rows.iloc[0][metric]) if len(rows) else None
             # Merge repeated controls only when all final, CV and test scores agree.
-            key = (model, policy, *(None if v is None or pd.isna(v) else round(v, 12)
+            key = (model, policy, 'bloques', *(None if v is None or pd.isna(v) else round(v, 12)
                                     for v in values.values()))
             if key in records:
                 records[key]['fuentes'].append(source)
@@ -76,21 +76,55 @@ def consolidate(source_root):
             records[key] = {'modelo': model, 'variante': variant, **values,
                 'estado': 'Dashboard' if published else 'Provisional',
                 'politica': policy, 'fuentes': [source], 'protocolo': protocol,
-                'tipo_CV': 'Media de 5 pliegues externos'}
+                'tipo_CV': 'Media de 5 pliegues externos', 'grupo_validacion': 'bloques'}
             for target in ['CO', 'NOX']:
                 rows = group.loc[group.objetivo.eq(target)]
                 records[key][f'R2_OOF_{target}'] = (rows.iloc[0].get('R2_OOF', None) if len(rows) else None)
+    recent_path = ROOT/'data/historial_adicional.csv'
+    recent_metadata = {}
+    if recent_path.exists():
+        recent = pd.read_csv(recent_path)
+        recent_metadata = json.loads((ROOT/'data/historial_adicional.json').read_text(encoding='utf-8'))
+        digest = hashlib.sha256(recent_path.read_bytes()).hexdigest()
+        assert digest == recent_metadata['archivo_sha256']
+        evidence.append(dict(archivo='data/historial_adicional.csv', filas=len(recent), sha256=digest))
+        for _, record in recent[['grupo_validacion','protocolo','tipo_CV']].drop_duplicates().iterrows():
+            protocols.append(dict(archivo='data/historial_adicional.csv', **record.to_dict()))
+        for (model, variant, protocol_group, status), group in recent.groupby(
+                ['modelo','variante','grupo_validacion','estado'], sort=False):
+            assert not group.objetivo.duplicated().any()
+            values = {}
+            for target in ['CO','NOX']:
+                selected = group.loc[group.objetivo.eq(target)]
+                for metric in METRICS:
+                    values[f'{metric}_{target}'] = float(selected.iloc[0][metric]) if len(selected) else None
+            key = (model, 'Sin limpieza', protocol_group, *(None if v is None or pd.isna(v) else round(v,12)
+                                                          for v in values.values()))
+            sources_recent = group.fuentes.drop_duplicates().tolist()
+            if key in records:
+                records[key]['fuentes'].extend(sources_recent)
+                continue
+            records[key] = dict(modelo=model, variante=variant, **values, estado=status,
+                politica='Sin limpieza', fuentes=sources_recent, protocolo=group.protocolo.iloc[0],
+                tipo_CV=group.tipo_CV.iloc[0], grupo_validacion=protocol_group)
+            for target in ['CO','NOX']:
+                selected = group.loc[group.objetivo.eq(target)]
+                records[key][f'R2_OOF_{target}'] = selected.iloc[0].R2_OOF if len(selected) else None
     rows = list(records.values())
     for row in rows:
         row['fuentes'] = ' | '.join(row['fuentes'])
     rows.append({'modelo': 'BART', 'variante': 'Muestreo bayesiano interrumpido',
                  'estado': 'Interrumpido', 'politica': 'Sin limpieza',
+                 'grupo_validacion':'bloques', 'protocolo':'Bloques 168; purga 24; sin evaluación final',
+                 'tipo_CV':'Pendiente',
                  'fuentes': 'resultados_robust_bart_20261019 (sin resumen final BART)'})
     output = pd.DataFrame(rows).sort_values(['modelo', 'variante'], kind='stable')
     metadata = {'fuentes': evidence, 'protocolos': protocols, 'n_variantes': len(output),
+        'evidencia_reciente':recent_metadata,
         'criterio': 'Resultados finales por variante; controles idénticos consolidados. '
                     'R2_train se evalúa sobre el desarrollo original, incluso en la auditoría de limpieza. '
-                    'No se incluyen ajustes internos ni particiones incompletas de BART.'}
+                    'Los protocolos distintos no se consolidan entre sí. '
+                    'Los casos pausados o interrumpidos no reciben métricas parciales como resultado final.'}
     return output, metadata
 
 

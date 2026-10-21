@@ -16,6 +16,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class StabilityTests(unittest.TestCase):
+    def test_explanations_precede_results(self):
+        from dash import html
+        from dashboard import stability
+        from dashboard.stability_content import SEED_HELP,ABLATION_HELP,ABLATION_SENSITIVITY_HELP
+        for target in ['CO','NOX']:
+            children = stability.view('kernel_operativo',target).children
+            self.assertEqual(children[0].children[0].children,'Método de estabilidad y ablación')
+            self.assertEqual(children[2].children,SEED_HELP)
+            ablation = children[-1].children
+            self.assertEqual(ablation[1].children,ABLATION_HELP)
+            sensitivity = next(child for child in ablation if isinstance(child,html.Details))
+            self.assertEqual(sensitivity.children[1].children[0].children,ABLATION_SENSITIVITY_HELP)
+
     def test_saved_outer_and_inner_splits(self):
         dev, test, splits = validation.load_frames()
         self.assertEqual((len(dev), len(test)), (27570, 7411))

@@ -1,0 +1,11 @@
+objetivo,modelo,referencia,fold,delta_MSE
+CO,kernel,Kernel operativo seleccionado por bloques,1,0.029643222597184327
+CO,kernel,Kernel operativo seleccionado por bloques,2,1.4282087243966402e-06
+CO,kernel,Kernel operativo seleccionado por bloques,3,0.005583762150251026
+CO,kernel,Kernel operativo seleccionado por bloques,4,0.12719332764046376
+CO,kernel,Kernel operativo seleccionado por bloques,5,0.017045587791666095
+NOX,kernel,Kernel operativo seleccionado por bloques,1,3.1601851175024365
+NOX,kernel,Kernel operativo seleccionado por bloques,2,3.2801693292436127
+NOX,kernel,Kernel operativo seleccionado por bloques,3,3.539846937888676
+NOX,kernel,Kernel operativo seleccionado por bloques,4,2.105699928176751
+NOX,kernel,Kernel operativo seleccionado por bloques,5,4.44366029469651

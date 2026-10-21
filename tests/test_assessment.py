@@ -27,6 +27,16 @@ def toy_frame():
 
 
 class AssessmentTests(unittest.TestCase):
+    def test_auxiliary_explanations_precede_tables_and_graphs(self):
+        from dash import html
+        from dashboard.assessment_content import SENSITIVITY_HELP,RANKING_HELP
+        for target in ['CO','NOX']:
+            disclosures = {child.children[0].children:child.children[1].children
+                for child in assessment.statistical_view(target).children if isinstance(child,html.Details)}
+            for title,explanation in [('Sensibilidad y valores p sin ajuste',SENSITIVITY_HELP),
+                ('Friedman–Nemenyi · comprobación auxiliar',RANKING_HELP)]:
+                self.assertEqual(disclosures[title][0].children,explanation)
+
     def test_protected_models_and_validation(self):
         for folder in ['statistical_hierarchy','efficiency']:
             metadata = assessment.metadata(folder)

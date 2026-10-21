@@ -6,7 +6,8 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash import Input,Output,dcc,html
 
-from .assessment_content import STATISTICS,COMPLEXITY,EFFICIENCY,statistical_interpretation,computational_interpretation
+from .assessment_content import (STATISTICS,COMPLEXITY,EFFICIENCY,SENSITIVITY_HELP,RANKING_HELP,
+                                 statistical_interpretation,computational_interpretation)
 from .components import disclosure,graph,number,table
 from .figures import style,TEAL,CORAL,GRAY
 from .repository import DATA
@@ -99,6 +100,7 @@ def statistical_view(target):
         html.P('Diferencia positiva: menor error del kernel. Son contrastes adaptados sobre OOF; '
                'los resultados del conjunto de prueba permanecen separados.',className='caption'),
         disclosure('Sensibilidad y valores p sin ajuste',[
+            html.P(SENSITIVITY_HELP),
             table(pd.DataFrame(counts)),table(p_columns(sensitivity),{'bloques_medios':'Bloques medios',
                 'p_GW_Holm2':'p Wald · Holm','p_DM_Holm2':'p DM-HLN · Holm','IC95_inf':'IC95% inferior','IC95_sup':'IC95% superior'},digits=4),
             table(p_columns(main[['p_GW','p_GW_Holm2','p_DM','p_DM_Holm2']]),
@@ -107,6 +109,7 @@ def statistical_view(target):
             {'procedimiento':'Procedimiento','MSE_OOF':'MSE OOF','p_MCS':'p MCS','incluido_005':'MCS',
              'representante':'Contraste compartido'},digits=4)),
         disclosure('Friedman–Nemenyi · comprobación auxiliar',[
+            html.P(RANKING_HELP),
             html.P(f"Friedman: p = {aux['p_Friedman']:.2e}; cinco pliegues con entrenamiento compartido."),
             graph('assessment-critical-difference',critical_difference(target)),
             html.P('Los intervalos se superponen cuando la distancia entre rangos no supera la diferencia crítica de Nemenyi. '

@@ -4,7 +4,7 @@ from functools import lru_cache
 from dash import Input, Output, dcc, html
 from .components import disclosure, table
 from .repository import DATA
-from . import experiment_history, underestimation
+from . import experiment_history, underestimation, kernel_validation
 from .kernel_content import (ARCHITECTURE, TREE_MODELS, MATHEMATICS, CONTRIBUTION, SELECTION,
     STATISTICAL_METHOD, STATISTICAL_INTERPRETATION)
 
@@ -15,12 +15,13 @@ def architecture():
 
 
 def layout():
-    return html.Div([disclosure('Kernel operativo · arquitectura, fundamentos y aporte', [
+    return html.Div([disclosure('Kernel operativo · arquitectura, evidencia y validación', [
         dcc.Tabs(id='kernel-section', value='arquitectura', children=[
             dcc.Tab(label='Arquitectura', value='arquitectura'),
             dcc.Tab(label='Fundamentos', value='matematicas'),
             dcc.Tab(label='Aporte y literatura', value='aporte'),
             dcc.Tab(label='Evidencia', value='evidencia'),
+            dcc.Tab(label='Validación', value='validacion'),
             dcc.Tab(label='Modelos probados', value='historial')],
             className='kernel-tabs', mobile_breakpoint=0),
         html.Div(id='kernel-detail', className='kernel-detail')]),
@@ -43,6 +44,8 @@ def render(model_id, target, section):
         return {}, dcc.Markdown(CONTRIBUTION, mathjax=True, className='kernel-markdown')
     if section == 'evidencia':
         return {}, evidence(target)
+    if section == 'validacion':
+        return {}, kernel_validation.panel(target)
     if section == 'historial':
         return {}, experiment_history.layout()
     import pandas as pd

@@ -1,0 +1,64 @@
+{
+  "estado": "Completado",
+  "revision": "2026-10-21",
+  "n_desarrollo": 27570,
+  "n_prueba": 7411,
+  "bloque": 168,
+  "purga": 24,
+  "folds_externos": 5,
+  "crossfit": 3,
+  "semilla": 42,
+  "retiradas": [
+    "TEY",
+    "TEY*(TIT-TAT)"
+  ],
+  "conservadas": [
+    "TIT-TAT"
+  ],
+  "hiperparametros": "Configuraciones originales por pliegue y final, sin nueva busqueda",
+  "replicas_bootstrap": 20000,
+  "bloque_principal": 168,
+  "bloques_sensibilidad": [
+    336,
+    672
+  ],
+  "ajuste": "Holm para CO y NOx; CV y prueba por separado, y por longitud de remuestreo",
+  "orientacion": "sin TEY menos completo; negativo favorece al kernel completo",
+  "modelos_reentrenados_al_incorporar": 0,
+  "prueba_usada_en_seleccion": false,
+  "modelos_publicados_sustituidos": false,
+  "fuente": "Ablacion provisional completada el 21 de octubre de 2026",
+  "origen": {
+    "codigo": {
+      "prueba_ablacion_tey_bloques.py": "c4fe40e4027121061af03d5675f0a370fbf0666ac67f9d6872829f80e91de759",
+      "modelos_ablacion_tey.py": "2b0e94f4715556c8d85090c02f054aa82e26833f9dbd897f511e094f4ef3d747",
+      "prueba_kernel_aleatorio_80_20.py": "fadb45eac8d46de89e8b4ed14bc553c3784377353735944541177a9d6700cf6a",
+      "validate_stability_ablation.py": "13b296a3cccb305c04b337c0b17636fb54e4454d8c3bf20cd84194c6be0f9178",
+      "prueba_kernel_catboost_bloques_NOX.py": "eb5b578ac48ebd5d32fd998640ea87c37e90c163dee21cd9f63fc06b475bbd1d",
+      "reanudar_comparacion_segura.py": "ea6839dd793396c2c47a3a20abfdc8a6957a862e548c3f6f900114146eaa632b",
+      "significancia_kernel_80_20_aleatorio.py": "c2f3e4b11325925d3e448360ee3cabce3e18a1a71881c4c0ad7c6923e5a52801",
+      "export_kernel_significance.py": "96e61e4cf4dfc641baf4c42d05d7040dfa9112776d62e92e69252ae092bf9b92"
+    },
+    "evidencias": {
+      "observaciones.csv.gz": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+      "asignacion_particiones.csv.gz": "ee103169ad0df51e65408c0408e06ec64ba61acb6573067b0f186ede27946b94",
+      "conteos_externos.csv.gz": "ba8409e0b4033d19e50846ab9d028c0df5a4bcbe5cad6b75a636ea6fb0acdeae",
+      "etapas.csv": "aeaac6c896f82a299d923cc4ee162077c1009133816bc7a1825a455d2efe19b3",
+      "predicciones_OOF_CO.csv.gz": "1de75d558cc02a1792755789c713adcbf75b6cac3906f4e0a1f9cdeb0ae72dd1",
+      "predicciones_prueba_CO.csv.gz": "4715e66205ad6d20e7a4c11512e61c4f9cbbe1eb29ea5bfe78b317be52308d0f",
+      "predicciones_OOF_NOX.csv.gz": "9c69d588d571847e4f31442cdb19917d7706818410f978a31fcf60594d2f6313",
+      "predicciones_prueba_NOX.csv.gz": "443b0bb21e2642a875548275be850480376078aca73872aa0f76e3eba4d0271e"
+    }
+  },
+  "archivos": {
+    "data/tey_ablation/resultados.csv": "c65be739682caebdc4bac3f953fb066322fcfcbc643303cbf1739c3079cbb881",
+    "data/tey_ablation/significancia_CV.csv": "0e7bbc94178f94bc5f6a70f92b9efc31a6a98cd9ccda1ad1c2ca8916585b9e0e",
+    "data/tey_ablation/significancia_prueba.csv": "46fc94ce971cf2b78745db6978931a416ef66a0fec202f58a407983e68cfcf95",
+    "data/tey_ablation/diferencias_por_fold.csv": "d09ae6ae9941bbd4570f30a289b31ec7604a9104dd3c8efd77f95553e014ebe3",
+    "book/informe_resultados/tey_ablation/etapas.csv": "57b1ffe6c33b639e32b68c0e4e45628f3ef798c611c32a8150f804bdfbc1f911",
+    "book/informe_resultados/tey_ablation/sin_TEY_OOF_CO.csv.gz": "66f635de1c0145f69dd79013da6df469f87f568da3525a2b9ce282dae46660d2",
+    "book/informe_resultados/tey_ablation/sin_TEY_OOF_NOX.csv.gz": "7ee34a403365ac2cd321c4319fa45f58eeddb19a358315285b07c8b1e2bde9a9",
+    "book/informe_resultados/tey_ablation/sin_TEY_prueba_CO.csv.gz": "3c5db7b5a335fb5c37bca2d41496c478503f01ddeb98f780ea47216afbeb2f4d",
+    "book/informe_resultados/tey_ablation/sin_TEY_prueba_NOX.csv.gz": "6ef0014f96b951e4a48306508b90b00fc9d4a9b64cfa951d3401f2e3956e6670"
+  }
+}

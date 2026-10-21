@@ -5,7 +5,9 @@ import numpy as np
 import pandas as pd
 
 DATA = Path(__file__).resolve().parents[1]/'data/stability_ablation'
-METHOD = ('La diagonal representa una estimación perfecta. Los puntos por debajo indican subestimación; '
+METHOD = ('El R² global puede ocultar errores en concentraciones altas. Para examinarlos, se comparan '
+          'las emisiones observadas con las estimadas. La diagonal representa una estimación perfecta. '
+          'Los puntos por debajo indican subestimación; '
           'por encima, sobreestimación. Se muestran todos los registros: predicciones OOF de desarrollo '
           'y predicciones del modelo final en prueba. La línea de promedios resume intervalos de concentración '
           'definidos con los datos de desarrollo.')

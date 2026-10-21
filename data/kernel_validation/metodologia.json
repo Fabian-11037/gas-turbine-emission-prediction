@@ -1,0 +1,57 @@
+{
+  "revision": "2026-10-21",
+  "n_desarrollo": 27570,
+  "n_prueba": 7411,
+  "pliegues_externos": 5,
+  "pliegues_internos": 3,
+  "cross_fitting": 3,
+  "bloque": 168,
+  "purga": 24,
+  "replicas_bootstrap": 20000,
+  "bloque_principal": 168,
+  "bloques_sensibilidad": [
+    168,
+    336,
+    672
+  ],
+  "orientacion": "delta R2 = bloques menos aleatoria",
+  "alcance": "Mismos datos de desarrollo, bloques externos y prueba; cambian seleccion y cross-fitting internos.",
+  "diferencia_frente_al_80_20_original": "No se comparan modelos sobre filas que conocieron al entrenar.",
+  "ajuste": "Holm para CO y NOx; separado en CV, prueba y cada longitud de remuestreo.",
+  "modelos_reentrenados_al_publicar": 0,
+  "prueba_usada_en_seleccion": false,
+  "exploratorio": true,
+  "origen": {
+    "scientific": {
+      "models": {
+        "version": 1,
+        "model_code": "82a23fc2c8b2687a61724996e04d7cf40bff215989bcd3a9aa2ad74c22ca0634",
+        "original_code": "fadb45eac8d46de89e8b4ed14bc553c3784377353735944541177a9d6700cf6a",
+        "data": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "versions": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "catboost": "1.2.10",
+          "xgboost": "3.4.1",
+          "joblib": "1.6.0"
+        }
+      },
+      "runner": "7706d134d824ca7397e41f21fa85ac07a9f333736df31f3648f093578817b257",
+      "random_assignment": "ebc0ea3cb1e6f75a5ca74028fff82adf488de474d87aa06273111e6917533bf7",
+      "blocked_assignment": "ee103169ad0df51e65408c0408e06ec64ba61acb6573067b0f186ede27946b94"
+    },
+    "controller": "bfe4b5f95d6f35028000911826553e39f1851f9a804b2ffc3ffb9de2b9a69205"
+  },
+  "archivos": {
+    "data/kernel_validation/cv.csv": "ad221da6fca1b5dd49f5c8635ce226adeb1197af251318806be1fbaab43d8d24",
+    "data/kernel_validation/diferencias_pliegues.csv": "33bd8b6d3b7277b11a68341614232904d13446bcda5b65b9229a34364ad10da4",
+    "data/kernel_validation/etapas.csv": "08280a96d6827e49d52f6dead8ca44e69b0d2e1a15258ccc41fa81518e600d81",
+    "data/kernel_validation/prueba.csv": "00bf5adde0ad3397376c35ce4216fb954b440d143598a9e5c1e61840fc5abb6f",
+    "data/kernel_validation/resultados.csv": "d9acf324218cd7ad5f00a6bb128647af89b5ce4a7ce8bdcb584cd628b6bc217e",
+    "book/informe_resultados/kernel_validation/aleatoria_OOF_CO.csv.gz": "25a3d71790ca3a52eb46c067c4ed1752152d77b0b5b0f051f0ab03646e612afb",
+    "book/informe_resultados/kernel_validation/aleatoria_OOF_NOX.csv.gz": "8b1e42300333bdbb9757509748a6abd2fd9d2f504b95178bb015ceb7bf5d92f0",
+    "book/informe_resultados/kernel_validation/aleatoria_prueba_CO.csv.gz": "d0c0e164766163ba726eff81e93d7c08c0eb029491bdaf4ab9b2a5911f5ca339",
+    "book/informe_resultados/kernel_validation/aleatoria_prueba_NOX.csv.gz": "408585c220f79630bbd75bbb078b297ae7c2f40a1028ecad4ae81b972ec09500"
+  }
+}

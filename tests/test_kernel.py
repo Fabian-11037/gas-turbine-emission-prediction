@@ -139,7 +139,11 @@ class KernelTests(unittest.TestCase):
     def test_notebook_evidence_and_no_provisional_imports(self):
         notebook = json.loads((ROOT/'book'/'gas_turbine_eda_hilo_conductor_redaccion.ipynb').read_text(encoding='utf-8'))
         cells = [c for c in notebook['cells'] if c.get('id', '').startswith('kernel-')]
-        self.assertEqual(len(cells), 8)
+        self.assertEqual({c['id'] for c in cells}, {
+            'kernel-intro', 'kernel-math', 'kernel-results-text', 'kernel-results-code',
+            'kernel-artifacts-text', 'kernel-inference-code', 'kernel-contribution',
+            'kernel-statistics-code', 'kernel-validation-method',
+            'kernel-validation-results', 'kernel-validation-conclusion'})
         for cell in cells:
             if cell['cell_type'] == 'code':
                 self.assertIsNotNone(cell['execution_count'])

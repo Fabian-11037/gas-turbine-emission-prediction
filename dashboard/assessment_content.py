@@ -1,4 +1,12 @@
 """Shared, concise scientific text for statistical and computational assessment."""
+SENSITIVITY_HELP = ('Estas tablas muestran si la conclusión se mantiene al remuestrear grupos de más bloques '
+    'y comparan los valores p antes y después del ajuste de Holm. Si se retienen más procedimientos, '
+    'hay mayor incertidumbre para distinguir cuál es mejor.')
+
+RANKING_HELP = ('Esta comprobación ordena los modelos por su desempeño en los cinco pliegues. '
+    'Friedman evalúa si hay diferencias globales; Nemenyi revisa qué pares se distinguen por '
+    'la distancia entre sus rangos. El gráfico resume esa comparación auxiliar.')
+
 STATISTICS = r'''### Cómo se comparan los modelos
 
 Se comparan **29 procedimientos por emisión**: siete familias con cuatro métodos de búsqueda y el kernel operativo. El análisis usa las **27.570 predicciones OOF**: cada registro se estima con un modelo que no lo utilizó para entrenarse. El conjunto de prueba se analiza por separado.

@@ -16,7 +16,7 @@ class HistoryTests(unittest.TestCase):
     def test_all_sources_and_missing_final_results(self):
         frame = experiment_history.results()
         metadata = json.loads((ROOT/'data/historial_modelos.json').read_text(encoding='utf-8'))
-        self.assertEqual(len(metadata['fuentes']), len(EXPERIMENTS)+1)
+        self.assertEqual(len(metadata['fuentes']), len(EXPERIMENTS)+2)
         self.assertEqual(len(frame), metadata['n_variantes'])
         for folder in EXPERIMENTS:
             self.assertTrue(frame.fuentes.str.contains(folder, regex=False).any(), folder)
@@ -28,7 +28,7 @@ class HistoryTests(unittest.TestCase):
     def test_authoritative_kernel_and_cleaning_scores(self):
         frame = experiment_history.results()
         official = pd.read_csv(ROOT/'data/resultados.csv')
-        kernel = frame.loc[frame.modelo.eq('Kernel operativo')]
+        kernel = frame.loc[frame.modelo.eq('Kernel operativo') & frame.estado.eq('Dashboard')]
         self.assertEqual(len(kernel), 1)
         for target in ['CO', 'NOX']:
             expected = official.loc[official.modelo.eq('Kernel operativo') & official.objetivo.eq(target), 'R2_train'].iloc[0]
@@ -50,7 +50,7 @@ class HistoryTests(unittest.TestCase):
         for target in ['CO','NOX']:
             published = pd.read_csv(ROOT/'data/resultados.csv')
             rows = experiment_history.results()
-            kernel = rows.loc[rows.modelo.eq('Kernel operativo')].iloc[0]
+            kernel = rows.loc[rows.modelo.eq('Kernel operativo') & rows.estado.eq('Dashboard')].iloc[0]
             expected = published.loc[published.objetivo.eq(target)&published.modelo.eq('Kernel operativo')].iloc[0]
             self.assertAlmostEqual(kernel[f'R2_CV_promedio_{target}'],expected.R2_CV_promedio)
             self.assertAlmostEqual(kernel[f'R2_test_{target}'],expected.R2_test)
@@ -76,3 +76,27 @@ class HistoryTests(unittest.TestCase):
         credits = (ROOT/'assets/IMAGE_CREDITS.md').read_text(encoding='utf-8')
         self.assertIn('Pro-Per Energy Services', credits)
         self.assertIn('by-sa/4.0', credits)
+
+    def test_recent_protocols_are_separate_and_missing_scores_not_invented(self):
+        rows = experiment_history.results()
+        self.assertEqual(set(rows.grupo_validacion), set(experiment_history.PROTOCOLS))
+        kernel = rows.loc[rows.modelo.eq('Kernel operativo')]
+        self.assertEqual(set(kernel.grupo_validacion), {'bloques','aleatorio','estratificado'})
+        reference = kernel.loc[kernel.grupo_validacion.eq('aleatorio')].iloc[0]
+        self.assertAlmostEqual(reference.R2_test_CO, .7969468894058673)
+        self.assertAlmostEqual(reference.R2_CV_promedio_NOX, .8836527015391826)
+        controlled = rows.loc[rows.grupo_validacion.eq('comun_aleatoria')]
+        self.assertEqual(len(controlled), 1)
+        self.assertAlmostEqual(controlled.R2_test_CO.iloc[0], .7665214953202879)
+        self.assertTrue(controlled.R2_train_CO.isna().all())
+        no_tey = rows.loc[rows.modelo.eq('Kernel sin TEY ni su interacción')].iloc[0]
+        self.assertAlmostEqual(no_tey.R2_CV_promedio_NOX, .7698201975183518)
+        self.assertTrue(pd.isna(no_tey.R2_train_NOX))
+        paused = rows.loc[rows.estado.eq('Pausado')]
+        self.assertEqual(len(paused), 1)
+        self.assertTrue(paused[['R2_train_CO','R2_train_NOX','R2_CV_promedio_NOX','R2_test_NOX']].isna().all().all())
+        cat = rows.loc[rows.modelo.eq('Kernel operativo + CatBoost → Ridge') & rows.grupo_validacion.eq('aleatorio')].iloc[0]
+        self.assertAlmostEqual(cat.R2_train_NOX, .9660981931830903)
+        self.assertAlmostEqual(cat.R2_test_NOX, .88983970805914)
+        self.assertIn('80/20 aleatorio', str(experiment_history.render('CatBoost','NOX','aleatorio')))
+        self.assertIn('No hay coincidencias', str(experiment_history.render('CatBoost','NOX','comun_aleatoria')))

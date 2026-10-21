@@ -99,6 +99,11 @@
       "archivo": "resultados_xgboost_intermedio_20261017/resultados_provisionales.csv",
       "filas": 2,
       "sha256": "82fe0cc0d863477d6a3225dd812ab2dd10e27122c41690bfddae37dd3ae19418"
+    },
+    {
+      "archivo": "data/historial_adicional.csv",
+      "filas": 44,
+      "sha256": "073ddfb507c5111da73e15ca4ffaeabf4c68069a7cb63dced068cd8b93575104"
     }
   ],
   "protocolos": [
@@ -2870,8 +2875,84 @@
           "joblib": "1.6.0"
         }
       }
+    },
+    {
+      "archivo": "data/historial_adicional.csv",
+      "grupo_validacion": "aleatorio",
+      "protocolo": "80/20 aleatorio sin estratificar; CV aleatoria 5 × 3; sin purga; 29.386 / 7.347",
+      "tipo_CV": "Media de 5 pliegues externos"
+    },
+    {
+      "archivo": "data/historial_adicional.csv",
+      "grupo_validacion": "estratificado",
+      "protocolo": "80/20 estratificado por objetivo; CV estratificada 5 × 3; sin purga; 29.386 / 7.347",
+      "tipo_CV": "Media de 5 pliegues externos"
+    },
+    {
+      "archivo": "data/historial_adicional.csv",
+      "grupo_validacion": "bloques",
+      "protocolo": "Bloques 168; purga 24; CV externa por bloques; 27.570 desarrollo / 7.411 prueba",
+      "tipo_CV": "Media de 5 pliegues externos"
+    },
+    {
+      "archivo": "data/historial_adicional.csv",
+      "grupo_validacion": "comun_aleatoria",
+      "protocolo": "Mismos bloques externos y prueba del protocolo principal; selección y cross-fitting aleatorios",
+      "tipo_CV": "Media de 5 pliegues externos"
+    },
+    {
+      "archivo": "data/historial_adicional.csv",
+      "grupo_validacion": "bloques",
+      "protocolo": "Bloques 168; purga 24; CV externa por bloques; 27.570 desarrollo / 7.411 prueba",
+      "tipo_CV": "Pendiente"
     }
   ],
-  "n_variantes": 81,
-  "criterio": "Resultados finales por variante; controles idénticos consolidados. R2_train se evalúa sobre el desarrollo original, incluso en la auditoría de limpieza. No se incluyen ajustes internos ni particiones incompletas de BART."
+  "n_variantes": 104,
+  "evidencia_reciente": {
+    "revision": "2026-10-21",
+    "fuentes": [
+      {
+        "archivo": "resultados_bases_random_20261021/resultados.csv",
+        "sha256": "6d9778395a2f4a586157d257f946a9584a0d9a5f7bf42dc9bd1b3bd30069372e"
+      },
+      {
+        "archivo": "resultados_kernel_aleatorio_80_20_20261021/resultados_aleatorios.csv",
+        "sha256": "8f647346035b6cfa554af47e1ac6f60b1578a1f6b76e32f0c080f2db8fc44677"
+      },
+      {
+        "archivo": "resultados_kernel_estratificado_80_20_20261021/resultados_estratificados.csv",
+        "sha256": "9f25485e508483e2499c1a1137f2eff807dc27b2e0429331f5b961e7132e6a9f"
+      },
+      {
+        "archivo": "resultados_pesos_continuos_CO_20261020/resultados_comparacion.csv",
+        "sha256": "f6a6f61c376095bcd12cac4a90f2d17fd4726072469726ccbfe5d1b43f64110d"
+      },
+      {
+        "archivo": "resultados_lmkl_pesos_stack_20261020/resultados_comparacion.csv",
+        "sha256": "e102b98ff47ee8866be405cc029e92f4bb35f3c2af036d2bd3f8b07bb5b91d75"
+      },
+      {
+        "archivo": "dashboard:data/stability_ablation/resultados.csv",
+        "sha256": "9776744e19291e2d3abbb9c73fc89ee63d02bd572259de866906018d1c5175df"
+      },
+      {
+        "archivo": "ablacion_TEY_20261021/resultados.csv",
+        "sha256": "c65be739682caebdc4bac3f953fb066322fcfcbc643303cbf1739c3079cbb881"
+      },
+      {
+        "archivo": "comparacion_kernel_validaciones_20261021/resultados.csv",
+        "sha256": "f7d6549b1a86e44898c90129a70a32b8c1148858c432148719680aaf6b6aa050"
+      },
+      {
+        "archivo": "entrenamiento@aa8e9ae/resultados/2026-10-21-stackings-linux/resultados.csv",
+        "sha256": "d0491f1fa2ba39139823ed3150ee10ddca8080ebaa2a53b993eab083094e1ef4",
+        "etapas_sha256": "a1dc8f365b25604ae0177bee5df9c9264de248ee120294963d70ce2370520de0",
+        "commit": "aa8e9ae87324e969396bdb9ebe93b9093cbb08db"
+      }
+    ],
+    "filas": 44,
+    "archivo_sha256": "073ddfb507c5111da73e15ca4ffaeabf4c68069a7cb63dced068cd8b93575104",
+    "observacion": "Solo resúmenes finales y estado explícito de la prueba pausada. Las métricas ausentes no se estiman. CV siempre identifica la evaluación externa."
+  },
+  "criterio": "Resultados finales por variante; controles idénticos consolidados. R2_train se evalúa sobre el desarrollo original, incluso en la auditoría de limpieza. Los protocolos distintos no se consolidan entre sí. Los casos pausados o interrumpidos no reciben métricas parciales como resultado final."
 }
