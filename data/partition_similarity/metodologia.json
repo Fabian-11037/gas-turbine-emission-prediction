@@ -1,0 +1,52 @@
+{
+  "sensores": [
+    "AT",
+    "AP",
+    "AH",
+    "AFDP",
+    "GTEP",
+    "TIT",
+    "TAT",
+    "TEY",
+    "CDP"
+  ],
+  "objetivos_usados": false,
+  "modelos_entrenados": 0,
+  "semillas": [
+    42,
+    7,
+    21,
+    84,
+    123
+  ],
+  "escala": "StandardScaler ajustado a la interseccion de ambos entrenamientos; misma escala por comparacion.",
+  "distancia": "min_j sqrt(sum_k ((x_ik-x_jk)/s_k)^2 / 9); vecino de cualquier año.",
+  "evaluacion": "Interseccion de las dos pruebas: mismos registros en ambas distancias; no todas las filas de prueba.",
+  "control": "Submuestra aleatoria de entrenamiento igual al numero por año del entrenamiento por bloques; semilla fija+19001.",
+  "diseño": "Bloques de 168, reserva 20% de bloques estratificada por año y purga 24. Aleatorio 20% de filas sin estratificar.",
+  "bootstrap": "20.000 remuestreos pareados de segmentos originales dentro de año; mezcla anual fija y ponderacion por filas.",
+  "longitud_principal": 168,
+  "sensibilidad": [
+    336,
+    672
+  ],
+  "semilla_bootstrap": 42,
+  "multiplicidad": "Holm2: original e igualado en semilla42; cada longitud por separado. Otras semillas son sensibilidad.",
+  "alcance": "IC condicional a entrenamientos y escala fijos; no incertidumbre de muestreo de una población de turbinas. Las cinco semillas no son muestras independientes y no se agrupan para obtener un p global. La distancia depende de la metrica elegida y no demuestra independencia ni cuantifica sesgo de R2.",
+  "codigo": "0f280802b1e262e6e988748049b30682278f4b9acbc9c346bf2b07e3ecf4dca9",
+  "fecha": "2026-10-21",
+  "procedencia": {
+    "comparacion_distancias.csv": "2124a1edd08272ad841cf553e2a033ecf28f4ebc3896b08a4979f37f233cdef1",
+    "distancias_42_original.csv.gz": "ee6df77c3c1d690d105b5714967f3302e9b5d39163af4c62a411e3885dbb59d7",
+    "metodologia.json": "22738d8e2e078c62c16aee5eda23df71d2c0e7e4068ed9837c9128cee4cd4f74"
+  },
+  "particiones_originales": {
+    "data": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+    "random": "ebc0ea3cb1e6f75a5ca74028fff82adf488de474d87aa06273111e6917533bf7",
+    "blocked": "ee103169ad0df51e65408c0408e06ec64ba61acb6573067b0f186ede27946b94"
+  },
+  "archivos": {
+    "resumen.csv": "def2ebe7240e18838f982d9a063116d7e54b5d5d67ed7dd16510dc3c9af742b7",
+    "distancias.csv.gz": "c27dec7005bc3e7b2f3944497ef15c53b59cb2d2e452d4a6ef682a83844050ff"
+  }
+}

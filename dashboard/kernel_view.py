@@ -4,7 +4,7 @@ from functools import lru_cache
 from dash import Input, Output, dcc, html
 from .components import disclosure, table
 from .repository import DATA
-from . import experiment_history
+from . import experiment_history, underestimation
 from .kernel_content import (ARCHITECTURE, TREE_MODELS, MATHEMATICS, CONTRIBUTION, SELECTION,
     STATISTICAL_METHOD, STATISTICAL_INTERPRETATION)
 
@@ -15,7 +15,7 @@ def architecture():
 
 
 def layout():
-    return html.Div(disclosure('Kernel operativo · arquitectura, fundamentos y aporte', [
+    return html.Div([disclosure('Kernel operativo · arquitectura, fundamentos y aporte', [
         dcc.Tabs(id='kernel-section', value='arquitectura', children=[
             dcc.Tab(label='Arquitectura', value='arquitectura'),
             dcc.Tab(label='Fundamentos', value='matematicas'),
@@ -24,6 +24,8 @@ def layout():
             dcc.Tab(label='Modelos probados', value='historial')],
             className='kernel-tabs', mobile_breakpoint=0),
         html.Div(id='kernel-detail', className='kernel-detail')]),
+        disclosure('Concentraciones altas · valores observados y estimados',
+            html.Div(id='kernel-underestimation'), open=True)],
         id='kernel-panel', style={'display': 'none'})
 
 
@@ -102,6 +104,9 @@ def evidence(target):
 
 def register(app):
     experiment_history.register(app)
+    app.callback(Output('kernel-underestimation', 'children'),
+        Input('model-select', 'value'), Input('model-target', 'value'))(
+            lambda model_id, target: underestimation.panel(target) if model_id == 'kernel_operativo' else None)
     app.callback(Output('kernel-panel', 'style'), Output('kernel-detail', 'children'),
         Input('model-select', 'value'), Input('model-target', 'value'),
         Input('kernel-section', 'value'))(render)
