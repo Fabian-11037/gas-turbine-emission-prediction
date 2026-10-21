@@ -1,0 +1,186 @@
+{
+  "modelo_id": "ridge",
+  "modelo": "Ridge",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 0.5289679999987129,
+  "RSS_base_MB": 124.75,
+  "RSS_pico_MB": 141.390625,
+  "incremento_RSS_MB": 16.640625,
+  "artefacto_MB": 0.00156402587890625,
+  "bucle_100_segundos": [
+    0.08384310000110418,
+    0.07888960000127554,
+    0.07704489999741782
+  ],
+  "estructura": {
+    "p_efectivas": 9
+  },
+  "mediciones": [
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0010747000051196665,
+      "ms_por_registro": 1.0747000051196665,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0007310000073630363,
+      "ms_por_registro": 0.7310000073630363,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.0006895999977132306,
+      "ms_por_registro": 0.6895999977132306,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.000654399991617538,
+      "ms_por_registro": 0.654399991617538,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0014999999984866008,
+      "ms_por_registro": 1.4999999984866008,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.001334899992798455,
+      "ms_por_registro": 0.01334899992798455,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0009775999933481216,
+      "ms_por_registro": 0.009775999933481216,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0006783999997423962,
+      "ms_por_registro": 0.006783999997423962,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.0007441000052494928,
+      "ms_por_registro": 0.007441000052494928,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0006659999926341698,
+      "ms_por_registro": 0.006659999926341698,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.000818900007288903,
+      "ms_por_registro": 0.000818900007288903,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0007245999877341092,
+      "ms_por_registro": 0.0007245999877341092,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.0007165999995777383,
+      "ms_por_registro": 0.0007165999995777383,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.0007105999975465238,
+      "ms_por_registro": 0.0007105999975465238,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.0007059000054141507,
+      "ms_por_registro": 0.0007059000054141507,
+      "error_maximo": 8.881784197001252e-16
+    }
+  ]
+}

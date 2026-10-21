@@ -1,0 +1,188 @@
+{
+  "modelo_id": "random_forest",
+  "modelo": "Random Forest",
+  "objetivo": "NOX",
+  "modo": "residente",
+  "segundos_carga": 0.6426191000064136,
+  "RSS_base_MB": 125.1875,
+  "RSS_pico_MB": 167.44140625,
+  "incremento_RSS_MB": 42.25390625,
+  "artefacto_MB": 4.057822227478027,
+  "bucle_100_segundos": [
+    0.4526305000035791,
+    0.4705083000008017,
+    0.4601593000115827
+  ],
+  "estructura": {
+    "p_efectivas": 9,
+    "n_arboles": 80,
+    "profundidad": 12
+  },
+  "mediciones": [
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.004758199997013435,
+      "ms_por_registro": 4.758199997013435,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.004245000003720634,
+      "ms_por_registro": 4.245000003720634,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.003991900011897087,
+      "ms_por_registro": 3.991900011897087,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.004553400009172037,
+      "ms_por_registro": 4.553400009172037,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.00704349999432452,
+      "ms_por_registro": 7.04349999432452,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.005805300010251813,
+      "ms_por_registro": 0.058053000102518126,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.008812300002318807,
+      "ms_por_registro": 0.08812300002318807,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.006901200002175756,
+      "ms_por_registro": 0.06901200002175756,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.007018199990852736,
+      "ms_por_registro": 0.07018199990852736,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.006209300001501106,
+      "ms_por_registro": 0.06209300001501105,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.015162600000621751,
+      "ms_por_registro": 0.015162600000621751,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.014484600003925152,
+      "ms_por_registro": 0.014484600003925152,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.016188299996429123,
+      "ms_por_registro": 0.016188299996429123,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.014398400002392009,
+      "ms_por_registro": 0.014398400002392009,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.014727600006153807,
+      "ms_por_registro": 0.014727600006153807,
+      "error_maximo": 1.4210854715202004e-14
+    }
+  ]
+}

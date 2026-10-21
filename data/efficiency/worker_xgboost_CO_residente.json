@@ -1,0 +1,188 @@
+{
+  "modelo_id": "xgboost",
+  "modelo": "XGBoost",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 0.5022354999964591,
+  "RSS_base_MB": 124.984375,
+  "RSS_pico_MB": 146.2265625,
+  "incremento_RSS_MB": 21.2421875,
+  "artefacto_MB": 0.10696887969970703,
+  "bucle_100_segundos": [
+    0.1322440999938408,
+    0.12438910000491887,
+    0.12634449999313802
+  ],
+  "estructura": {
+    "p_efectivas": 9,
+    "n_arboles": 80,
+    "profundidad": 6
+  },
+  "mediciones": [
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0017077000084100291,
+      "ms_por_registro": 1.7077000084100291,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0014073000056669116,
+      "ms_por_registro": 1.4073000056669116,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.001202899991767481,
+      "ms_por_registro": 1.202899991767481,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0012297999928705394,
+      "ms_por_registro": 1.2297999928705394,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.001148099996498786,
+      "ms_por_registro": 1.148099996498786,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0013669999898411334,
+      "ms_por_registro": 0.013669999898411334,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0012754000053973868,
+      "ms_por_registro": 0.012754000053973868,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0012617000029422343,
+      "ms_por_registro": 0.012617000029422343,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.0013048000109847635,
+      "ms_por_registro": 0.013048000109847635,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0013667000021087006,
+      "ms_por_registro": 0.013667000021087006,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.002220299997134134,
+      "ms_por_registro": 0.002220299997134134,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.00221350000356324,
+      "ms_por_registro": 0.00221350000356324,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.0027925000031245872,
+      "ms_por_registro": 0.0027925000031245872,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.0028412000101525337,
+      "ms_por_registro": 0.0028412000101525337,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.00235499998962041,
+      "ms_por_registro": 0.00235499998962041,
+      "error_maximo": 7.105427357601002e-15
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "modelo_id": "svr_lineal",
+  "modelo": "SVR lineal",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 0.4912382000038633,
+  "RSS_base_MB": 124.87890625,
+  "RSS_pico_MB": 141.453125,
+  "incremento_RSS_MB": 16.57421875,
+  "artefacto_MB": 0.001598358154296875,
+  "bucle_100_segundos": [
+    0.0812902000034228,
+    0.08558709999488201,
+    0.08198239999182988
+  ],
+  "estructura": {
+    "p_efectivas": 9
+  },
+  "mediciones": [
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.001476999997976236,
+      "ms_por_registro": 1.476999997976236,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0008774000016273931,
+      "ms_por_registro": 0.8774000016273931,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.0008746000094106421,
+      "ms_por_registro": 0.8746000094106421,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0008802999946055934,
+      "ms_por_registro": 0.8802999946055934,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0008577999979024753,
+      "ms_por_registro": 0.8577999979024753,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0008533999935025349,
+      "ms_por_registro": 0.00853399993502535,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0008285000076284632,
+      "ms_por_registro": 0.008285000076284632,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0008061999978963286,
+      "ms_por_registro": 0.008061999978963286,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.0008199999865610152,
+      "ms_por_registro": 0.008199999865610152,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0008839000074658543,
+      "ms_por_registro": 0.008839000074658543,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.0009605999948689714,
+      "ms_por_registro": 0.0009605999948689714,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0008779000054346398,
+      "ms_por_registro": 0.0008779000054346398,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.0008336999890161678,
+      "ms_por_registro": 0.0008336999890161678,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.0012567000085255131,
+      "ms_por_registro": 0.0012567000085255131,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.0010120999941136688,
+      "ms_por_registro": 0.0010120999941136688,
+      "error_maximo": 1.7763568394002505e-15
+    }
+  ]
+}

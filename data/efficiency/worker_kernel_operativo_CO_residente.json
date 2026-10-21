@@ -1,0 +1,190 @@
+{
+  "modelo_id": "kernel_operativo",
+  "modelo": "Kernel operativo",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 1.6250072999973781,
+  "RSS_base_MB": 124.953125,
+  "RSS_pico_MB": 540.61328125,
+  "incremento_RSS_MB": 415.66015625,
+  "artefacto_MB": 70.49541282653809,
+  "bucle_100_segundos": [
+    1.216229799989378,
+    1.234566300001461,
+    1.2229736000008415
+  ],
+  "estructura": {
+    "p_efectivas": 11,
+    "n_arboles": 200,
+    "profundidad": 20,
+    "n_soporte": 16718,
+    "cache_SVR_MB": 256
+  },
+  "mediciones": [
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.010930299991741776,
+      "ms_por_registro": 10.930299991741776,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.011859299993375316,
+      "ms_por_registro": 11.859299993375316,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.01341159999719821,
+      "ms_por_registro": 13.41159999719821,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.011169599994900636,
+      "ms_por_registro": 11.169599994900636,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0119328000000678,
+      "ms_por_registro": 11.9328000000678,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.09972990000096615,
+      "ms_por_registro": 0.9972990000096617,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0967100000125356,
+      "ms_por_registro": 0.967100000125356,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.10163350000220817,
+      "ms_por_registro": 1.0163350000220817,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.10186700000485871,
+      "ms_por_registro": 1.018670000048587,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.10459320001245942,
+      "ms_por_registro": 1.0459320001245942,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.896245199997793,
+      "ms_por_registro": 0.896245199997793,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.9431574999907752,
+      "ms_por_registro": 0.9431574999907752,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.9206810000032419,
+      "ms_por_registro": 0.9206810000032419,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.911793299994315,
+      "ms_por_registro": 0.911793299994315,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.8879092999995919,
+      "ms_por_registro": 0.8879092999995919,
+      "error_maximo": 1.7763568394002505e-15
+    }
+  ]
+}

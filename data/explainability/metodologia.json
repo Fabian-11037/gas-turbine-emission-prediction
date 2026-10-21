@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "semilla": 42,
+  "modelos_reentrenados": 0,
+  "validacion_modificada": false,
+  "n_desarrollo": 27570,
+  "n_prueba": 7411,
+  "sensores": [
+    "AT",
+    "AP",
+    "AH",
+    "AFDP",
+    "GTEP",
+    "TIT",
+    "TAT",
+    "TEY",
+    "CDP"
+  ],
+  "referencia": {
+    "n": 10,
+    "seleccion": "Dos registros aleatorios por año del desarrollo; semilla 42",
+    "identificadores": [
+      {
+        "anio": 2011,
+        "orden_registro": 2772
+      },
+      {
+        "anio": 2011,
+        "orden_registro": 2041
+      },
+      {
+        "anio": 2012,
+        "orden_registro": 13505
+      },
+      {
+        "anio": 2012,
+        "orden_registro": 11030
+      },
+      {
+        "anio": 2013,
+        "orden_registro": 15641
+      },
+      {
+        "anio": 2013,
+        "orden_registro": 22110
+      },
+      {
+        "anio": 2014,
+        "orden_registro": 24189
+      },
+      {
+        "anio": 2014,
+        "orden_registro": 28374
+      },
+      {
+        "anio": 2015,
+        "orden_registro": 31849
+      },
+      {
+        "anio": 2015,
+        "orden_registro": 29382
+      }
+    ]
+  },
+  "SHAP_global": {
+    "metodo": "PermutationExplainer",
+    "max_evals": 38,
+    "ciclos_permutacion": 2,
+    "escala": "mg/m³",
+    "poblacion": "Prueba completa"
+  },
+  "SHAP_local": {
+    "metodo": "KernelExplainer",
+    "nsamples": 510,
+    "l1_reg": 0.0,
+    "coaliciones": "Todas las 512 combinaciones, incluyendo vacío y conjunto completo"
+  },
+  "LIME": {
+    "metodo": "LimeTabularExplainer",
+    "num_samples": 5000,
+    "discretizacion": "Cuartiles del desarrollo",
+    "kernel_width": 2.25,
+    "feature_selection": "none"
+  },
+  "seleccion_casos": "Comunes por emisión: mínimo del máximo error absoluto y máximo del mínimo error absoluto entre ambos modelos; solo interpretación.",
+  "resultados": [
+    {
+      "modelo_id": "xgboost",
+      "objetivo": "CO",
+      "n_global": 7411,
+      "error_equivalencia_max": 0.0,
+      "precision": {
+        "n": 64,
+        "presupuesto_inicial": 38,
+        "presupuesto_refinado": 190,
+        "rho_rangos": 0.9833333333333333,
+        "coincidencias_top3": 3
+      },
+      "segundos": 105.0508298999921,
+      "base_SHAP": 2.447283887863159,
+      "aditividad_global_max": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "xgboost",
+      "objetivo": "NOX",
+      "n_global": 7411,
+      "error_equivalencia_max": 0.0,
+      "precision": {
+        "n": 64,
+        "presupuesto_inicial": 38,
+        "presupuesto_refinado": 190,
+        "rho_rangos": 1.0,
+        "coincidencias_top3": 3
+      },
+      "segundos": 117.30703979999817,
+      "base_SHAP": 64.92489814758301,
+      "aditividad_global_max": 2.842170943040401e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "objetivo": "CO",
+      "n_global": 7411,
+      "error_equivalencia_max": 6.411671193973234e-11,
+      "precision": {
+        "n": 64,
+        "presupuesto_inicial": 38,
+        "presupuesto_refinado": 190,
+        "rho_rangos": 0.9833333333333333,
+        "coincidencias_top3": 3
+      },
+      "segundos": 2015.358808600009,
+      "base_SHAP": 2.5150763884937057,
+      "aditividad_global_max": 1.5339285397431013e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "objetivo": "NOX",
+      "n_global": 7411,
+      "error_equivalencia_max": 2.9690028213735786e-10,
+      "precision": {
+        "n": 64,
+        "presupuesto_inicial": 38,
+        "presupuesto_refinado": 190,
+        "rho_rangos": 0.9666666666666667,
+        "coincidencias_top3": 3
+      },
+      "segundos": 441.04094520000217,
+      "base_SHAP": 64.88376567502733,
+      "aditividad_global_max": 2.9480418106686557e-11
+    }
+  ],
+  "huellas_protegidas": {
+    "data/modelos.json": "f12d9439c498ecaab432770709ae07337d414c83abb76f5b545f346eb47b7e83",
+    "data/resultados.csv": "191ade7621f5ac201bb151ff901ce7ed5a7ec7efd978998caa4c8e34857780c7",
+    "data/observaciones.csv.gz": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+    "data/predicciones_prueba.csv.gz": "ae9635f95a55b850014609d5c076f0b5577ddec0300f57770dd5beb35ca7919a",
+    "book/informe_resultados/entregable2_anidada/asignacion_particiones.csv.gz": "ee103169ad0df51e65408c0408e06ec64ba61acb6573067b0f186ede27946b94",
+    "book/informe_resultados/entregable2_anidada/configuracion.json": "d950b58c74ba8e6fe2dbed393b01f9ea6139eb3851b181c63dfb450ddca3b14b",
+    "data/models/CO_Decision_Tree.joblib": "be28ee62bd1558e5f086c734fe66f464f532f13b6e8d3bdf5ff2b9b8005ddd87",
+    "data/models/CO_Kernel_operativo.joblib": "3bc0ec1f1351baa93ebf8e1ee27652bfc129cce9ffab6526ea9f4601f742bcc8",
+    "data/models/CO_KNN.joblib": "c4ba35a1fed9e8085da36b1f6b6ee7c7095fb10ec67015bcf99695fa98af6076",
+    "data/models/CO_Lasso.joblib": "196f01deaf42d2817de965fc08d8e34af23366f1faf77f3267a1496c26a4fbbc",
+    "data/models/CO_Random_Forest.joblib": "5ac7265ba84accf5fde98656054978baa0d7099bb7c0befea5d3e4269da21f58",
+    "data/models/CO_Ridge.joblib": "92bd0603e9dc13d0e38af51f63e228e266c49c54c3adbda80719ab35161706d4",
+    "data/models/CO_SVR_lineal.joblib": "72c34752277baa65cf340609dfcc8fb829fb70734d3b8996cf98a20ac22f66e9",
+    "data/models/CO_XGBoost.joblib": "6afa83894f05a9dc1dedaf3a62cd34b5bef09d11f91e70d4e4f3caac55a990be",
+    "data/models/kernel_parts/CO_meta.joblib": "f2bcc55cee07303914210f59ab4fd38e7e57a29cec949cdb578125ef8b98084f",
+    "data/models/kernel_parts/CO_svr.joblib": "9b10ffd81e1a07a1f19b4a73c791f8abb2ea3c0c0972be8f3c421736f9d22a64",
+    "data/models/kernel_parts/CO_trees_0.joblib": "f9fb3895ef7f8497cbeb8dce7b77a9e070220651cafc30f3dcde9aa1da0fba04",
+    "data/models/kernel_parts/CO_trees_1.joblib": "6f26b9402285e018465f4060b330a944c9bec282675ea6c30d4df91e31ddd026",
+    "data/models/kernel_parts/CO_trees_2.joblib": "8df4a0028802a1c59700d2d9cb50145beaff64ae30c3d69679c71078e7011adb",
+    "data/models/kernel_parts/CO_trees_3.joblib": "b21a2cfb244b5cd0e1bb1eaded0343483ceb8a885191b672758795c4048707f6",
+    "data/models/kernel_parts/NOX_meta.joblib": "d183999c28defa427dfd94dd44d2118abd88ab86f0e40634c9580c1bad05b9f9",
+    "data/models/kernel_parts/NOX_svr.joblib": "97807133c73d73066d752f1ddea9de384d108ecff7a0a387369bf2fadf326e20",
+    "data/models/kernel_parts/NOX_trees_0.joblib": "c8ebce7f269a9d2b01cc0b68fb3898c5a56a787e317f2cb930537a7ec0c3e60f",
+    "data/models/kernel_parts/NOX_trees_1.joblib": "31cedd00e358968ad851ee45a59224d83049675acc33203e54fc87c00c11bc22",
+    "data/models/kernel_parts/NOX_trees_2.joblib": "9c8af6e837eb200de5f1a8adfdafbc450d9bd2a360639b4957051d9d56db7280",
+    "data/models/kernel_parts/NOX_trees_3.joblib": "ab41d0627f77828dcf1743947c3f756192e805ec7ed6a9ab5e0c9de99138cea5",
+    "data/models/NOX_Decision_Tree.joblib": "5bb181a95718148b650feebedcd7f96c043f1f594a5d46a6bf87f2e98447a3e4",
+    "data/models/NOX_Kernel_operativo.joblib": "98ddf98a9b3e5c9b8f0e7e028f5248f1604b74f27e4cdd026454225d91923880",
+    "data/models/NOX_KNN.joblib": "5cdbcc66d0e33011073f7859e0b5db920523a0a8195a684789e55c1bcbf8ca25",
+    "data/models/NOX_Lasso.joblib": "a07cc141fb43a06c9971ae85eefd8e0545cef612ca1e20ca02ca755d34d55212",
+    "data/models/NOX_Random_Forest.joblib": "6b660e7877396785665372e9e789612e8db040d0164bdaec674dd7d71ac12443",
+    "data/models/NOX_Ridge.joblib": "53a4431fc515684529f39617fd4ec7584e436ad29c8fbe344d4e5bba558dcece",
+    "data/models/NOX_SVR_lineal.joblib": "7ba0b3a282f1937ba6b85de9868fd442cab85ccbdaf76549ff7f78e70e38e9e1",
+    "data/models/NOX_XGBoost.joblib": "4f95f7c8b0c9c5a66e0e22dbfd792a3518f2cfd1455e2d8194c1791a4327cd78"
+  },
+  "versiones": {
+    "shap": "0.54.1",
+    "lime": "0.2.0.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "xgboost-cpu": "3.4.1",
+    "scipy": "1.18.1"
+  },
+  "codigo_sha256": "804d42995f62614b69f16309713155eb3b0d7d3ad8dab9933fe5fbeb8a30e70e",
+  "fuentes": [
+    "https://shap.readthedocs.io/en/stable/generated/shap.PermutationExplainer.html",
+    "https://shap.readthedocs.io/en/stable/generated/shap.KernelExplainer.html",
+    "https://lime-ml.readthedocs.io/en/latest/lime.html"
+  ]
+}

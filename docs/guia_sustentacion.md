@@ -102,7 +102,8 @@
 - **Stacking sin fuga:** Ridge aprende con predicciones de registros apartados de su propio ajuste. No aprende de predicciones artificialmente perfectas de entrenamiento.
 - **Configuraciones separadas:** CO y NOx comparten arquitectura, pero tienen pesos y penalizaciones propios.
 - **Aporte frente a literatura:** la propuesta integra variables operativas explícitas, semejanzas ponderadas y Extra Trees–SVR–Ridge. Los componentes son conocidos; la combinación exacta no se identificó en la revisión para esta tarea.
-- **No presentar una atribución no evaluada:** todavía no se ha separado cuánto aporta cada variable, cada peso y cada modelo. Para ello se requiere una ablación.
+- **Pesos de sensores y del combinador:** los primeros se seleccionan entre cuatro combinaciones mediante validación interna; modifican la semejanza que utiliza SVR. Los segundos los aprende Ridge para combinar las predicciones. No son el mismo tipo de peso.
+- **Aporte de los componentes:** la ablación ya compara versiones sin las variables derivadas, sin pesos y con cada modelo base por separado. No demuestra que cada adaptación ayude en todos los casos.
 
 ## 6. Resultados principales
 
@@ -170,6 +171,72 @@
 
 - **Lectura conjunta:** no se busca únicamente que las líneas coincidan. Los modelos lineales tienen menor separación, pero el kernel alcanza mejor validación. La elección combina capacidad predictiva y control del sobreajuste.
 
+### 6.2. Explicar las predicciones: SHAP y LIME
+
+- **Pregunta que responden:** qué entradas utiliza el modelo y cómo contribuyen a una estimación. No explican por sí solas la causa física de una emisión.
+- **SHAP global:** resume las contribuciones en los 7.411 registros de prueba. En el kernel, encabezan TIT, TEY y TAT para CO; AT, TIT y TEY para NOx.
+- **Lectura:** cada punto representa un registro. A la derecha aumenta la predicción respecto a una referencia; a la izquierda la reduce. El color indica el valor del sensor, no el error. Las barras resumen el tamaño medio de las contribuciones, sin su signo.
+
+![Figura 23. SHAP global del kernel para CO: contribuciones por registro e importancia media. Describe el modelo, no relaciones causales.](figuras_guia/shap_global_CO.png)
+
+- **SHAP individual:** predicción = referencia + suma de aportes. Un aporte positivo eleva la estimación; uno negativo la reduce. Se expresa en mg/m³.
+- **LIME:** construye una aproximación lineal alrededor del caso. Su R² local mide cuánto reproduce al modelo, no cuánto acierta frente a la medición.
+- **Ejemplo NOx de error bajo:** el kernel estima 82,538 mg/m³ frente a 82,527 observados. LIME aproxima 72,707 mg/m³, con R² local 0,177: representa poco fielmente al modelo alrededor de ese registro, aunque la predicción del kernel sea precisa.
+- **Comparación:** SHAP y LIME emplean referencias y aproximaciones distintas. Que sus pesos no coincidan no demuestra que uno sea siempre superior. Los sensores muy relacionados también pueden compartir contribuciones.
+
+![Figura 24. Caso de NOx con error bajo: explicación SHAP y aproximación LIME del mismo kernel. El R² local de LIME mide fidelidad al modelo.](figuras_guia/shap_lime_local_NOx.png)
+
+### 6.3. Comparación estadística: qué conclusión sostener
+
+- **Qué se compara:** 29 procedimientos por emisión: siete familias con cuatro búsquedas, más el kernel. Se utilizan predicciones OOF, no el conjunto de prueba.
+- **Primer nivel, MCS:** conserva los procedimientos cuyo error no puede distinguirse del mejor. Si quedan varios, no se identifica un ganador único.
+- **Segundo nivel:** el kernel se compara con Random Forest para CO y XGBoost para NOx, elegidos por validación. Wald revisa la diferencia de error y su relación con TEY; DM-HLN comprueba la diferencia media considerando los bloques.
+- **Por qué ampliar bloques:** permite representar una dependencia más prolongada entre registros y revisar si la conclusión se mantiene.
+- **NOx:** el kernel permanece como único procedimiento retenido con las tres longitudes. La evidencia favorable se mantiene al ampliar los bloques.
+- **CO:** el grupo retenido pasa de 1 a 17 y 29 procedimientos. La ventaja estimada es positiva, pero no suficientemente estable para afirmar superioridad frente al conjunto. No significa que todos sean iguales.
+
+![Figura 25. Procedimientos retenidos por MCS al ampliar la longitud media del remuestreo. Un grupo más amplio dificulta identificar un ganador único.](figuras_guia/comparacion_jerarquica.png)
+
+- **No mezclar comparaciones:** en CO, la CV corregida frente a Random Forest tiene p ajustado 0,0345; la prueba tiene 0,5092. No contradice la menor estabilidad de la comparación conjunta: cambian la pregunta y el método.
+- **Frase de cierre:** «El kernel presenta evidencia consistente de mejora para NOx. En CO mejora el rendimiento estimado, pero no puede afirmarse una ventaja robusta».
+- **Alcance:** son adaptaciones a estimación del registro actual, basadas en predicciones guardadas. Friedman–Nemenyi es una comprobación auxiliar, no la base principal de la conclusión.
+
+### 6.4. Costo y eficiencia computacional
+
+- **Dos preguntas:** cuánto tarda aprender el modelo y cuánto tarda usarlo. Un buen R² no indica cuánto tiempo o memoria necesita.
+- **Complejidad teórica:** O(·) describe cómo crece el trabajo, no segundos exactos. En el kernel, el costo depende principalmente de los árboles y de los registros de referencia utilizados por SVR.
+- **Medición:** mismos estimadores, un hilo y lotes de 1, 100 y 1.000 registros. Se presenta la mediana de cinco repeticiones después de una llamada de preparación. La lectura del archivo se mide aparte.
+- **Memoria RSS:** memoria física del proceso, incluidas bibliotecas y predicción. MiB equivale a 1.048.576 bytes; no es el tamaño del archivo guardado.
+
+![Figura 26. Tiempo de predicción y memoria de los modelos para CO. Son mediciones de uso de estimadores ya entrenados.](figuras_guia/eficiencia_CO.png)
+
+- **Kernel completo en memoria:** para 1.000 registros tarda aproximadamente 0,912 s en CO y 0,955 s en NOx, con picos de 541 y 577 MiB.
+- **Carga por fragmentos:** reduce el pico de memoria aproximadamente 55%, pero tarda unas 2,3 a 2,5 veces más en ese lote. Es una decisión de despliegue, no otro modelo.
+- **Evaluación vectorizada:** agrupa operaciones del mismo SVR; en este equipo resulta aproximadamente tres veces más rápida que la evaluación residente original, con memoria similar. Conserva las predicciones dentro de la tolerancia numérica.
+- **Límites:** no se registró memoria de entrenamiento ni tiempo aislado del ajuste final del kernel. Variar el lote de predicción no verifica cómo crece el costo de entrenar con más datos. Los tiempos no son garantías para otro equipo o para Render.
+- **Frente de Pareto:** identifica alternativas no superadas simultáneamente en error y tiempo. Los presupuestos de búsqueda fueron distintos; no permite declarar un optimizador universalmente mejor.
+
+### 6.5. Estabilidad y ablación
+
+- **Sensibilidad a semillas:** se evalúan 42, 7, 21, 84 y 123 sin cambiar particiones ni configuraciones. La semilla modifica la aleatoriedad del entrenamiento, no el conjunto de prueba.
+- **Métodos sin aleatoriedad activa:** KNN, Ridge, Lasso, SVR lineal y XGBoost en estas configuraciones reutilizan su resultado original. No son cinco entrenamientos independientes.
+- **Resultado del kernel:** el R² OOF cambia de 0,7073 a 0,7085 en CO y de 0,7859 a 0,7866 en NOx. La variación es pequeña entre estas semillas, pero no demuestra estabilidad ante nuevos años o plantas.
+- **Lectura:** el punto es el promedio y el segmento, el mínimo y máximo entre semillas. No es un intervalo de confianza.
+
+![Figura 27. R² OOF medio y rango entre semillas para CO. Los métodos sin aleatoriedad activa muestran el resultado reutilizado.](figuras_guia/semillas_CO.png)
+
+- **Ablación:** quitar un componente manteniendo la evaluación permite estudiar su aporte. Se compara el kernel completo con versiones sin variables derivadas, sin pesos, sin ambas adaptaciones, solo Extra Trees y solo SVR ponderado.
+- **Control:** semilla 42 e hiperparámetros fijos. Ridge aprende con predicciones internas fuera del ajuste de cada registro; no se elige una variante por su prueba.
+- **CO:** el kernel completo alcanza R² OOF 0,7085. Quitar ambas adaptaciones reduce OOF a 0,7000, pero aumenta prueba de 0,7491 a 0,7671. Su beneficio no es uniforme entre validación y prueba.
+
+![Figura 28. Ablación de CO: cambia el orden de desempeño entre OOF y prueba. Una mejora aislada de prueba no basta para reemplazar el modelo elegido.](figuras_guia/ablacion_CO.png)
+
+- **NOx:** el kernel completo conserva el mayor R² OOF y de prueba entre estas variantes. Al ampliar los bloques y corregir comparaciones, la ventaja más consistente es frente al SVR ponderado por separado.
+
+![Figura 29. Ablación de NOx: el kernel completo mantiene el mayor R² observado en validación y prueba entre estas variantes.](figuras_guia/ablacion_NOx.png)
+
+- **Conclusión:** estabilidad entre semillas y utilidad de cada componente son preguntas distintas. Un entrenamiento estable no garantiza que todas las adaptaciones ayuden ni elimina la incertidumbre entre modelos.
+
 ## 7. Guion breve de exposición
 
 - **Apertura:** explicar cómo la planta genera electricidad y por qué necesita seguir sus emisiones.
@@ -180,6 +247,9 @@
 - **Propuesta:** mostrar el diagrama del kernel (figura 12) y explicar las dos variables operativas y la combinación de modelos.
 - **Resultados:** presentar R², RMSE, MAE y la diferencia entre CO y NOx en significancia; apoyar la lectura con las figuras 13 y 14.
 - **Aprendizaje:** mostrar la curva del kernel operativo (figura 22), explicar los dos ejes y la diferencia entre entrenamiento y validación. Usar las figuras 15 a 21 para contrastar los demás modelos.
+- **Interpretación:** mostrar SHAP global y un caso individual con LIME (figuras 23 y 24); distinguir explicación del modelo y explicación de causas.
+- **Evidencia:** usar la comparación jerárquica (figura 25) y separar las conclusiones de CO y NOx.
+- **Viabilidad:** resumir tiempo y memoria (figura 26), estabilidad entre semillas (figura 27) y aporte de los componentes (figuras 28 y 29).
 - **Conclusión:** utilidad potencial, límites de una sola turbina y necesidad de datos nuevos para una aplicación operativa.
 
 ## 8. Conceptos de datos y EDA
@@ -286,7 +356,12 @@
 - **Configuración elegida de SVR:** C = 20, γ = 0,2 y ε = 0,1 sobre la respuesta estandarizada. Para CO, pesos ambiente/temperatura/presión = 0,5/1/1 y λ = 0,01; para NOx = 0,5/0,5/2 y λ = 0,001. La carga y su interacción conservan peso 1.
 - **Importancia por permutación:** mezclar un sensor rompe su relación con los registros y permite observar cuánto empeora el modelo. Un aumento mayor del error indica mayor dependencia de ese sensor; un valor negativo indica que mezclarlo redujo el error.
 - **Ablación:** repetir la misma evaluación quitando un componente, para medir su aporte.
-- **SHAP y LIME:** métodos pendientes que explican una predicción individual atribuyendo contribuciones a sus entradas o aproximando el modelo cerca de ese caso. No son pruebas causales.
+- **SHAP:** reparte entre las entradas la diferencia entre una predicción y una referencia. El resumen global promedia el tamaño absoluto de esas contribuciones; la explicación local conserva sus signos.
+- **Principios de SHAP:** eficiencia significa que los aportes suman la diferencia respecto a la referencia; simetría, que entradas con el mismo aporte reciben el mismo valor; aditividad, que al sumar modelos se suman sus contribuciones con la misma referencia. Aquí eficiencia no significa velocidad de cálculo.
+- **LIME:** aproxima al modelo alrededor de un caso mediante una relación lineal. El R² local mide su fidelidad, no la precisión del modelo original. Un valor bajo limita la interpretación de sus pesos.
+- **Referencia SHAP:** promedio de predicciones sobre diez registros de desarrollo, dos por año. Cambiar la referencia puede cambiar las contribuciones.
+- **Combinaciones y permutaciones:** formas de modificar sensores para evaluar su contribución. Con nueve entradas hay 512 combinaciones de presencia o ausencia respecto a la referencia. Algunas combinaciones artificiales pueden representar condiciones poco habituales.
+- **Pesos por grupos:** se seleccionan entre cuatro combinaciones en validación interna. Son controles de la semejanza de SVR; no son coeficientes de Ridge ni medidas causales de importancia.
 
 ## 12. Métricas, intervalos y significancia
 
@@ -315,6 +390,13 @@
 - **Significancia frente a magnitud:** una mejora puede ser pequeña y significativa, o numéricamente apreciable pero muy incierta. Conviene mostrar ΔR² e intervalo, no solo p.
 - **No significancia:** no se encontró evidencia suficiente para distinguir; no demuestra equivalencia. Probar equivalencia requeriría definir de antemano qué diferencia sería aceptablemente pequeña.
 - **Sensibilidad:** repetir el análisis con otra longitud de bloque o ventana para revisar si la conclusión cambia, sin elegir solo el caso favorable.
+- **MCS:** grupo de procedimientos cuyo error no puede distinguirse del mejor. Retener varios no demuestra equivalencia.
+- **Wald condicional en modelos:** examina la diferencia media de error y su relación con TEY. Comparte nombre con la prueba de ciclos del EDA, pero evalúa otra hipótesis.
+- **DM-HLN:** compara el error medio considerando su variación por bloques y una corrección por el número de bloques. Aquí se adapta a estimación del registro actual, no a pronóstico futuro.
+- **Bootstrap estacionario por bloques:** selecciona recorridos de longitud variable; uno, dos y cuatro son longitudes medias en bloques originales. Se respetan años, pliegues y huecos.
+- **Cohen dz:** diferencia media de error entre bloques dividida por su desviación. Describe magnitud relativa, no mejora porcentual ni significancia por sí solo.
+- **Friedman y Nemenyi:** Friedman examina diferencias entre rangos; Nemenyi compara sus distancias con una diferencia crítica. Son auxiliares porque los cinco entrenamientos comparten datos.
+- **Rango entre semillas:** máximo menos mínimo al variar la aleatoriedad del entrenamiento. No es variación entre pliegues ni incertidumbre sobre otra planta.
 - **White y heterocedasticidad:** examina si la dispersión del error varía con los sensores. Homocedasticidad significa dispersión aproximadamente constante.
 - **BDS e i.i.d.:** i.i.d. significa independientes y de la misma distribución; BDS busca incompatibilidad con esa combinación de supuestos.
 - **Ljung–Box:** evalúa si hay autocorrelaciones de errores diferentes de cero en varios rezagos.
@@ -350,7 +432,7 @@
 - **¿Por qué conservar extremos?** Pueden representar emisiones reales y forman parte de la población que queremos evaluar.
 - **¿Por qué separar vecinos?** Porque observaciones próximas se parecen; repartirlas individualmente puede facilitar demasiado la evaluación.
 - **¿Por qué un modelo por contaminante?** CO y NOx muestran patrones y escalas diferentes; comparten estructura, pero se ajustan por separado.
-- **¿Por qué NOx mejora más claramente?** La comparación observada es más consistente en validación y prueba. La causa física o el aporte de cada componente todavía no se ha aislado.
+- **¿Por qué NOx mejora más claramente?** La evidencia es más consistente en validación y prueba. La ablación no demuestra una causa física ni una ventaja robusta de cada adaptación por separado.
 - **¿El kernel es un algoritmo nuevo?** No: es una integración y adaptación propia de componentes conocidos, no identificada exactamente en la revisión de esta tarea.
 - **¿Se eliminó el sobreajuste?** No: persiste la brecha entre entrenamiento y evaluación, aunque el criterio de selección utiliza validación.
 - **¿Puede ponerse a operar de inmediato?** Antes se deben verificar sensores y unidades y evaluar datos nuevos de la instalación de uso.
@@ -359,6 +441,11 @@
 
 - **Artefacto o modelo guardado:** archivo que contiene lo aprendido y las transformaciones necesarias para predecir sin entrenar otra vez.
 - **Inferencia:** usar el modelo entrenado con una nueva fila de sensores. **Latencia:** tiempo de esa predicción, distinto del tiempo de entrenamiento.
+- **Complejidad O(·):** crecimiento orientativo del trabajo. O(n) crece en proporción al número de registros; O(n²) puede multiplicar aproximadamente por cuatro el trabajo al duplicarlos. No equivale a un tiempo exacto.
+- **Símbolos del costo:** n son los registros; p, las entradas; d, la profundidad; B, los árboles; I, las iteraciones; k, los vecinos; q, los intervalos de histogramas; L, las hojas; y s, los vectores soporte. log(n) crece más lentamente que n. Una cota es un límite orientativo del crecimiento, no una medición de segundos.
+- **RSS y MiB:** memoria física ocupada por el proceso, medida en unidades de 1.048.576 bytes. No equivale al tamaño del archivo del modelo.
+- **Procesamiento por lote:** predecir varias filas en una llamada. **Vectorización:** agrupar operaciones matemáticas. **Carga por fragmentos:** leer partes del modelo por turnos para reducir memoria.
+- **Frente de Pareto:** alternativas que no son superadas simultáneamente en tiempo y error; no exige que exista una única mejor en ambos.
 - **CPU y GPU:** tipos de procesador. Acelerar el cálculo no cambia por sí mismo el criterio de evaluación.
 - **SHA256:** huella digital que permite comprobar integridad de un archivo. No mide calidad predictiva.
 - **JBook:** informe web construido a partir del notebook. **Dashboard:** interfaz para explorar resultados y obtener estimaciones; no vuelve a entrenar los modelos.

@@ -7,9 +7,17 @@ La seccion 4.10 incorpora el kernel operativo ET-SVR-Ridge como octava familia,
 con arquitectura, formulas, comparacion bibliografica y evidencia exploratoria.
 La seccion 4.10.5 y las conclusiones establecen Kernel operativo como modelo
 elegido para CO y NOx por MSE externo entre las ocho familias publicadas.
+La seccion 4.11 incorpora SHAP global/local y la comparacion con LIME para
+Kernel operativo y XGBoost, por separado para CO y NOx. Lee evidencias
+precalculadas de `../data/explainability/`; no reentrena ni necesita SHAP/LIME
+para visualizar o reproducir las figuras y tablas del notebook.
+Las secciones 4.12 y 4.13 incorporan MCS de 29 procedimientos por emision,
+contrastes dirigidos adaptados a bloques y eficiencia de inferencia. Los modelos,
+sus metricas originales y las particiones se mantienen. La memoria de
+entrenamiento no se presenta como medida porque no fue registrada.
 Se incluyen pruebas pareadas de ambas emisiones, sensibilidad por bloques y
 ajustes multiples; no se interpreta ausencia de significancia como equivalencia.
-La copia del proyecto fuente y la del libro contienen el mismo informe actualizado.
+El notebook de esta carpeta es la version de referencia para la publicacion.
 
 La publicacion es estatica: `execute_notebooks: 'off'`. Construir el libro no
 ejecuta codigo, no consulta datos externos y no reentrena modelos. No es necesario

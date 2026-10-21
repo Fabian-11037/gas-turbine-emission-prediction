@@ -1,0 +1,190 @@
+{
+  "modelo_id": "kernel_operativo",
+  "modelo": "Kernel operativo",
+  "objetivo": "NOX",
+  "modo": "residente",
+  "segundos_carga": 1.637745600004564,
+  "RSS_base_MB": 125.30859375,
+  "RSS_pico_MB": 576.75,
+  "incremento_RSS_MB": 451.44140625,
+  "artefacto_MB": 76.46032524108887,
+  "bucle_100_segundos": [
+    1.2686563000024762,
+    1.267188099998748,
+    1.2345022000081372
+  ],
+  "estructura": {
+    "p_efectivas": 11,
+    "n_arboles": 200,
+    "profundidad": 20,
+    "n_soporte": 17805,
+    "cache_SVR_MB": 256
+  },
+  "mediciones": [
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.011330299996188842,
+      "ms_por_registro": 11.330299996188842,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.01073569999425672,
+      "ms_por_registro": 10.73569999425672,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.011747099997592159,
+      "ms_por_registro": 11.747099997592159,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.01088079999317415,
+      "ms_por_registro": 10.88079999317415,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.011685799996485002,
+      "ms_por_registro": 11.685799996485002,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.10319069999968633,
+      "ms_por_registro": 1.0319069999968633,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.10590999999840278,
+      "ms_por_registro": 1.0590999999840278,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.10586609999882057,
+      "ms_por_registro": 1.0586609999882057,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.10876390000339597,
+      "ms_por_registro": 1.0876390000339597,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.10824680000951048,
+      "ms_por_registro": 1.0824680000951048,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.9513276999932714,
+      "ms_por_registro": 0.9513276999932714,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.9546953999961261,
+      "ms_por_registro": 0.9546953999961261,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.944972900004359,
+      "ms_por_registro": 0.944972900004359,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.978348399992683,
+      "ms_por_registro": 0.9783483999926831,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.9638438999973005,
+      "ms_por_registro": 0.9638438999973005,
+      "error_maximo": 1.4210854715202004e-14
+    }
+  ]
+}

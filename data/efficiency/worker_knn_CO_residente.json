@@ -1,0 +1,188 @@
+{
+  "modelo_id": "knn",
+  "modelo": "KNN",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 0.587783800001489,
+  "RSS_base_MB": 125.0234375,
+  "RSS_pico_MB": 150.1171875,
+  "incremento_RSS_MB": 25.09375,
+  "artefacto_MB": 3.1682682037353516,
+  "bucle_100_segundos": [
+    0.11957629999960773,
+    0.12849600000481587,
+    0.12881300000299234
+  ],
+  "estructura": {
+    "p_efectivas": 9,
+    "indice_vecinos": "kd_tree",
+    "k": 24
+  },
+  "mediciones": [
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0014223000034689903,
+      "ms_por_registro": 1.4223000034689903,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.001137699990067631,
+      "ms_por_registro": 1.137699990067631,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.0010648000024957582,
+      "ms_por_registro": 1.0648000024957582,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0011857999925268814,
+      "ms_por_registro": 1.1857999925268814,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0011946000013267621,
+      "ms_por_registro": 1.1946000013267621,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.004544800001895055,
+      "ms_por_registro": 0.04544800001895055,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.004189300001598895,
+      "ms_por_registro": 0.041893000015988946,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0039760999934514984,
+      "ms_por_registro": 0.039760999934514984,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.003935800006729551,
+      "ms_por_registro": 0.03935800006729551,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.004354899996542372,
+      "ms_por_registro": 0.04354899996542372,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.03076629999850411,
+      "ms_por_registro": 0.03076629999850411,
+      "error_maximo": 3.552713678800501e-15
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0354211999947438,
+      "ms_por_registro": 0.0354211999947438,
+      "error_maximo": 3.552713678800501e-15
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.03043430000252556,
+      "ms_por_registro": 0.03043430000252556,
+      "error_maximo": 3.552713678800501e-15
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.03257800001301803,
+      "ms_por_registro": 0.03257800001301803,
+      "error_maximo": 3.552713678800501e-15
+    },
+    {
+      "modelo_id": "knn",
+      "modelo": "KNN",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.02993060000881087,
+      "ms_por_registro": 0.02993060000881087,
+      "error_maximo": 3.552713678800501e-15
+    }
+  ]
+}

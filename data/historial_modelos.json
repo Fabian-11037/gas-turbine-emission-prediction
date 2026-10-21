@@ -1,0 +1,2877 @@
+{
+  "fuentes": [
+    {
+      "archivo": "data/resultados.csv",
+      "filas": 16,
+      "sha256": "191ade7621f5ac201bb151ff901ce7ed5a7ec7efd978998caa4c8e34857780c7"
+    },
+    {
+      "archivo": "resultados_20261017/resultados_provisionales.csv",
+      "filas": 6,
+      "sha256": "479d8323520e76607e2608dfc81dcbaa6bcb4cdde558c15d0277b8e462cdc324"
+    },
+    {
+      "archivo": "resultados_adaboost_20261018/resultados_provisionales.csv",
+      "filas": 2,
+      "sha256": "ec68268787b4929c1cad3fc8c1d24792ce08b0504a3f1ac6e7ce736352b99f26"
+    },
+    {
+      "archivo": "resultados_adaptativos_20261018/resultados_provisionales.csv",
+      "filas": 12,
+      "sha256": "78ea570460240a1cdfb7212b4ad66b9dc7d1fa4dc29603861c8d83efb1b4a61b"
+    },
+    {
+      "archivo": "resultados_centros_lssvr_20261019/resultados_provisionales.csv",
+      "filas": 14,
+      "sha256": "a107a00bbc9569a50df7c03be476499cbf7d26d959a99df2d6b5c2a618debc23"
+    },
+    {
+      "archivo": "resultados_CO_cadena_tweedie_20261020/resultados_provisionales.csv",
+      "filas": 5,
+      "sha256": "4839657181b09da619cc4f67248cc425a9fdd949d20730916903b7b4cfcd7128"
+    },
+    {
+      "archivo": "resultados_CO_expertos_20261020/resultados_provisionales.csv",
+      "filas": 4,
+      "sha256": "67ff83afc1c4eac9b5fdfc9a2045d5918c805c95a9e5dd1743f891cbd0390452"
+    },
+    {
+      "archivo": "resultados_cuatro_mejoras_20261019/resultados_provisionales.csv",
+      "filas": 14,
+      "sha256": "c41eb754a2042432cfd1fc5865e58950eb885c56f53d3d504b02c0b7d72488b5"
+    },
+    {
+      "archivo": "resultados_et_svr_20261018/resultados_provisionales.csv",
+      "filas": 16,
+      "sha256": "88a48ca64fa03c75e47eb1cf5c6522be2821dca6865b80151d56ea5a0b25708e"
+    },
+    {
+      "archivo": "resultados_kernel_regimen_20261019/resultados_provisionales.csv",
+      "filas": 6,
+      "sha256": "2db4d9a194c96595d4cbd5ad5b6e68f66eb4ee5504d63062684c134505623c56"
+    },
+    {
+      "archivo": "resultados_lgbm_ebm_mars_20261019/resultados_provisionales.csv",
+      "filas": 6,
+      "sha256": "fc41ed7d8e911582b32cf936f986567116524bdbc428f7aaef00618a121616c1"
+    },
+    {
+      "archivo": "resultados_limpieza_dashboard_20261019/resultados_provisionales.csv",
+      "filas": 28,
+      "sha256": "e47f77f9ad06c06d9807f317a4e5d1d84e394619eab57f545190fc04d16e4250"
+    },
+    {
+      "archivo": "resultados_mkl_arbol_20261018/resultados_provisionales.csv",
+      "filas": 4,
+      "sha256": "026ce04c59ffff1e82c8755220ede3f44301e2675d0ddbbd34c7b51eeb57b24c"
+    },
+    {
+      "archivo": "resultados_restringidos_20261017/resultados_provisionales.csv",
+      "filas": 6,
+      "sha256": "dee9301fb842d8f367bc0944a07dd52c4315789a10404a49b84934bbc91eb01a"
+    },
+    {
+      "archivo": "resultados_robust_bart_20261019/resultados_provisionales.csv",
+      "filas": 6,
+      "sha256": "5287c3b94ebfa16a655cd77df71db60300182911a6a4b6377e08642cf585deff"
+    },
+    {
+      "archivo": "resultados_sparse_lssvr_20261018/resultados_provisionales.csv",
+      "filas": 8,
+      "sha256": "64e75b727f3a636e64fd6ff046b2200fca0b8cfbb04cb78ed433bd1b882f26c1"
+    },
+    {
+      "archivo": "resultados_stacking_20261018/resultados_provisionales.csv",
+      "filas": 16,
+      "sha256": "32be93e874eefad13cb405012a592506743f570c171341f046c76d24ebd11ffc"
+    },
+    {
+      "archivo": "resultados_stacking_grupos_20261019/resultados_provisionales.csv",
+      "filas": 10,
+      "sha256": "f422792b8e4a68bde55ed46e3600dff55c1ff70f4b4be0012eaf6840c8d6895d"
+    },
+    {
+      "archivo": "resultados_stacking_lgbm_20261019/resultados_provisionales.csv",
+      "filas": 6,
+      "sha256": "1318902b8d133c872bd24d442eaabf7d362cdb4b79b99e5bf34fcb44a11fdfa1"
+    },
+    {
+      "archivo": "resultados_xgboost_intermedio_20261017/resultados_provisionales.csv",
+      "filas": 2,
+      "sha256": "82fe0cc0d863477d6a3225dd812ab2dd10e27122c41690bfddae37dd3ae19418"
+    }
+  ],
+  "protocolos": [
+    {
+      "archivo": "data/resultados.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "d950b58c74ba8e6fe2dbed393b01f9ea6139eb3851b181c63dfb450ddca3b14b",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "version": 1,
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "random_evaluaciones": 4,
+        "bayes_evaluaciones": 5,
+        "gen_poblacion": 4,
+        "gen_generaciones": 2,
+        "gen_cruce": 0.7,
+        "gen_mutacion": 0.3,
+        "gen_mutacion_gen": 0.5,
+        "gen_torneo": 2,
+        "gen_elites": 1,
+        "datos_sha256": "37f4a5300b407f5cab5f9ea2ef9302b111e93dc659f7262b820c79ba1ea6b9ae",
+        "codigo_sha256": "63d302fb07214cedfff7d1b9be5233694d35adeef22c77cda326c88c2cab229f"
+      }
+    },
+    {
+      "archivo": "resultados_20261017/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "6bed149a9cce65e2cafb3f2ae18ed9ba153bcdc8b2a8d4dad8bca71e0f28f19e",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "candidatos_por_familia_objetivo": 12,
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+        "n_desarrollo": 27570,
+        "n_prueba": 7411,
+        "criterio": "MSE medio externo anidado",
+        "prueba_historica_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "xgboost-cpu": "3.4.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_adaboost_20261018/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "1b0b7fab295e39c8cd2e3dd6a2a6039b179d541d7da7e3f6ec49f0a6f387b0b6",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "candidatos": 12,
+        "n_desarrollo": 27570,
+        "n_prueba": 7411,
+        "codigo_sha256": "9e10fcada1233d6681f8f0aa7e4322f8bde32bfdf5aa3ae1f1714565f7fc5e72",
+        "motor_sha256": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+        "helper_sha256": "cd344c211826b0fc67bc5b02e271d73473cec1895a80b386f9d5f1a7a60d6fa7",
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "criterio": "MSE de CV interna para hiperparametros; evaluacion externa anidada.",
+        "prueba_historica_previamente_inspeccionada": true,
+        "nota": "Prueba exploratoria, sin seleccionar parametros por resultados de prueba.",
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_adaptativos_20261018/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "ba64feae035358ca6fe7cb11e4b67a3164b14580dc55402872268640ad2539b7",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_segundo_nivel": 3,
+        "candidatos": 12,
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "router": [
+          "TEY",
+          "TIT",
+          "TAT",
+          "CDP",
+          "AT",
+          "AH"
+        ],
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": "94b7cc49d93bbfdb022c1e96c7c3e0b9a5c9796e7342cc1a343b1fcf447b7d4a",
+        "modelos_sha256": "c66d04b26696243886f40d64a98dceab21deb0d2c493d243e65b4caca1d80d00",
+        "motor_sha256": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "xgboost-cpu": "3.4.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_centros_lssvr_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "e7aca64b00524ace6f2cd372714fc0d13f5d76283d892c7aecb679326b75eb49",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "candidatos_combinados": 16,
+        "candidatos_por_variante": 4,
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "sparse_configs": [
+          {
+            "n_components": 512,
+            "selection": "random",
+            "gamma": 0.1111111111111111,
+            "regularization": 1e-05
+          },
+          {
+            "n_components": 512,
+            "selection": "representative",
+            "gamma": 0.1111111111111111,
+            "regularization": 1e-05
+          },
+          {
+            "n_components": 1024,
+            "selection": "random",
+            "gamma": 0.1111111111111111,
+            "regularization": 1e-05
+          },
+          {
+            "n_components": 1024,
+            "selection": "representative",
+            "gamma": 0.1111111111111111,
+            "regularization": 1e-05
+          }
+        ],
+        "codigo_sha256": "35727cf2ca202595ecf15d048e3041bfa7fe332e16904edc98a5055fbca641d2",
+        "modelos_sha256": "67009b48fa04b1ec36a95f54450a0bde17204527d70c0a690b540211d7bd64df",
+        "motor_sha256": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee",
+        "helpers_sha256": {
+          "modelos_sparse_lssvr.py": "e574c28c5c526d5903d3d31cdf48f44003f72a8abb712cdd23ed50cd3b78672d",
+          "modelos_stacking.py": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+          "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a"
+        },
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_CO_cadena_tweedie_20261020/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "b7cad4a0a132aa63a846dc407ecfff4eee43631e94646da91285107059a8957b",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "candidatos": {
+          "Cadena NOX CO": [
+            {
+              "mode": "baseline",
+              "capacity": 0,
+              "strength": 0.0
+            },
+            {
+              "mode": "direct",
+              "capacity": 0,
+              "strength": 1.0
+            },
+            {
+              "mode": "direct",
+              "capacity": 1,
+              "strength": 1.0
+            },
+            {
+              "mode": "residual",
+              "capacity": 0,
+              "strength": 0.25
+            },
+            {
+              "mode": "residual",
+              "capacity": 0,
+              "strength": 0.5
+            },
+            {
+              "mode": "residual",
+              "capacity": 0,
+              "strength": 1.0
+            },
+            {
+              "mode": "residual",
+              "capacity": 1,
+              "strength": 0.25
+            },
+            {
+              "mode": "residual",
+              "capacity": 1,
+              "strength": 0.5
+            },
+            {
+              "mode": "residual",
+              "capacity": 1,
+              "strength": 1.0
+            }
+          ],
+          "Control cadena sin NOX": [
+            {
+              "mode": "baseline",
+              "capacity": 0,
+              "strength": 0.0
+            },
+            {
+              "mode": "direct",
+              "capacity": 0,
+              "strength": 1.0
+            },
+            {
+              "mode": "direct",
+              "capacity": 1,
+              "strength": 1.0
+            },
+            {
+              "mode": "residual",
+              "capacity": 0,
+              "strength": 0.25
+            },
+            {
+              "mode": "residual",
+              "capacity": 0,
+              "strength": 0.5
+            },
+            {
+              "mode": "residual",
+              "capacity": 0,
+              "strength": 1.0
+            },
+            {
+              "mode": "residual",
+              "capacity": 1,
+              "strength": 0.25
+            },
+            {
+              "mode": "residual",
+              "capacity": 1,
+              "strength": 0.5
+            },
+            {
+              "mode": "residual",
+              "capacity": 1,
+              "strength": 1.0
+            }
+          ],
+          "LightGBM Tweedie CO": [
+            {
+              "capacity": 0,
+              "power": 1.1
+            },
+            {
+              "capacity": 0,
+              "power": 1.5
+            },
+            {
+              "capacity": 0,
+              "power": 1.9
+            },
+            {
+              "capacity": 1,
+              "power": 1.1
+            },
+            {
+              "capacity": 1,
+              "power": 1.5
+            },
+            {
+              "capacity": 1,
+              "power": 1.9
+            }
+          ],
+          "LightGBM cuadratico CO": [
+            {
+              "capacity": 0
+            },
+            {
+              "capacity": 1
+            }
+          ],
+          "ETSVR control fijo": [
+            {}
+          ]
+        },
+        "capacidades": [
+          {
+            "num_leaves": 7,
+            "n_estimators": 400
+          },
+          {
+            "num_leaves": 15,
+            "n_estimators": 600
+          }
+        ],
+        "NOX_auxiliar_lambda": 0.001,
+        "CO_base_lambda": 0.01,
+        "crossfit_auxiliares": 3,
+        "crossfit_meta_auxiliares": 3,
+        "archivos_protegidos": {
+          "CO_NOx_Dashboard\\data\\models\\NOX_Kernel_operativo.joblib": "98ddf98a9b3e5c9b8f0e7e028f5248f1604b74f27e4cdd026454225d91923880",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\configuracion.json": "d950b58c74ba8e6fe2dbed393b01f9ea6139eb3851b181c63dfb450ddca3b14b",
+          "CO_NOx_Dashboard\\data\\predicciones_prueba.csv.gz": "ae9635f95a55b850014609d5c076f0b5577ddec0300f57770dd5beb35ca7919a",
+          "CO_NOx_Dashboard\\data\\models\\NOX_XGBoost.joblib": "4f95f7c8b0c9c5a66e0e22dbfd792a3518f2cfd1455e2d8194c1791a4327cd78",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\CO_SVR_lineal.joblib": "72c34752277baa65cf340609dfcc8fb829fb70734d3b8996cf98a20ac22f66e9",
+          "CO_NOx_Dashboard\\data\\models\\NOX_Lasso.joblib": "a07cc141fb43a06c9971ae85eefd8e0545cef612ca1e20ca02ca755d34d55212",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\NOX_Decision_Tree.joblib": "5bb181a95718148b650feebedcd7f96c043f1f594a5d46a6bf87f2e98447a3e4",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\NOX_Lasso.joblib": "a07cc141fb43a06c9971ae85eefd8e0545cef612ca1e20ca02ca755d34d55212",
+          "CO_NOx_Dashboard\\book\\training\\auditoria_sensores.py": "a508babb92f076c5434f772389588954cfd4018ddac650a81092a34f342be8a7",
+          "CO_NOx_Dashboard\\tools\\export_project.py": "ec99e2353b8f410b282d125347915542c4f1b0d52cd1a1722e03b7184f485ee8",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\asignacion_particiones.csv.gz": "ee103169ad0df51e65408c0408e06ec64ba61acb6573067b0f186ede27946b94",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\CO_Ridge.joblib": "92bd0603e9dc13d0e38af51f63e228e266c49c54c3adbda80719ab35161706d4",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\NOX_Ridge.joblib": "53a4431fc515684529f39617fd4ec7584e436ad29c8fbe344d4e5bba558dcece",
+          "CO_NOx_Dashboard\\tests\\test_literature.py": "ae1bb4c7b05810d55ce2e56d8856d92b55882084903c2974cdbca329c10949c8",
+          "CO_NOx_Dashboard\\book\\training\\plot_validation_design.py": "69bbd35fee3f3d3bf2704e36cc2b5cca777ac00b78460423801090433cd4f469",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\significancia_CV_t_corregido.csv": "c7a202cbe559104cd7f892bb91cfd2be9bdcdd68ea73e3bdc324c17372342483",
+          "CO_NOx_Dashboard\\.gitattributes": "359d49f644dea76213d82a0e67529b5b8a1bef6960635a2151b9f1ffd45fab65",
+          "CO_NOx_Dashboard\\data\\optimizacion.csv": "481cffe6b8dda19d409819ea4d5131b02e1141b8b06b4ef2dc8989694b271ad1",
+          "CO_NOx_Dashboard\\assets\\dashboard.css": "56f5baa4ce822784fce2a0f0067f5acb2f498b3b730bd9fcfa1ec0ce8092900e",
+          "CO_NOx_Dashboard\\book\\training\\temporal_eda.py": "8bf6e8885825ce171ff5fd2a117d581843c56c5a6be5711d5a24e44a823648d8",
+          "CO_NOx_Dashboard\\data\\models\\NOX_Ridge.joblib": "53a4431fc515684529f39617fd4ec7584e436ad29c8fbe344d4e5bba558dcece",
+          "CO_NOx_Dashboard\\data\\models\\CO_Decision_Tree.joblib": "be28ee62bd1558e5f086c734fe66f464f532f13b6e8d3bdf5ff2b9b8005ddd87",
+          "CO_NOx_Dashboard\\data\\models\\NOX_KNN.joblib": "5cdbcc66d0e33011073f7859e0b5db920523a0a8195a684789e55c1bcbf8ca25",
+          "CO_NOx_Dashboard\\dashboard\\model_view.py": "0185007189e97df914ae4631b03241880868350ae1aeec889ec16d83db5252c5",
+          "CO_NOx_Dashboard\\data\\estacionalidad_perfiles.csv.gz": "9dfb16a4033fbc625cbd94bb9f505315352029caec60ef0995b3996c7e869f7f",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\desempeno_por_anio.csv.gz": "1970edb995814376e4955cc28c71dd97178f71081c1a56846852df0648a181ee",
+          "CO_NOx_Dashboard\\assets\\kernel_arquitectura.svg": "a27c86fd62ede6a305c89217c443113cb0b8fd0f0ba22d7525bd1dce29b5ead2",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\registro_modelos.json": "07303ada01ac5197185c5327c977fc7a9f5397ce42f3d8f340719720048f1ae4",
+          "CO_NOx_Dashboard\\tools\\update_kernel_book.py": "195e9934024386ce2455da0115630f820f61f055a0d26e3d661ea2cdc8f33fe8",
+          "CO_NOx_Dashboard\\dashboard\\eda.py": "3655d6bc8f7424f707991a5da0adf9566943448f02bb2dd25f1336c809bc4d35",
+          "CO_NOx_Dashboard\\data\\literatura_metodologia.json": "e5e2dc5b597555598999abfab02407c59ad957a01a5c1a5952c48cdbe77873f5",
+          "CO_NOx_Dashboard\\book\\requirements.txt": "de53c5e68a83eb79df9b8de98eeb549c44c203304c2bd09b029a4ca5ce2e7026",
+          "CO_NOx_Dashboard\\data\\auditoria_predictiva_univariada.csv": "aed38c89f960d283f0cec777a8afecc84c6df3c910cd63174672bc4859233d1d",
+          "CO_NOx_Dashboard\\book\\training\\seasonality_analysis.py": "d13a7d16d1a4ffb316a120e69111f7c160b9d806f2eb803f11a430a73a81921f",
+          "CO_NOx_Dashboard\\book\\_config.yml": "d0e06e52f70739cb10610e5a685ccf695406256ff7b0c2325779e9a65537211a",
+          "CO_NOx_Dashboard\\tools\\export_kernel.py": "ec2ed50debabb2ce002ed3bdc108005174f0378df3d0e1b4798c233ec629e1fb",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\importancia.csv": "8ce4125eec56981b43e9e8bcf951f8c9d4fa138df681d20f70ed25c3485333a4",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\CO_XGBoost.joblib": "6afa83894f05a9dc1dedaf3a62cd34b5bef09d11f91e70d4e4f3caac55a990be",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\CO_Decision_Tree.joblib": "be28ee62bd1558e5f086c734fe66f464f532f13b6e8d3bdf5ff2b9b8005ddd87",
+          "CO_NOx_Dashboard\\data\\models\\CO_SVR_lineal.joblib": "72c34752277baa65cf340609dfcc8fb829fb70734d3b8996cf98a20ac22f66e9",
+          "CO_NOx_Dashboard\\emission_models\\__init__.py": "632da62312c102dda4c82144aaff3586d5ee9aa1febd4f98a60047fec4ee5423",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\conteos_externos.csv.gz": "ba8409e0b4033d19e50846ab9d028c0df5a4bcbe5cad6b75a636ea6fb0acdeae",
+          "CO_NOx_Dashboard\\book\\training\\regression_entregable2.py": "63d302fb07214cedfff7d1b9be5233694d35adeef22c77cda326c88c2cab229f",
+          "CO_NOx_Dashboard\\data\\models\\CO_Random_Forest.joblib": "5ac7265ba84accf5fde98656054978baa0d7099bb7c0befea5d3e4269da21f58",
+          "CO_NOx_Dashboard\\data\\bibliografia.csv": "67b823931efe2c81209a63d3b6836e447f0921d969c5b0426cd595e48c69d51b",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\resultados_familias.csv.gz": "3606893e0a9222f4dd9e824bdb61c62b3229282da604d9ea8f41882d05ef372f",
+          "CO_NOx_Dashboard\\book\\training\\block_cv_comparison.py": "11e63e810a0587c06203c7aff4376124954375972d69d0876dea3fdee5d19811",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\predicciones_OOF_NOX.csv.gz": "9c69d588d571847e4f31442cdb19917d7706818410f978a31fcf60594d2f6313",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\significancia_bootstrap_pareado.csv": "8c879dd7dd76f6a6f271d7212ca4a236fbb9dcdf0891de54c4f804aa3f886b70",
+          "CO_NOx_Dashboard\\book\\gas_turbine_eda_hilo_conductor_redaccion.ipynb": "9477dda40c11a7c7d11fbc0e048f44cc89bd05cbefd446837f99f0c070288d56",
+          "CO_NOx_Dashboard\\dashboard\\__init__.py": "5cf0e5a9c79908466d26e94ec875e499a0ae106a5744737ef401ae5c79658fa6",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\historial_busquedas.csv.gz": "6b2dedbf4a0ab86b8b4e993322bff556101483414b8624d03af9309cf90348ea",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\NOX_KNN.joblib": "5cdbcc66d0e33011073f7859e0b5db920523a0a8195a684789e55c1bcbf8ca25",
+          "CO_NOx_Dashboard\\data\\models\\NOX_SVR_lineal.joblib": "7ba0b3a282f1937ba6b85de9868fd442cab85ccbdaf76549ff7f78e70e38e9e1",
+          "CO_NOx_Dashboard\\render.yaml": "2152f6a94f22a4b180818173577eacbf5e2c0e17a742b4ac0005c38ea314a920",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\predicciones_prueba.csv.gz": "709598be2f6f843f7914a7fd144ed9b8c6a1a98b59fa8ef7bca8f9209510c3bf",
+          "CO_NOx_Dashboard\\assets\\resize.js": "59cc7ab10d2ce97428b8098c37f2145df8f9a2b3437cf947c9364cb7359f5628",
+          "CO_NOx_Dashboard\\dashboard\\figures.py": "7499724a9d6596103c642babf75f48aa3eefb09fa5edaff6045c5a1ffc236c0c",
+          "CO_NOx_Dashboard\\data\\models\\CO_KNN.joblib": "c4ba35a1fed9e8085da36b1f6b6ee7c7095fb10ec67015bcf99695fa98af6076",
+          "CO_NOx_Dashboard\\dashboard\\seasonality.py": "55345b2e44b1f9061f751727625c7b8d04fe08fd212bfdb40eb931521f505596",
+          "CO_NOx_Dashboard\\app.py": "92bbca26f614dd7fc64e864956a86f8446bf73a07d63e1ca3d2e665a42daff10",
+          "CO_NOx_Dashboard\\data\\models\\CO_XGBoost.joblib": "6afa83894f05a9dc1dedaf3a62cd34b5bef09d11f91e70d4e4f3caac55a990be",
+          "CO_NOx_Dashboard\\dashboard\\components.py": "e258cb584afe62f1eed5ab093b0eba98e8f5b09f724ee8c79f959b71ed31d090",
+          "CO_NOx_Dashboard\\.gitignore": "76d3a6977e03acfe6ae7905a366757319c84525e0f3c48a5f72fe848f3f5dd0c",
+          "CO_NOx_Dashboard\\data\\intervalos_bootstrap.csv": "dc70cabe79577013c7c0acd09497475c031e5a9d0245e58bbbc98c415910a5ac",
+          "CO_NOx_Dashboard\\data\\models\\CO_Lasso.joblib": "196f01deaf42d2817de965fc08d8e34af23366f1faf77f3267a1496c26a4fbbc",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\NOX_SVR_lineal.joblib": "7ba0b3a282f1937ba6b85de9868fd442cab85ccbdaf76549ff7f78e70e38e9e1",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\resultados_optimizadores.csv.gz": "a75edf7f3f36b19df23fa63c3767861b9f3c0d9543fcc56157230ca849830cd6",
+          "CO_NOx_Dashboard\\dashboard\\repository.py": "85c324e9550dd246463ff14f98eca0fef8a3a5471e2c9acca5d349145ff49885",
+          "CO_NOx_Dashboard\\book\\README.md": "893573491a2f199474b9e6a7e44f3fcb79467c636b77874ba91a306831e3bce1",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\intervalos.csv": "123158d73ba429540f5fe8412692dc94ed8b0247be6d2171632fc055a9e64be3",
+          "CO_NOx_Dashboard\\tests\\test_dashboard.py": "d5388aebcf7d10353087d4a6d9c252c4fb07a6707e5362c99a51cac0fbeb3610",
+          "CO_NOx_Dashboard\\data\\kernel_operativo.json": "a3c7eb9069a42fc9e70fc9249af7d8fc89858303f1238089c4da6b2f59bbf99b",
+          "CO_NOx_Dashboard\\book\\_toc.yml": "3c3b5747aacf660ff24402d0fea4fa4f3b89f23b48f54ffc8e7f23ff349d3943",
+          "CO_NOx_Dashboard\\data\\estacionalidad_pruebas.csv": "e90ea3138a54fbf93f42b5d91e7f9d6a901d23018c451e00c0ca6db892a8c782",
+          "CO_NOx_Dashboard\\tests\\test_seasonality.py": "bd94bb9b1e7a4cd5ab85d0e28deb17f5ef026403021d109756c849ee9d9b9247",
+          "CO_NOx_Dashboard\\data\\literatura.json": "9dd4fb9d666691147b6edf0e9151e773bf6bcdcc836f82af9338ddf63d98e178",
+          "CO_NOx_Dashboard\\data\\modelos.json": "7b777e8ac8f011b21619515e62ed8a3565e4531337eaaabcb2ff81a6b6042aba",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\predicciones_OOF.csv.gz": "8fbff44e77c5f9900df982a1971cb2f039bc6ed68fa861d7b870941f8fa58f33",
+          "CO_NOx_Dashboard\\dashboard\\kernel_view.py": "8ef1eb177717f04ceceb9c86a02e3c87ab8cc46a076c0d6d800aebd45dc1d7c8",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\etapas.csv": "aeaac6c896f82a299d923cc4ee162077c1009133816bc7a1825a455d2efe19b3",
+          "CO_NOx_Dashboard\\data\\importancia_permutacion.csv": "b88ae94336a5b015bba8be7ab65f22fdd505a903f9252a03444ba17bd96f0525",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\CO_Random_Forest.joblib": "5ac7265ba84accf5fde98656054978baa0d7099bb7c0befea5d3e4269da21f58",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\busqueda.json": "4fbc06e1443aa391778755e9d10105f872f1641508bf33656bae3239992d7de7",
+          "CO_NOx_Dashboard\\dashboard\\kernel_content.py": "98d75e97b749b1a313906741f9b532e0078fa54f19a74d0a10586f80ac7e852d",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\versiones.json": "f14f513026529e45830cec1783069bb0d0030b9697f1129d29218db93913c9da",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\predicciones_OOF_CO.csv.gz": "1de75d558cc02a1792755789c713adcbf75b6cac3906f4e0a1f9cdeb0ae72dd1",
+          "CO_NOx_Dashboard\\book\\training\\block_model.py": "beda8895bf3141dda1e12bd46a166bd3aa0c99d34f34ece2d4e8dfa36e1a110b",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\CO_KNN.joblib": "c4ba35a1fed9e8085da36b1f6b6ee7c7095fb10ec67015bcf99695fa98af6076",
+          "CO_NOx_Dashboard\\book\\training\\test_seasonality_analysis.py": "9ae6971c2ca4e81e8355a15f3483cdd9ecfc33d7ceed0a1a84d71f711c672993",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\NOX_XGBoost.joblib": "4f95f7c8b0c9c5a66e0e22dbfd792a3518f2cfd1455e2d8194c1791a4327cd78",
+          "CO_NOx_Dashboard\\data\\models\\NOX_Random_Forest.joblib": "6b660e7877396785665372e9e789612e8db040d0164bdaec674dd7d71ac12443",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\resultados.csv": "c29198410e8b5d9d3029da841cbacce01a53030b0ed23e81fe8ad2c88a691f22",
+          "CO_NOx_Dashboard\\data\\observaciones.csv.gz": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\referencia_ETSVR.csv": "c61cd74dee92d05d7ee97d9def2a2b0ae8ec474377f275e6879822735e0d2403",
+          "CO_NOx_Dashboard\\tests\\test_kernel.py": "596add2eccc01b33bd47f162ed78dddc2c50fa507d644709013d0bb053c8878b",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\predicciones_prueba_CO.csv.gz": "4715e66205ad6d20e7a4c11512e61c4f9cbbe1eb29ea5bfe78b317be52308d0f",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\registro.json": "2bee3640de25bd6a95bde50e7d09969cde956f3b42c5b31bb13b8daa30f799e0",
+          "CO_NOx_Dashboard\\dashboard\\context.py": "01959177ef1291cb7ebf7a8709a4920f510f46c8d455c9f4fd4f61e7d01c368d",
+          "CO_NOx_Dashboard\\data\\models\\NOX_Decision_Tree.joblib": "5bb181a95718148b650feebedcd7f96c043f1f594a5d46a6bf87f2e98447a3e4",
+          "CO_NOx_Dashboard\\book\\requirements-training.txt": "2e61dbae3b967756b673227583606af4a892d9e256f22b91e10ae0b3187b9dc6",
+          "CO_NOx_Dashboard\\data\\estacionalidad_metodologia.json": "0545eeeae5c0d1565b28287bb5ac3460a4539cb0b16ff00144d08698293afe11",
+          "CO_NOx_Dashboard\\README.md": "9b8adc57ae0ae461a8b74e8017386c0cf8e79c0d30ececd6f0a3996df546ec9c",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\CO_Lasso.joblib": "196f01deaf42d2817de965fc08d8e34af23366f1faf77f3267a1496c26a4fbbc",
+          "CO_NOx_Dashboard\\data\\manifest.json": "8b7dd650cf5da481fc9ee501652e1772f77e37e81f00f8ec0be946ed248c5d12",
+          "CO_NOx_Dashboard\\data\\resultados.csv": "191ade7621f5ac201bb151ff901ce7ed5a7ec7efd978998caa4c8e34857780c7",
+          "CO_NOx_Dashboard\\emission_models\\kernel_operativo.py": "b39eee59d9e7fc7a1ef947e7df81a1f94961319c3776fc34a85216098cf6aa27",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\predicciones_prueba_NOX.csv.gz": "443b0bb21e2642a875548275be850480376078aca73872aa0f76e3eba4d0271e",
+          "CO_NOx_Dashboard\\data\\models\\CO_Kernel_operativo.joblib": "3bc0ec1f1351baa93ebf8e1ee27652bfc129cce9ffab6526ea9f4601f742bcc8",
+          "CO_NOx_Dashboard\\.github\\workflows\\publish-book.yml": "19861e95914c0f04f4586eae557fde51a0966bfca77e52c29a57734f713e12ca",
+          "CO_NOx_Dashboard\\data\\models\\CO_Ridge.joblib": "92bd0603e9dc13d0e38af51f63e228e266c49c54c3adbda80719ab35161706d4",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\intervalos_bootstrap.csv.gz": "bce414c4c4ec772bd6d2ab1b9b0ffe6c00d001a7021c7501efae41c0da7bc334",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\validacion_externa.csv.gz": "dadbadc687c9093082a73adf97218f1a7b21f05f855ef5deac19554162e9a367",
+          "CO_NOx_Dashboard\\book\\training\\modelos_base.py": "a3afb695d792d4d459cd604b9c0e406799bdc2f7f7075b141029a7f83b1857c3",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\kernel_operativo\\arquitectura.json": "a3c7eb9069a42fc9e70fc9249af7d8fc89858303f1238089c4da6b2f59bbf99b",
+          "CO_NOx_Dashboard\\dashboard\\models.py": "67fa2b72b28baad25177fd9cc6de9e789a3020f5ded7aced86df4b35c21444e6",
+          "CO_NOx_Dashboard\\book\\informe_resultados\\entregable2_anidada\\modelos\\NOX_Random_Forest.joblib": "6b660e7877396785665372e9e789612e8db040d0164bdaec674dd7d71ac12443",
+          "CO_NOx_Dashboard\\requirements.txt": "ed24bbd3e6cd834486505544dc55a6178ace67eecbc10f4c776c9c7024a7f394",
+          "CO_NOx_Dashboard\\book\\training\\kernel_operativo_training.py": "2dde236f5b8862424cee6cdf84c7e0ba7d0280283c2e877fa9428dc68e3b4fa2",
+          "Gas Turbine Project\\gas_turbine_eda_hilo_conductor_redaccion.ipynb": "1f0c369dfa69cdd81624ab9fa1b0e9e7f2f2318ce15a30e349991c7745b844a8"
+        },
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": {
+          "prueba_co_cadena_tweedie.py": "b7455a6541be29a025463beb94a3a91236140694c7e6a033f3679793b9410fcf",
+          "modelos_co_cadena_tweedie.py": "2711e61b2f5f551c57f7e1b3b14a4fa725933e0b9133b3332565dcb3ed9531e1"
+        },
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "lightgbm": "4.7.0",
+          "joblib": "1.6.0"
+        },
+        "prueba_previamente_inspeccionada": true
+      }
+    },
+    {
+      "archivo": "resultados_CO_expertos_20261020/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "270feaaff1731764d67c853184d021e4ee8cc06e451ead44ff22129662d8a6a3",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "fuente_residuos": "stacking completo OOF purgado",
+        "candidatos": {
+          "ETSVR expertos CO alto": [
+            {
+              "q": 0,
+              "gate": 0,
+              "strength": 0,
+              "expert": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 0.5,
+              "expert": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 0.5,
+              "expert": 1
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 1.0,
+              "expert": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 1.0,
+              "expert": 1
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 0.5,
+              "expert": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 0.5,
+              "expert": 1
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 1.0,
+              "expert": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 1.0,
+              "expert": 1
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 0.5,
+              "expert": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 0.5,
+              "expert": 1
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 1.0,
+              "expert": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 1.0,
+              "expert": 1
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 0.5,
+              "expert": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 0.5,
+              "expert": 1
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 1.0,
+              "expert": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 1.0,
+              "expert": 1
+            }
+          ],
+          "ETSVR experto Cubist": [
+            {
+              "q": 0,
+              "gate": 0,
+              "strength": 0,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 5
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 5
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 5
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.9,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 0,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 0.5,
+              "committees": 15,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 5,
+              "neighbors": 5
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 0
+            },
+            {
+              "q": 0.95,
+              "gate": 1,
+              "strength": 1.0,
+              "committees": 15,
+              "neighbors": 5
+            }
+          ],
+          "Cubist": [
+            {
+              "committees": 1,
+              "neighbors": 0
+            },
+            {
+              "committees": 1,
+              "neighbors": 5
+            },
+            {
+              "committees": 10,
+              "neighbors": 0
+            },
+            {
+              "committees": 10,
+              "neighbors": 5
+            },
+            {
+              "committees": 30,
+              "neighbors": 0
+            },
+            {
+              "committees": 30,
+              "neighbors": 5
+            }
+          ],
+          "ETSVR base fijo": [
+            {}
+          ]
+        },
+        "codigo_sha256": {
+          "prueba_co_expertos.py": "056b104bb9d6a869c2a0291d9f24ac1eda8a59be9079b9d6e22478ce49cac389",
+          "modelos_co_expertos.py": "ee1dcad2335c6c1a0e03c3decce6ed1ab464caf748b542b8a991789863166be9",
+          "cubist_bridge.R": "2fd2e05a5ec1bd1b39f5666ad5a503c56c7104f254a570d123d84710cc48bde6"
+        },
+        "entradas_sha256": {
+          "CO_NOx_Dashboard\\data\\observaciones.csv.gz": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+          "Pruebas provisionales CO NOx\\resultados_kernel_regimen_20261019\\configuracion.json": "4fbc06e1443aa391778755e9d10105f872f1641508bf33656bae3239992d7de7",
+          "Pruebas provisionales CO NOx\\resultados_kernel_regimen_20261019\\asignacion_particiones.csv": "6787160a172584d841fb482e517cf6edaab28a270c07685b5b96ab1abe0ad9f8",
+          "Pruebas provisionales CO NOx\\resultados_kernel_regimen_20261019\\comparacion_todos_modelos.csv": "8a9448b23f107423c9b6eaa523747a4e09b41a0c63385b92e7c75015437acd71"
+        },
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0"
+        },
+        "Cubist": "0.6.0",
+        "prueba_previamente_inspeccionada": true,
+        "actualizacion_kernel_publicado_autorizada": true
+      }
+    },
+    {
+      "archivo": "resultados_cuatro_mejoras_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "4bdccc70ff26b802799047375620d9d67bf3b635f6f0fc0538e629dd621cf2f0",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "n_candidatos": {
+          "Stack ET SVR grupos": 24,
+          "Stack CatBoost SVR": 12,
+          "Stack ET SVR multiescala": 12,
+          "Stack ET SVR colas": 6,
+          "Stack ET SVR simple": 8
+        },
+        "codigo_sha256": "b92c91226b83a45fb8fa263b68b33ee9b3d0d1676211587b2270b62a647de0fb",
+        "modelos_sha256": "5370637303286596de02b842a21806c82f91b2f2106b077c6797a8031c676366",
+        "motor_sha256": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee",
+        "helpers_sha256": {
+          "modelos_stacking.py": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+          "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a"
+        },
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0",
+          "catboost": "1.2.10"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_et_svr_20261018/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "fbebdbf4d21c9bd31dbbc2ef31259e027982dee225a1ff5ca16e86b88fab04dc",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semillas_externas": [
+          42,
+          73
+        ],
+        "semilla_interna": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": "1cae006f6bf965402dc45ea1649519c983f711462615d7cae6e23481f34e01fc",
+        "modelos_sha256": "07d17e6b71c1cee54891728786e38e84e3c5604662edf7e65e5a85d634b5e840",
+        "engine_sha256": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee",
+        "modelos_anteriores_sha256": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "SVR": [
+          {
+            "C": 10.0,
+            "gamma": 0.1111111111111111,
+            "epsilon": 0.1
+          },
+          {
+            "C": 5.0,
+            "gamma": 0.05,
+            "epsilon": 0.1
+          },
+          {
+            "C": 20.0,
+            "gamma": 0.2,
+            "epsilon": 0.1
+          },
+          {
+            "C": 10.0,
+            "gamma": 0.1111111111111111,
+            "epsilon": 0.03
+          }
+        ],
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "xgboost-cpu": "3.4.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_kernel_regimen_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "4fbc06e1443aa391778755e9d10105f872f1641508bf33656bae3239992d7de7",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "crossfit_residuos": 3,
+        "candidatos": {
+          "ET SVR kernel operativo": [
+            {
+              "members": [
+                6,
+                8
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                8
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                8
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                6,
+                9
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                9
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                9
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                6,
+                10
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                10
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                10
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                6,
+                11
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                11
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                11
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                8
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                8
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                8
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                9
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                9
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                9
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                10
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                10
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                10
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                11
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                11
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                11
+              ],
+              "lambda": 0.1
+            }
+          ],
+          "ET SVR correccion regimen": [
+            {
+              "meta_lambda": 0.001,
+              "regimes": 0,
+              "shrinkage": 0.0
+            },
+            {
+              "meta_lambda": 0.001,
+              "regimes": 2,
+              "shrinkage": 0.1
+            },
+            {
+              "meta_lambda": 0.001,
+              "regimes": 2,
+              "shrinkage": 1.0
+            },
+            {
+              "meta_lambda": 0.001,
+              "regimes": 2,
+              "shrinkage": 10.0
+            },
+            {
+              "meta_lambda": 0.001,
+              "regimes": 3,
+              "shrinkage": 0.1
+            },
+            {
+              "meta_lambda": 0.001,
+              "regimes": 3,
+              "shrinkage": 1.0
+            },
+            {
+              "meta_lambda": 0.001,
+              "regimes": 3,
+              "shrinkage": 10.0
+            },
+            {
+              "meta_lambda": 0.01,
+              "regimes": 0,
+              "shrinkage": 0.0
+            },
+            {
+              "meta_lambda": 0.01,
+              "regimes": 2,
+              "shrinkage": 0.1
+            },
+            {
+              "meta_lambda": 0.01,
+              "regimes": 2,
+              "shrinkage": 1.0
+            },
+            {
+              "meta_lambda": 0.01,
+              "regimes": 2,
+              "shrinkage": 10.0
+            },
+            {
+              "meta_lambda": 0.01,
+              "regimes": 3,
+              "shrinkage": 0.1
+            },
+            {
+              "meta_lambda": 0.01,
+              "regimes": 3,
+              "shrinkage": 1.0
+            },
+            {
+              "meta_lambda": 0.01,
+              "regimes": 3,
+              "shrinkage": 10.0
+            }
+          ],
+          "Stack ET SVR grupos": [
+            {
+              "members": [
+                0,
+                2
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                2
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                2
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                3
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                3
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                3
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                4
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                4
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                4
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                5
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                5
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                5
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                2
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                2
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                2
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                3
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                3
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                3
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                4
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                4
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                4
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                5
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                5
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                5
+              ],
+              "lambda": 0.1
+            }
+          ]
+        },
+        "pesos_kernel": [
+          [
+            0.5,
+            1.0,
+            1.0
+          ],
+          [
+            0.5,
+            0.5,
+            2.0
+          ],
+          [
+            0.5,
+            2.0,
+            0.5
+          ],
+          [
+            2.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": {
+          "modelos_kernel_regimen.py": "eff938106a1a1286d3e401df504bdc196588941b695a6e51605b25f32a34363a",
+          "modelos_stacking_grupos.py": "a7ff3099cdf123dea976939ea3414725a4570c17c7c67cfeb5555a635e02d04c",
+          "modelos_cuatro_mejoras.py": "5370637303286596de02b842a21806c82f91b2f2106b077c6797a8031c676366",
+          "modelos_stacking.py": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+          "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a"
+        },
+        "experimento_sha256": "7b9d231a938eadc0c8949fe0e16e1635702acd0fba2736a655ebe32379aec821",
+        "cache_previo_config_sha256": "b5e09ecafdb63931238cb3c0ddec02a3e654d3635db3ed85e70dd7a97a57f8c5",
+        "n_desarrollo": 27570,
+        "n_prueba": 7411,
+        "sin_eliminar_atipicos": true,
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_lgbm_ebm_mars_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "f07b0bde9b0c1c3f87c698aa8375ffcb6f7baff295cd7d4c127123a0bb5c5f91",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "candidatos_por_familia_objetivo": 6,
+        "criterio_interno": "MSE medio de tres folds",
+        "sin_eliminar_atipicos": true,
+        "n_desarrollo": 27570,
+        "n_prueba": 7411,
+        "prueba_historica_previamente_inspeccionada": true,
+        "candidatos": {
+          "LightGBM hojas lineales": [
+            {
+              "num_leaves": 7,
+              "n_estimators": 400,
+              "linear_lambda": 1.0
+            },
+            {
+              "num_leaves": 7,
+              "n_estimators": 400,
+              "linear_lambda": 10.0
+            },
+            {
+              "num_leaves": 15,
+              "n_estimators": 600,
+              "linear_lambda": 1.0
+            },
+            {
+              "num_leaves": 15,
+              "n_estimators": 600,
+              "linear_lambda": 10.0
+            },
+            {
+              "num_leaves": 31,
+              "n_estimators": 800,
+              "linear_lambda": 1.0
+            },
+            {
+              "num_leaves": 31,
+              "n_estimators": 800,
+              "linear_lambda": 10.0
+            }
+          ],
+          "EBM": [
+            {
+              "interactions": 0,
+              "max_rounds": 1000
+            },
+            {
+              "interactions": 0,
+              "max_rounds": 3000
+            },
+            {
+              "interactions": 3,
+              "max_rounds": 1000
+            },
+            {
+              "interactions": 3,
+              "max_rounds": 3000
+            },
+            {
+              "interactions": 6,
+              "max_rounds": 1000
+            },
+            {
+              "interactions": 6,
+              "max_rounds": 3000
+            }
+          ],
+          "MARS earth": [
+            {
+              "degree": 1,
+              "nk": 21,
+              "penalty": 3.0
+            },
+            {
+              "degree": 1,
+              "nk": 41,
+              "penalty": 3.0
+            },
+            {
+              "degree": 1,
+              "nk": 61,
+              "penalty": 3.0
+            },
+            {
+              "degree": 2,
+              "nk": 21,
+              "penalty": 3.0
+            },
+            {
+              "degree": 2,
+              "nk": 41,
+              "penalty": 3.0
+            },
+            {
+              "degree": 2,
+              "nk": 61,
+              "penalty": 3.0
+            }
+          ]
+        },
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": {
+          "prueba_lgbm_ebm_mars.py": "4286cebae46ff35da3ed359fd980c598961272fde3e14495a1df4d5592789c90",
+          "modelos_lgbm_ebm_mars.py": "5f1e296f99bc099d49b7c17208d66a8bc4c8ccb9e911b1ea1f55c28f326bc46b",
+          "earth_bridge.R": "0feb7ea6e664ed8b1fcbda986b3b9dc65dc9f696ac7387d9cfe600a4e850f4f2",
+          "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a"
+        },
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "lightgbm": "4.7.0",
+          "interpret-core": "0.7.8",
+          "joblib": "1.6.0"
+        },
+        "earth": "5.3.6",
+        "R": "4.5.1"
+      }
+    },
+    {
+      "archivo": "resultados_limpieza_dashboard_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "76add8b4d1ab6e720a2c1b6e59b5ffa1d60b1c089d08164411543a05758785c6",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "contamination": 0.005,
+        "reglas_nominales": "ver quality_flags",
+        "busqueda": "Grid identica en control y limpio; mismos rangos del dashboard",
+        "filtrado": "solo entrenamiento de cada ajuste; nunca y ni reservas",
+        "codigo_sha256": "6c20b82626f0054b223c64d651885a172d93850e38bce81b5ea73cea08e32529",
+        "modelos_sha256": "82bfe6d3768ce6cf3d1c6c4822de7ccb0d93a7bccea8b4751f3b7738db33b15f",
+        "referencia_codigo_sha256": "63d302fb07214cedfff7d1b9be5233694d35adeef22c77cda326c88c2cab229f",
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0",
+          "xgboost-cpu": "3.4.1"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_mkl_arbol_20261018/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "e3a0255e13cd3a7db80b4790464780b5a19f8bc3996614c983f3ff3ccfafd2ad",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "candidatos_por_modelo": 12,
+        "codigo_sha256": "97ba87a58b94db3fa658857de264cc72a007db2bc9abae61066f3c4f6b0ed6f5",
+        "modelos_sha256": "8b3617d34a97f7451bc3b0df3ca4867cfac77bcb957addc75e34782017a9b272",
+        "motor_sha256": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "linear-tree": "0.3.5",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_restringidos_20261017/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "33b8503463d4455c85516969dd66eac77ce4a8713e90d07bf48d0ec46458f767",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "candidatos_por_familia_objetivo": 12,
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": "cd344c211826b0fc67bc5b02e271d73473cec1895a80b386f9d5f1a7a60d6fa7",
+        "n_desarrollo": 27570,
+        "n_prueba": 7411,
+        "criterio": "MSE medio externo anidado; prueba solo descriptiva",
+        "prueba_historica_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "xgboost-cpu": "3.4.1",
+          "joblib": "1.6.0"
+        },
+        "motor_sha256": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+        "experimento": "Regularizacion restringida; seleccion por MSE, no por brecha de prueba",
+        "comparador_sha256": "479d8323520e76607e2608dfc81dcbaa6bcb4cdde558c15d0277b8e462cdc324",
+        "early_stopping": false,
+        "nota": "Numero de iteraciones de XGBoost seleccionado por CV interna; no usa prueba.",
+        "criterio_brechas": "Descriptivas; train-test y train-CV pueden diferir por poblacion y tamano."
+      }
+    },
+    {
+      "archivo": "resultados_robust_bart_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "880cb8c8689ef785e163966281db85bad32ca72b2d4e2cf81bceeb9c05edd953",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta_stacking": 3,
+        "filas_excluidas_por_atipicos": 0,
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "candidatos_stack": 24,
+        "BART": [
+          {
+            "n_trees": 50,
+            "min_samples_leaf": 10,
+            "alpha": 0.95
+          },
+          {
+            "n_trees": 100,
+            "min_samples_leaf": 10,
+            "alpha": 0.95
+          },
+          {
+            "n_trees": 200,
+            "min_samples_leaf": 10,
+            "alpha": 0.95
+          },
+          {
+            "n_trees": 100,
+            "min_samples_leaf": 25,
+            "alpha": 0.8
+          }
+        ],
+        "MCMC": {
+          "budgets": [
+            500,
+            1000
+          ],
+          "num_chains": 2,
+          "num_gfr": 0,
+          "rhat_max": 1.05,
+          "ess_min": 100
+        },
+        "codigo_sha256": "2962465cf919bf0a30804d480f34f14191cb13b9d6669121eae3dc4d2e3e9a2d",
+        "modelos_sha256": "4be0d52885d6b45abc08bd7237e52a53fe8a5455e732851583c4106fcef9adca",
+        "motor_sha256": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee",
+        "helpers_sha256": {
+          "modelos_stacking_grupos.py": "a7ff3099cdf123dea976939ea3414725a4570c17c7c67cfeb5555a635e02d04c",
+          "modelos_cuatro_mejoras.py": "5370637303286596de02b842a21806c82f91b2f2106b077c6797a8031c676366",
+          "modelos_stacking.py": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+          "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a"
+        },
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0",
+          "stochtree": "0.4.5",
+          "arviz": "0.22.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_sparse_lssvr_20261018/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "ce4c9dda1677c9fa4891923711ce47f585024e3cdd97bd382a5fb483c75b7ebd",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "candidatos_stack": 16,
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "sparse_configs": [
+          {
+            "n_components": 256,
+            "gamma": 0.1111111111111111,
+            "regularization": 1e-05
+          },
+          {
+            "n_components": 512,
+            "gamma": 0.1111111111111111,
+            "regularization": 1e-05
+          },
+          {
+            "n_components": 512,
+            "gamma": 0.1111111111111111,
+            "regularization": 0.0001
+          },
+          {
+            "n_components": 512,
+            "gamma": 0.2,
+            "regularization": 1e-05
+          }
+        ],
+        "codigo_sha256": "285dfcd96469878d5e786d81e3a58dc65672b060edcbc0f1a169662d4051fc3a",
+        "modelos_sha256": "e574c28c5c526d5903d3d31cdf48f44003f72a8abb712cdd23ed50cd3b78672d",
+        "motor_sha256": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee",
+        "helpers_sha256": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_stacking_20261018/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "2f7f69215f1c7ca707063e1dc89b9685f9061d27692957379760a503594d1889",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "candidatos_por_variante": 8,
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "codigo_sha256": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee",
+        "modelos_sha256": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+        "motor_sha256": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "xgboost-cpu": "3.4.1",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_stacking_grupos_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "a03d43062f1cb24c1371cbb3abf2cdf40de924f363dfc79e24eb760bdd146503",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "candidatos_por_arquitectura": 24,
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "source_indices": [
+          0,
+          1,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "codigo_sha256": "5abca5ca4e41629c937f88b164fa056aa4b8d6895636ea3e9a9f8fefd517e3c4",
+        "modelos_sha256": "a7ff3099cdf123dea976939ea3414725a4570c17c7c67cfeb5555a635e02d04c",
+        "motor_sha256": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee",
+        "helpers_sha256": {
+          "modelos_cuatro_mejoras.py": "5370637303286596de02b842a21806c82f91b2f2106b077c6797a8031c676366",
+          "modelos_stacking.py": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+          "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a"
+        },
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "joblib": "1.6.0",
+          "catboost": "1.2.10"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_stacking_lgbm_20261019/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "b5e09ecafdb63931238cb3c0ddec02a3e654d3635db3ed85e70dd7a97a57f8c5",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "crossfit_meta": 3,
+        "n_desarrollo": 27570,
+        "n_prueba": 7411,
+        "sin_eliminar_atipicos": true,
+        "candidatos": {
+          "Stack ET SVR grupos LightGBM lineal": [
+            {
+              "members": [
+                0,
+                2,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                2,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                2,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                2,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                2,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                2,
+                7
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                3,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                3,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                3,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                3,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                3,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                3,
+                7
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                4,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                4,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                4,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                4,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                4,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                4,
+                7
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                5,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                5,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                5,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                5,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                5,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                5,
+                7
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                2,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                2,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                2,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                2,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                2,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                2,
+                7
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                3,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                3,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                3,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                3,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                3,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                3,
+                7
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                4,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                4,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                4,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                4,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                4,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                4,
+                7
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                5,
+                6
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                5,
+                6
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                5,
+                6
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                5,
+                7
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                5,
+                7
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                5,
+                7
+              ],
+              "lambda": 0.1
+            }
+          ],
+          "Stack LightGBM lineal SVR grupos": [
+            {
+              "members": [
+                6,
+                2
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                2
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                2
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                6,
+                3
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                3
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                3
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                6,
+                4
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                4
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                4
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                6,
+                5
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                6,
+                5
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                6,
+                5
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                2
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                2
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                2
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                3
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                3
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                3
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                4
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                4
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                4
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                7,
+                5
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                7,
+                5
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                7,
+                5
+              ],
+              "lambda": 0.1
+            }
+          ],
+          "Stack ET SVR grupos": [
+            {
+              "members": [
+                0,
+                2
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                2
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                2
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                3
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                3
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                3
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                4
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                4
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                4
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                0,
+                5
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                0,
+                5
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                0,
+                5
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                2
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                2
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                2
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                3
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                3
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                3
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                4
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                4
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                4
+              ],
+              "lambda": 0.1
+            },
+            {
+              "members": [
+                1,
+                5
+              ],
+              "lambda": 0.001
+            },
+            {
+              "members": [
+                1,
+                5
+              ],
+              "lambda": 0.01
+            },
+            {
+              "members": [
+                1,
+                5
+              ],
+              "lambda": 0.1
+            }
+          ]
+        },
+        "predictores": [
+          "AT",
+          "AP",
+          "AH",
+          "AFDP",
+          "GTEP",
+          "TIT",
+          "TAT",
+          "TEY",
+          "CDP"
+        ],
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "codigo_sha256": {
+          "modelos_stacking_lgbm.py": "2e205df65db76ddd8a25c613fe232765363e665d9910d7d7e358744f0c83139d",
+          "modelos_lgbm_ebm_mars.py": "5f1e296f99bc099d49b7c17208d66a8bc4c8ccb9e911b1ea1f55c28f326bc46b",
+          "modelos_stacking_grupos.py": "a7ff3099cdf123dea976939ea3414725a4570c17c7c67cfeb5555a635e02d04c",
+          "modelos_cuatro_mejoras.py": "5370637303286596de02b842a21806c82f91b2f2106b077c6797a8031c676366",
+          "modelos_stacking.py": "534ac8741a76c1b7551ed35654ca8b8bb0d05b9c6e6065fd02e94756f4e61a68",
+          "pruebas_ensambles.py": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+          "prueba_stacking.py": "fea613886884c69525fdc4d449de06d741579731c12e831b1d88329753e55cee"
+        },
+        "experimento_sha256": "af0e81ab5aedff7592e3384d020f9f51e8e52f0dcdef543ed6989646088e2dab",
+        "prueba_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scipy": "1.18.1",
+          "scikit-learn": "1.9.1",
+          "lightgbm": "4.7.0",
+          "joblib": "1.6.0"
+        }
+      }
+    },
+    {
+      "archivo": "resultados_xgboost_intermedio_20261017/resultados_provisionales.csv",
+      "protocolo": "Bloques 168; purga 24; CV 5 externa × 3 interna",
+      "configuracion_sha256": "b4a1e2c745dca76946499ad7355f9514251d6ef431973948ba32e676a18f4fd5",
+      "tipo_CV": "Media del R² de cinco pliegues externos; semilla de partición 42",
+      "configuracion": {
+        "semilla": 42,
+        "bloque": 168,
+        "purga": 24,
+        "folds_externos": 5,
+        "folds_internos": 3,
+        "candidatos_por_objetivo": 8,
+        "codigo_sha256": "16965fba4ab3336c6ebc3501dc939657cf85fa41a09107ce60541ded85833fbc",
+        "motor_sha256": "eb860e0157e6a4f340146fef86b87f977097ed84898a9622e815525d2bda168a",
+        "helper_sha256": "cd344c211826b0fc67bc5b02e271d73473cec1895a80b386f9d5f1a7a60d6fa7",
+        "datos_sha256": "38f8072ada718203c053a7278b518634866d05454bc7609d7c70e57e200f62c6",
+        "motivo": "Iteracion adaptativa tras empeoramiento de CV de XGBoost fuertemente restringido.",
+        "criterio": "MSE externo anidado; no seleccion por prueba ni brecha de prueba.",
+        "early_stopping": false,
+        "prueba_historica_previamente_inspeccionada": true,
+        "versiones": {
+          "numpy": "2.5.3",
+          "pandas": "3.0.6",
+          "scikit-learn": "1.9.1",
+          "xgboost-cpu": "3.4.1",
+          "joblib": "1.6.0"
+        }
+      }
+    }
+  ],
+  "n_variantes": 81,
+  "criterio": "Resultados finales por variante; controles idénticos consolidados. R2_train se evalúa sobre el desarrollo original, incluso en la auditoría de limpieza. No se incluyen ajustes internos ni particiones incompletas de BART."
+}

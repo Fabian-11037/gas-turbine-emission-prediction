@@ -1,0 +1,187 @@
+{
+  "modelo_id": "decision_tree",
+  "modelo": "Decision Tree",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 0.6304530000052182,
+  "RSS_base_MB": 124.734375,
+  "RSS_pico_MB": 144.4375,
+  "incremento_RSS_MB": 19.703125,
+  "artefacto_MB": 0.008727073669433594,
+  "bucle_100_segundos": [
+    0.1342681999958586,
+    0.10588589998951647,
+    0.10489450000750367
+  ],
+  "estructura": {
+    "p_efectivas": 9,
+    "profundidad": 8
+  },
+  "mediciones": [
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.002073800002108328,
+      "ms_por_registro": 2.073800002108328,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0011522999993758276,
+      "ms_por_registro": 1.1522999993758276,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.002213400002801791,
+      "ms_por_registro": 2.213400002801791,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0016705999878467992,
+      "ms_por_registro": 1.6705999878467992,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.001417599996784702,
+      "ms_por_registro": 1.417599996784702,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0017078000091714785,
+      "ms_por_registro": 0.017078000091714785,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0011322000063955784,
+      "ms_por_registro": 0.011322000063955784,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0010872999991988763,
+      "ms_por_registro": 0.010872999991988763,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.001149999996414408,
+      "ms_por_registro": 0.011499999964144081,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0010292999941157177,
+      "ms_por_registro": 0.010292999941157177,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.0017551999917486683,
+      "ms_por_registro": 0.0017551999917486683,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0012103000044589862,
+      "ms_por_registro": 0.0012103000044589862,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.0011728000099537894,
+      "ms_por_registro": 0.0011728000099537894,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.0014559000119334087,
+      "ms_por_registro": 0.0014559000119334087,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.0026873000024352223,
+      "ms_por_registro": 0.0026873000024352223,
+      "error_maximo": 1.7763568394002505e-15
+    }
+  ]
+}

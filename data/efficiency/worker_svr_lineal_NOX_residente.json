@@ -1,0 +1,186 @@
+{
+  "modelo_id": "svr_lineal",
+  "modelo": "SVR lineal",
+  "objetivo": "NOX",
+  "modo": "residente",
+  "segundos_carga": 0.4922549000038998,
+  "RSS_base_MB": 125.5234375,
+  "RSS_pico_MB": 141.984375,
+  "incremento_RSS_MB": 16.4609375,
+  "artefacto_MB": 0.0015993118286132812,
+  "bucle_100_segundos": [
+    0.08824989999993704,
+    0.08426839999447111,
+    0.08624599999166094
+  ],
+  "estructura": {
+    "p_efectivas": 9
+  },
+  "mediciones": [
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0012160000042058527,
+      "ms_por_registro": 1.2160000042058527,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.000861699998495169,
+      "ms_por_registro": 0.861699998495169,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.000822600006358698,
+      "ms_por_registro": 0.822600006358698,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0008507000020472333,
+      "ms_por_registro": 0.8507000020472333,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0008123000006889924,
+      "ms_por_registro": 0.8123000006889924,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0008833999891066924,
+      "ms_por_registro": 0.008833999891066924,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0007634000066900626,
+      "ms_por_registro": 0.007634000066900626,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0007620000105816871,
+      "ms_por_registro": 0.007620000105816871,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.0007727999909548089,
+      "ms_por_registro": 0.007727999909548089,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0008459000091534108,
+      "ms_por_registro": 0.008459000091534108,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.0009392999927513301,
+      "ms_por_registro": 0.0009392999927513301,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0014671999961137772,
+      "ms_por_registro": 0.0014671999961137772,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.001629200007300824,
+      "ms_por_registro": 0.001629200007300824,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.0010020999907283112,
+      "ms_por_registro": 0.0010020999907283112,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "svr_lineal",
+      "modelo": "SVR lineal",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.0009032999951159582,
+      "ms_por_registro": 0.0009032999951159582,
+      "error_maximo": 7.105427357601002e-15
+    }
+  ]
+}

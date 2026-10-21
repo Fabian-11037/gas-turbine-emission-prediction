@@ -1,0 +1,17 @@
+procedimiento,rango_medio,objetivo
+KNN · Bayesiano,4.0,CO
+Ridge · Bayesiano,7.0,CO
+Lasso · Bayesiano,6.8,CO
+Decision Tree · Genetico,4.4,CO
+Random Forest · Genetico,2.4,CO
+XGBoost · Grid,3.2,CO
+SVR lineal · Bayesiano,7.2,CO
+Kernel operativo · Grid kernel,1.0,CO
+KNN · Bayesiano,4.0,NOX
+Ridge · Bayesiano,6.8,NOX
+Lasso · Bayesiano,7.0,NOX
+Decision Tree · Bayesiano,5.0,NOX
+Random Forest · Bayesiano,3.0,NOX
+XGBoost · Bayesiano,2.0,NOX
+SVR lineal · Bayesiano,7.2,NOX
+Kernel operativo · Grid kernel,1.0,NOX

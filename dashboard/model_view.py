@@ -9,7 +9,7 @@ from . import figures as f
 from .components import disclosure,graph,metric,notice,number,table
 from .models import feature_importance,predict,registry
 from .repository import intervals,optimization_results,predictions,range_warnings,results,sample_frame,sensors
-from . import kernel_view,learning
+from . import kernel_view,learning,explainability,assessment,stability
 
 MAX_ROWS = 2000
 MAX_BYTES = 2*1024*1024
@@ -88,15 +88,19 @@ def layout():
         disclosure('Significado de los indicadores',[
             html.P('R² resume cuánto mejora el modelo frente a estimar siempre el promedio: 1 es un ajuste perfecto y un valor negativo es peor que esa referencia. No es un porcentaje de predicciones correctas.'),
             html.P('MAE es el tamaño medio del error. RMSE da más peso a los errores grandes. Ambos se expresan en mg/m³; un valor menor es mejor. MSE es el promedio de errores al cuadrado y se utiliza para elegir configuraciones.'),
-            html.P('Entrenamiento mide el ajuste sobre datos usados para aprender; validación y prueba evalúan registros apartados. Una caída marcada fuera del entrenamiento puede indicar sobreajuste: aprender demasiado los detalles de la muestra.')]),
+            html.P('Entrenamiento mide el ajuste sobre datos usados para aprender. OOF reúne las predicciones obtenidas cuando cada registro queda fuera de su entrenamiento. El R² CV promedio calcula primero el R² de cada grupo y luego los promedia; el R² OOF se calcula una sola vez con todas esas predicciones.'),
+            html.P('La prueba evalúa el modelo final con registros reservados. Una caída marcada respecto al entrenamiento puede indicar sobreajuste: aprender detalles que no se mantienen en otros datos.')]),
         kernel_view.layout(),
         disclosure('Comparación entre modelos · entrenamiento, validación y prueba',html.Div(id='model-comparison')),
+        assessment.layout(),
+        stability.layout(),
         disclosure('Optimización de comparadores · 28 procedimientos por emisión',[
             html.Div(id='model-optimization'),html.P('Se comparan búsquedas de configuraciones: exhaustiva (Grid), aleatoria, guiada por resultados previos (Bayesiana) y evolutiva (Genética). El tiempo corresponde al entrenamiento y la evaluación, no a una predicción.',className='caption')]),
         disclosure('Importancia de variables · modelo y emisión seleccionados',[
             dcc.Loading(graph('model-importance-chart'),type='circle',color=f.TEAL),
             html.P(id='model-importance-note',className='caption'),
             disclosure('Valores de importancia por sensor',html.Div(id='model-importance-table'))]),
+        explainability.layout(),
         disclosure('Diagnóstico de errores',[
             graph('model-residual-chart'),html.Div(id='model-residual-summary'),
             html.P('Residuo = observado − estimado. Las predicciones negativas se conservan sin recorte y se señalan: no tienen interpretación como concentración física.',className='caption')]),
@@ -205,7 +209,10 @@ def parse_batch(contents, model_id):
 
 
 def register(app):
+    assessment.register(app)
+    explainability.register(app)
     kernel_view.register(app)
+    stability.register(app)
     app.callback(Output('model-learning-chart','figure'),Output('model-learning-note','children'),
                  Output('model-learning-table','children'),Input('model-select','value'),
                  Input('model-target','value'),Input('learning-metric','value'))(learning.render)

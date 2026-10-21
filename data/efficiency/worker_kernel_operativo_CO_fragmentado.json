@@ -1,0 +1,180 @@
+{
+  "modelo_id": "kernel_operativo",
+  "modelo": "Kernel operativo",
+  "objetivo": "CO",
+  "modo": "fragmentado",
+  "segundos_carga": 0.13092099998902995,
+  "RSS_base_MB": 125.0078125,
+  "RSS_pico_MB": 246.0703125,
+  "incremento_RSS_MB": 121.0625,
+  "artefacto_MB": 70.50976753234863,
+  "bucle_100_segundos": [],
+  "estructura": {},
+  "mediciones": [
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 1.170500499996706,
+      "ms_por_registro": 1170.500499996706,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 1.1945224999944912,
+      "ms_por_registro": 1194.5224999944912,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 1.1905323999963002,
+      "ms_por_registro": 1190.5323999963002,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 1.2093660999962594,
+      "ms_por_registro": 1209.3660999962594,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 1.3720144999970216,
+      "ms_por_registro": 1372.0144999970216,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 1.4136266999994405,
+      "ms_por_registro": 14.136266999994405,
+      "error_maximo": 5.329070518200751e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 1.320368700005929,
+      "ms_por_registro": 13.20368700005929,
+      "error_maximo": 5.329070518200751e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 1.3278518000006443,
+      "ms_por_registro": 13.278518000006443,
+      "error_maximo": 5.329070518200751e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 1.2633541999966837,
+      "ms_por_registro": 12.633541999966837,
+      "error_maximo": 5.329070518200751e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 1.261650299988105,
+      "ms_por_registro": 12.61650299988105,
+      "error_maximo": 5.329070518200751e-15
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 2.1933353999920655,
+      "ms_por_registro": 2.1933353999920655,
+      "error_maximo": 1.0658141036401503e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 2.0877854999998817,
+      "ms_por_registro": 2.0877854999998817,
+      "error_maximo": 1.0658141036401503e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 2.0967749999981606,
+      "ms_por_registro": 2.0967749999981606,
+      "error_maximo": 1.0658141036401503e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 2.0602844999957597,
+      "ms_por_registro": 2.0602844999957597,
+      "error_maximo": 1.0658141036401503e-14
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "fragmentado",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 2.1610707999934675,
+      "ms_por_registro": 2.1610707999934675,
+      "error_maximo": 1.0658141036401503e-14
+    }
+  ]
+}

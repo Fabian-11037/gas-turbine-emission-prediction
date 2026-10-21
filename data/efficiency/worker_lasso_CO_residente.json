@@ -1,0 +1,186 @@
+{
+  "modelo_id": "lasso",
+  "modelo": "Lasso",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 0.4978063000016846,
+  "RSS_base_MB": 124.9375,
+  "RSS_pico_MB": 141.4921875,
+  "incremento_RSS_MB": 16.5546875,
+  "artefacto_MB": 0.0016355514526367188,
+  "bucle_100_segundos": [
+    0.08618899999419227,
+    0.08698910000384785,
+    0.09171789999527391
+  ],
+  "estructura": {
+    "p_efectivas": 9
+  },
+  "mediciones": [
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0012411000061547384,
+      "ms_por_registro": 1.2411000061547384,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0009436000109417364,
+      "ms_por_registro": 0.9436000109417364,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.0008489000028930604,
+      "ms_por_registro": 0.8489000028930604,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0008540999988326803,
+      "ms_por_registro": 0.8540999988326803,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0007983999967109412,
+      "ms_por_registro": 0.7983999967109412,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0008361000072909519,
+      "ms_por_registro": 0.008361000072909519,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0007652999920537695,
+      "ms_por_registro": 0.007652999920537695,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0007884000078774989,
+      "ms_por_registro": 0.007884000078774989,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.0007475000020349398,
+      "ms_por_registro": 0.007475000020349398,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.000978900003246963,
+      "ms_por_registro": 0.00978900003246963,
+      "error_maximo": 8.881784197001252e-16
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.0009600999910617247,
+      "ms_por_registro": 0.0009600999910617247,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0008728999964660034,
+      "ms_por_registro": 0.0008728999964660034,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.0008305999945150688,
+      "ms_por_registro": 0.0008305999945150688,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.001182899999548681,
+      "ms_por_registro": 0.001182899999548681,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "lasso",
+      "modelo": "Lasso",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.0008308999967994168,
+      "ms_por_registro": 0.0008308999967994168,
+      "error_maximo": 1.7763568394002505e-15
+    }
+  ]
+}

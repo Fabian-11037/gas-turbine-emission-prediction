@@ -1,0 +1,188 @@
+{
+  "modelo_id": "random_forest",
+  "modelo": "Random Forest",
+  "objetivo": "CO",
+  "modo": "residente",
+  "segundos_carga": 0.5953288000018802,
+  "RSS_base_MB": 124.87109375,
+  "RSS_pico_MB": 151.3828125,
+  "incremento_RSS_MB": 26.51171875,
+  "artefacto_MB": 1.4892463684082031,
+  "bucle_100_segundos": [
+    0.4603597999957856,
+    0.48440580000169575,
+    0.49758580001071095
+  ],
+  "estructura": {
+    "p_efectivas": 9,
+    "n_arboles": 80,
+    "profundidad": 12
+  },
+  "mediciones": [
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.00482410000404343,
+      "ms_por_registro": 4.82410000404343,
+      "error_maximo": 2.220446049250313e-16
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.004457900009583682,
+      "ms_por_registro": 4.457900009583682,
+      "error_maximo": 2.220446049250313e-16
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.004134300004807301,
+      "ms_por_registro": 4.134300004807301,
+      "error_maximo": 2.220446049250313e-16
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.006857100001070648,
+      "ms_por_registro": 6.857100001070648,
+      "error_maximo": 2.220446049250313e-16
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.004453900008229539,
+      "ms_por_registro": 4.453900008229539,
+      "error_maximo": 2.220446049250313e-16
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.005175099999178201,
+      "ms_por_registro": 0.05175099999178201,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.006033700003172271,
+      "ms_por_registro": 0.06033700003172271,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.005306000006385148,
+      "ms_por_registro": 0.053060000063851476,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.005040100004407577,
+      "ms_por_registro": 0.05040100004407577,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.006390200011082925,
+      "ms_por_registro": 0.06390200011082925,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.011649599997326732,
+      "ms_por_registro": 0.011649599997326732,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.011429199992562644,
+      "ms_por_registro": 0.011429199992562644,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.012441200000466779,
+      "ms_por_registro": 0.012441200000466779,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.011710100006894208,
+      "ms_por_registro": 0.011710100006894208,
+      "error_maximo": 1.7763568394002505e-15
+    },
+    {
+      "modelo_id": "random_forest",
+      "modelo": "Random Forest",
+      "objetivo": "CO",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.011638100011623465,
+      "ms_por_registro": 0.011638100011623465,
+      "error_maximo": 1.7763568394002505e-15
+    }
+  ]
+}

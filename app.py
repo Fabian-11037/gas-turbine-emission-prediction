@@ -23,6 +23,16 @@ app.layout = html.Div([
     html.Header([html.Div([html.P('PROYECTO DE MACHINE LEARNING',className='eyebrow'),
                           html.H1(TITLE)]),
                  html.Div([html.Span(className='live-dot'),html.Span('Datos UCI · 2011–2015')],className='header-meta')],className='app-header'),
+    html.Figure([
+        html.Img(src='/assets/turbina_portada.jpg',
+                 alt='Inspección de los componentes de una turbina de gas FR6 en la sala de máquinas de DOGA Enerji, Estambul.',
+                 width=1920, height=1440),
+        html.Figcaption([
+            html.Span('Turbina de gas FR6 · inspección en sala de máquinas'),
+            html.Span(['Foto: ', html.A('Pro-Per Energy Services',
+                href='https://commons.wikimedia.org/wiki/File:Frame_Turbine.JPG', target='_blank', rel='noopener noreferrer'),
+                ' · ', html.A('CC BY-SA 4.0', href='https://creativecommons.org/licenses/by-sa/4.0/',
+                              target='_blank', rel='noopener noreferrer')])])], className='project-cover'),
     dcc.Tabs(id='main-tabs',value='contexto',children=[
         dcc.Tab(label='Contexto',value='contexto'),dcc.Tab(label='EDA',value='eda'),
         dcc.Tab(label='Modelos',value='modelos')],className='main-tabs',parent_className='main-tabs-parent',mobile_breakpoint=0),

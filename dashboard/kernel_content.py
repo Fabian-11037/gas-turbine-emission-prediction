@@ -4,7 +4,7 @@ ARCHITECTURE = r"""El **kernel operativo** combina dos modelos: **Extra Trees**,
 
 A los nueve sensores se añaden dos variables: la caída de temperatura **TIT − TAT** y su producto por **TEY**. SVR da distintos pesos a los grupos de ambiente, temperatura y presión para definir qué condiciones considera similares.
 
-Se entrena un modelo independiente para cada emisión. Se prueban 24 configuraciones y se elige la de menor error en la validación interna. Ridge aprende con predicciones obtenidas sin usar el registro que se intenta estimar (*OOF*), con una separación adicional entre grupos (*cross-fitting*). Se mantienen bloques de 168 registros, margen de 24 y validación externa de cinco grupos e interna de tres. El ajuste final usa solo los 27.570 registros de desarrollo.
+Se entrena un modelo independiente por emisión. La validación interna elige entre 24 configuraciones. Ridge aprende con predicciones obtenidas por turnos: cada registro se estima cuando su bloque queda fuera del ajuste de las bases. Este procedimiento, llamado *cross-fitting*, evita que el combinador aprenda de predicciones demasiado fáciles del entrenamiento. Se mantienen los bloques de 168 registros, el margen de 24 y la validación de cinco grupos externos y tres internos. El ajuste final utiliza los 27.570 registros de desarrollo.
 """
 
 TREE_MODELS = r"""### Qué es Extra Trees y cómo se diferencia
@@ -37,7 +37,7 @@ $\Delta T$ es la caída de temperatura entre entrada y salida; $I$ combina esa c
 
 Una mayor $\Delta T$ representa una mayor caída térmica, **no necesariamente mayor eficiencia**. En una turbina ideal, el trabajo por unidad de masa se relaciona con esa caída mediante $w\approx c_p\Delta T$; $c_p$ representa cuánto calor necesita el gas para cambiar su temperatura ([NASA Glenn](https://www.grc.nasa.gov/WWW/K-12/airplane/powtrbth.html)).
 
-La interacción $I$ ayuda a distinguir una misma caída térmica bajo diferentes niveles de producción. Según el [diccionario UCI](https://archive.ics.uci.edu/dataset/551/gas+turbine+co+and+nox+emission+data+set), TEY se expresa en MWh; por tanto, $I$ tiene unidades **MWh·°C**, no de eficiencia. Son formas de representar los sensores, no mediciones adicionales. Su relación con las emisiones puede cambiar según las demás condiciones. Una **ablación**, es decir, repetir la evaluación quitando cada componente, permitiría conocer su aporte individual.
+La interacción $I$ distingue una misma caída térmica bajo distintos niveles de producción. Como TEY se expresa en MWh, $I$ tiene unidades **MWh·°C**, no de eficiencia ([diccionario UCI](https://archive.ics.uci.edu/dataset/551/gas+turbine+co+and+nox+emission+data+set)). Ambas variables se calculan con los sensores existentes y su relación con las emisiones puede cambiar según las demás condiciones. Su aporte se evalúa retirándolas en el análisis de ablación.
 
 ### Poner los sensores en una escala comparable
 
@@ -53,7 +53,7 @@ $$
 K(z,z_i)=\exp\!\left[-0{,}2\sum_{j=1}^{11}w_j^2(z_j-z_{ij})^2\right]
 $$
 
-Se comparan las once variables del registro actual $z$ con un registro de referencia $z_i$. El **kernel RBF** devuelve un valor cercano a 1 cuando se parecen y a 0 cuando difieren. Los pesos $w_j$ hacen que algunas diferencias cuenten más; no son efectos causales.
+Se comparan las once variables del registro actual $z$ con un registro de referencia $z_i$. El **kernel RBF** devuelve un valor cercano a 1 cuando se parecen y a 0 cuando difieren. Los pesos $w_j$ hacen que algunas diferencias cuenten más. Se eligen entre cuatro combinaciones mediante validación interna; no son efectos causales ni los coeficientes que aprende Ridge al combinar predicciones.
 
 ### Obtener dos estimaciones
 
@@ -95,7 +95,7 @@ La propuesta integra **dos variables operativas**, **semejanzas ponderadas por g
 | [Coelho et al. (2024)](https://doi.org/10.1016/j.fuel.2023.129366) | Resume sensores con PCA, t-SNE, UMAP y PHATE, según el resumen editorial | Usa dos variables de interpretación operativa en lugar de esas proyecciones |
 | [Jhinaoui et al. (2024)](https://gpps.global/wp-content/uploads/2024/09/GPPS-TC-2024_paper_154.pdf) | CatBoost + Catch22 resume ventanas de 60 lecturas | Usa únicamente sensores del registro actual y sus transformaciones |
 
-Ponderar las dimensiones de un kernel tiene antecedentes ([Rasmussen y Williams](https://gaussianprocess.org/gpml/chapters/RW5.pdf)). El aporte está en la integración y adaptación al problema, no en inventar sus componentes. Para separar el beneficio de las variables y de los pesos sería necesario evaluar cada cambio por separado.
+Ponderar las dimensiones de un kernel tiene antecedentes ([Rasmussen y Williams](https://gaussianprocess.org/gpml/chapters/RW5.pdf)). El aporte está en integrar y adaptar los componentes al problema. La ablación compara el modelo completo con versiones sin las variables operativas, sin los pesos y con cada modelo base por separado.
 """
 
 SELECTION = r"""### Modelo elegido para CO y NOx

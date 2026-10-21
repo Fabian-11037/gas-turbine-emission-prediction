@@ -1,0 +1,186 @@
+{
+  "modelo_id": "kernel_operativo",
+  "modelo": "Kernel operativo",
+  "objetivo": "CO",
+  "modo": "rbf_vectorizado",
+  "segundos_carga": 1.582889500001329,
+  "RSS_base_MB": 124.7890625,
+  "RSS_pico_MB": 539.4921875,
+  "incremento_RSS_MB": 414.703125,
+  "artefacto_MB": 70.49541282653809,
+  "bucle_100_segundos": [],
+  "estructura": {
+    "p_efectivas": 11,
+    "n_arboles": 200,
+    "profundidad": 20,
+    "n_soporte": 16718,
+    "cache_SVR_MB": 256
+  },
+  "mediciones": [
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.010992900002747774,
+      "ms_por_registro": 10.992900002747774,
+      "error_maximo": 4.134470543704083e-13
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.010507699989830144,
+      "ms_por_registro": 10.507699989830144,
+      "error_maximo": 4.134470543704083e-13
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.012511699998867698,
+      "ms_por_registro": 12.511699998867698,
+      "error_maximo": 4.134470543704083e-13
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.01170240000647027,
+      "ms_por_registro": 11.70240000647027,
+      "error_maximo": 4.134470543704083e-13
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.010422599996672943,
+      "ms_por_registro": 10.422599996672943,
+      "error_maximo": 4.134470543704083e-13
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.042503400007262826,
+      "ms_por_registro": 0.42503400007262826,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.041541099999449216,
+      "ms_por_registro": 0.41541099999449216,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.04209640000772197,
+      "ms_por_registro": 0.4209640000772197,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.04516249999869615,
+      "ms_por_registro": 0.4516249999869615,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.04236200000741519,
+      "ms_por_registro": 0.4236200000741519,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.2622976999991806,
+      "ms_por_registro": 0.2622976999991806,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.27166549999674316,
+      "ms_por_registro": 0.27166549999674316,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.27298520000476856,
+      "ms_por_registro": 0.27298520000476856,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.27368939999723807,
+      "ms_por_registro": 0.27368939999723807,
+      "error_maximo": 9.519185439899047e-11
+    },
+    {
+      "modelo_id": "kernel_operativo",
+      "modelo": "Kernel operativo",
+      "objetivo": "CO",
+      "modo": "rbf_vectorizado",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.27554679999593645,
+      "ms_por_registro": 0.27554679999593645,
+      "error_maximo": 9.519185439899047e-11
+    }
+  ]
+}

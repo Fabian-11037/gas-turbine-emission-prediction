@@ -1,0 +1,187 @@
+{
+  "modelo_id": "decision_tree",
+  "modelo": "Decision Tree",
+  "objetivo": "NOX",
+  "modo": "residente",
+  "segundos_carga": 0.5634391999919899,
+  "RSS_base_MB": 124.74609375,
+  "RSS_pico_MB": 144.58203125,
+  "incremento_RSS_MB": 19.8359375,
+  "artefacto_MB": 0.04185009002685547,
+  "bucle_100_segundos": [
+    0.0852259000093909,
+    0.08972000000358094,
+    0.08877360000042245
+  ],
+  "estructura": {
+    "p_efectivas": 9,
+    "profundidad": 16
+  },
+  "mediciones": [
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0012816000089515,
+      "ms_por_registro": 1.2816000089515,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0010728000052040443,
+      "ms_por_registro": 1.0728000052040443,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.0013541999942390248,
+      "ms_por_registro": 1.3541999942390248,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0010689999908208847,
+      "ms_por_registro": 1.0689999908208847,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0010207000013906509,
+      "ms_por_registro": 1.0207000013906509,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0011071000044466928,
+      "ms_por_registro": 0.011071000044466928,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0009104000055231154,
+      "ms_por_registro": 0.009104000055231154,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0008548000041628256,
+      "ms_por_registro": 0.008548000041628256,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.0008172999951057136,
+      "ms_por_registro": 0.008172999951057136,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0008087000023806468,
+      "ms_por_registro": 0.008087000023806468,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.001048400008585304,
+      "ms_por_registro": 0.001048400008585304,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.001031499996315688,
+      "ms_por_registro": 0.001031499996315688,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.001003899989882484,
+      "ms_por_registro": 0.001003899989882484,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.0009475999977439642,
+      "ms_por_registro": 0.0009475999977439642,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "decision_tree",
+      "modelo": "Decision Tree",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.0009501000022282824,
+      "ms_por_registro": 0.0009501000022282824,
+      "error_maximo": 1.4210854715202004e-14
+    }
+  ]
+}

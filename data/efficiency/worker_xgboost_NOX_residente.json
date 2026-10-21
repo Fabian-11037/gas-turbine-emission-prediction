@@ -1,0 +1,188 @@
+{
+  "modelo_id": "xgboost",
+  "modelo": "XGBoost",
+  "objetivo": "NOX",
+  "modo": "residente",
+  "segundos_carga": 0.5223030999914045,
+  "RSS_base_MB": 124.9140625,
+  "RSS_pico_MB": 147.109375,
+  "incremento_RSS_MB": 22.1953125,
+  "artefacto_MB": 0.2270040512084961,
+  "bucle_100_segundos": [
+    0.13257940000039525,
+    0.127137399991625,
+    0.12607800000114366
+  ],
+  "estructura": {
+    "p_efectivas": 9,
+    "n_arboles": 160,
+    "profundidad": 6
+  },
+  "mediciones": [
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0018232000002171844,
+      "ms_por_registro": 1.8232000002171844,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0013260999985504895,
+      "ms_por_registro": 1.3260999985504895,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.0012529999949038029,
+      "ms_por_registro": 1.2529999949038029,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0012448000052245334,
+      "ms_por_registro": 1.2448000052245334,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0012685999972745776,
+      "ms_por_registro": 1.2685999972745776,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0016066999960457906,
+      "ms_por_registro": 0.016066999960457906,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0014990999916335568,
+      "ms_por_registro": 0.014990999916335568,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0015426000027218834,
+      "ms_por_registro": 0.015426000027218832,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.002417399999103509,
+      "ms_por_registro": 0.02417399999103509,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0019964999955845997,
+      "ms_por_registro": 0.019964999955845997,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.0035717999999178573,
+      "ms_por_registro": 0.0035717999999178573,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0035457999911159277,
+      "ms_por_registro": 0.0035457999911159277,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.0035762000043177977,
+      "ms_por_registro": 0.0035762000043177977,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.003673899991554208,
+      "ms_por_registro": 0.003673899991554208,
+      "error_maximo": 1.4210854715202004e-14
+    },
+    {
+      "modelo_id": "xgboost",
+      "modelo": "XGBoost",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.003660000002128072,
+      "ms_por_registro": 0.003660000002128072,
+      "error_maximo": 1.4210854715202004e-14
+    }
+  ]
+}

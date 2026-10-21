@@ -4,6 +4,7 @@ from functools import lru_cache
 from dash import Input, Output, dcc, html
 from .components import disclosure, table
 from .repository import DATA
+from . import experiment_history
 from .kernel_content import (ARCHITECTURE, TREE_MODELS, MATHEMATICS, CONTRIBUTION, SELECTION,
     STATISTICAL_METHOD, STATISTICAL_INTERPRETATION)
 
@@ -19,7 +20,8 @@ def layout():
             dcc.Tab(label='Arquitectura', value='arquitectura'),
             dcc.Tab(label='Fundamentos', value='matematicas'),
             dcc.Tab(label='Aporte y literatura', value='aporte'),
-            dcc.Tab(label='Evidencia', value='evidencia')],
+            dcc.Tab(label='Evidencia', value='evidencia'),
+            dcc.Tab(label='Modelos probados', value='historial')],
             className='kernel-tabs', mobile_breakpoint=0),
         html.Div(id='kernel-detail', className='kernel-detail')]),
         id='kernel-panel', style={'display': 'none'})
@@ -39,6 +41,8 @@ def render(model_id, target, section):
         return {}, dcc.Markdown(CONTRIBUTION, mathjax=True, className='kernel-markdown')
     if section == 'evidencia':
         return {}, evidence(target)
+    if section == 'historial':
+        return {}, experiment_history.layout()
     import pandas as pd
     parameters = architecture()[target]
     w = parameters['pesos_svr']
@@ -97,6 +101,7 @@ def evidence(target):
 
 
 def register(app):
+    experiment_history.register(app)
     app.callback(Output('kernel-panel', 'style'), Output('kernel-detail', 'children'),
         Input('model-select', 'value'), Input('model-target', 'value'),
         Input('kernel-section', 'value'))(render)

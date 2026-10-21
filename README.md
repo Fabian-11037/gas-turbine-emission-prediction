@@ -1,6 +1,7 @@
 # Dashboard CO y NOx
 
-Guia de presentacion y glosario: [Guia de sustentacion](docs/guia_sustentacion.md).
+Guia de presentacion y glosario: [version web](docs/guia_sustentacion.md) y
+[PDF con miniaturas](docs/guia_sustentacion_CO_NOx.pdf).
 
 Aplicacion Dash Plotly con tres pestanas: contexto, EDA y modelos. Inferencia
 con ocho familias y dieciseis estimadores ya entrenados; nunca entrena en Render.
@@ -10,6 +11,56 @@ Esta carpeta es un repositorio independiente del proyecto que la contiene.
 Los archivos del servicio estan en la raiz remota: Root Directory se deja vacio.
 
 ## Modelos y evidencias
+
+La evaluacion adicional usa 29 procedimientos por emision: MCS sobre predicciones
+OOF, contrastes por bloques y sensibilidad. Incluye complejidad teorica y un
+benchmark de inferencia/RSS de los estimadores congelados. Las secciones 4.12 y
+4.13 del JBook y los paneles del dashboard leen `data/statistical_hierarchy/` y
+`data/efficiency/`. No se requieren arch ni psutil en Render.
+
+```text
+python -m pip install -r tools/requirements-assessment.txt
+python tools/export_hierarchical_statistics.py
+python tools/benchmark_efficiency.py
+python tools/update_assessment_book.py
+```
+
+El contraste estadistico puede reproducirse desde las matrices de perdidas
+incluidas; los caches originales solo se necesitan para una extraccion inicial
+o para cambiar los procedimientos. El benchmark no cambia modelos ni validacion.
+
+La sensibilidad a cinco semillas y la ablacion controlada del kernel se ejecutan
+fuera del servidor, con particiones y configuraciones por pliegue fijas:
+
+```text
+python tools/validate_stability_ablation.py --workers 2
+python tools/update_stability_book.py
+```
+
+Los calculos son reanudables desde `../tmp/stability_ablation_cache/` y sus
+resultados quedan en `data/stability_ablation/`. La seccion 4.14 del JBook y el
+panel de estabilidad leen esta evidencia, sin entrenar en Render ni reemplazar
+los estimadores publicados. Los metodos sin aleatoriedad activa reutilizan la
+prediccion original; no representan cinco ajustes independientes. Las ablaciones
+comparan componentes con semilla 42, sin una nueva busqueda de hiperparametros.
+La tabla historica conserva su ubicacion e incluye R2 de entrenamiento, CV media
+externa y prueba para la emision seleccionada, junto con el protocolo de origen.
+
+Kernel operativo y XGBoost incluyen SHAP global, explicaciones individuales y
+comparacion con LIME para CO y NOx. El dashboard solo lee resultados guardados;
+SHAP y LIME no se instalan en Render. Las explicaciones estan en
+`data/explainability/`, con referencia, casos, comprobaciones y huellas de los
+modelos y de la validacion. La seccion 4.11 del JBook presenta las mismas evidencias.
+
+Para recalcular exclusivamente las explicaciones y actualizar sus salidas en el libro:
+
+```text
+python -m pip install -r tools/requirements-explainability.txt
+python tools/export_explainability.py
+python tools/update_explainability_book.py
+```
+
+Estas operaciones no reentrenan los estimadores ni cambian las particiones.
 
 - KNN, Ridge, Lasso, Decision Tree, Random Forest, XGBoost, SVR lineal y Kernel operativo.
 - Un regresor por familia y emision, con escalado de sensores y respuesta incluido.
@@ -32,6 +83,18 @@ del JBook actualizado. Se conserva la advertencia de prueba previamente
 examinada: no es validacion prospectiva ni evidencia de superioridad estadistica.
 
 ## Estructura
+
+El panel del kernel incluye un historial consultivo de modelos y variantes probados,
+con R2 de entrenamiento para CO y NOx. No incorpora sus estimadores ni dependencias.
+`data/historial_modelos.csv` y su manifiesto JSON contienen toda la evidencia
+necesaria para mostrarlo en Render. Para actualizarlo desde los experimentos locales:
+
+```text
+python tools/export_experiment_history.py --source-root "../Pruebas provisionales CO NOx"
+```
+
+La portada se sirve localmente; su autoria, fuente y licencia estan documentadas
+en [IMAGE_CREDITS.md](assets/IMAGE_CREDITS.md).
 
 ```text
 app.py                         Entrada local y WSGI (app:server)

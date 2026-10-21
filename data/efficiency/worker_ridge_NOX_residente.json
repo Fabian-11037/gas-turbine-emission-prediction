@@ -1,0 +1,186 @@
+{
+  "modelo_id": "ridge",
+  "modelo": "Ridge",
+  "objetivo": "NOX",
+  "modo": "residente",
+  "segundos_carga": 0.5239636999904178,
+  "RSS_base_MB": 125.09375,
+  "RSS_pico_MB": 141.83984375,
+  "incremento_RSS_MB": 16.74609375,
+  "artefacto_MB": 0.0015592575073242188,
+  "bucle_100_segundos": [
+    0.08857069999794476,
+    0.09024920000229031,
+    0.09111789999587927
+  ],
+  "estructura": {
+    "p_efectivas": 9
+  },
+  "mediciones": [
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 1,
+      "segundos": 0.0012955999991390854,
+      "ms_por_registro": 1.2955999991390854,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 2,
+      "segundos": 0.0009969000093406066,
+      "ms_por_registro": 0.9969000093406066,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 3,
+      "segundos": 0.0012119000020902604,
+      "ms_por_registro": 1.2119000020902604,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 4,
+      "segundos": 0.0010057000035885721,
+      "ms_por_registro": 1.0057000035885721,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1,
+      "repeticion": 5,
+      "segundos": 0.0009186000097543001,
+      "ms_por_registro": 0.9186000097543001,
+      "error_maximo": 0.0
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 1,
+      "segundos": 0.0009641999931773171,
+      "ms_por_registro": 0.00964199993177317,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 2,
+      "segundos": 0.0008951999916462228,
+      "ms_por_registro": 0.008951999916462228,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 3,
+      "segundos": 0.0008863999973982573,
+      "ms_por_registro": 0.008863999973982573,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 4,
+      "segundos": 0.0010762000019894913,
+      "ms_por_registro": 0.010762000019894913,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 100,
+      "repeticion": 5,
+      "segundos": 0.0009579000034136698,
+      "ms_por_registro": 0.009579000034136698,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 1,
+      "segundos": 0.001045699988026172,
+      "ms_por_registro": 0.001045699988026172,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 2,
+      "segundos": 0.0009147000091616064,
+      "ms_por_registro": 0.0009147000091616064,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 3,
+      "segundos": 0.0008851000020513311,
+      "ms_por_registro": 0.0008851000020513311,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 4,
+      "segundos": 0.0008679000020492822,
+      "ms_por_registro": 0.0008679000020492822,
+      "error_maximo": 7.105427357601002e-15
+    },
+    {
+      "modelo_id": "ridge",
+      "modelo": "Ridge",
+      "objetivo": "NOX",
+      "modo": "residente",
+      "n_lote": 1000,
+      "repeticion": 5,
+      "segundos": 0.0008692999981576577,
+      "ms_por_registro": 0.0008692999981576577,
+      "error_maximo": 7.105427357601002e-15
+    }
+  ]
+}

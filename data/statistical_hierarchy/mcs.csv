@@ -1,0 +1,175 @@
+procedimiento,representante,p_MCS,incluido_005,incluido_010,bloques_medios,objetivo
+KNN · Grid,KNN · Grid,0.0,False,False,1.0,CO
+KNN · Random,KNN · Grid,0.0,False,False,1.0,CO
+KNN · Bayesiano,KNN · Grid,0.0,False,False,1.0,CO
+KNN · Genetico,KNN · Genetico,0.0,False,False,1.0,CO
+Ridge · Grid,Ridge · Grid,0.0,False,False,1.0,CO
+Ridge · Random,Ridge · Grid,0.0,False,False,1.0,CO
+Ridge · Bayesiano,Ridge · Grid,0.0,False,False,1.0,CO
+Ridge · Genetico,Ridge · Grid,0.0,False,False,1.0,CO
+Lasso · Grid,Lasso · Grid,0.0,False,False,1.0,CO
+Lasso · Random,Lasso · Grid,0.0,False,False,1.0,CO
+Lasso · Bayesiano,Lasso · Grid,0.0,False,False,1.0,CO
+Lasso · Genetico,Lasso · Grid,0.0,False,False,1.0,CO
+Decision Tree · Grid,Decision Tree · Grid,0.0,False,False,1.0,CO
+Decision Tree · Bayesiano,Decision Tree · Grid,0.0,False,False,1.0,CO
+Decision Tree · Random,Decision Tree · Random,0.0,False,False,1.0,CO
+Decision Tree · Genetico,Decision Tree · Random,0.0,False,False,1.0,CO
+Random Forest · Grid,Random Forest · Grid,0.0008,False,False,1.0,CO
+Random Forest · Bayesiano,Random Forest · Grid,0.0008,False,False,1.0,CO
+Random Forest · Random,Random Forest · Random,0.0016,False,False,1.0,CO
+Random Forest · Genetico,Random Forest · Genetico,0.0,False,False,1.0,CO
+XGBoost · Grid,XGBoost · Grid,0.0022,False,False,1.0,CO
+XGBoost · Random,XGBoost · Random,0.0016,False,False,1.0,CO
+XGBoost · Bayesiano,XGBoost · Bayesiano,0.0022,False,False,1.0,CO
+XGBoost · Genetico,XGBoost · Genetico,0.0012,False,False,1.0,CO
+SVR lineal · Grid,SVR lineal · Grid,0.0,False,False,1.0,CO
+SVR lineal · Random,SVR lineal · Grid,0.0,False,False,1.0,CO
+SVR lineal · Bayesiano,SVR lineal · Grid,0.0,False,False,1.0,CO
+SVR lineal · Genetico,SVR lineal · Grid,0.0,False,False,1.0,CO
+Kernel operativo · Grid kernel,Kernel operativo · Grid kernel,1.0,True,True,1.0,CO
+KNN · Grid,KNN · Grid,0.0586,True,False,2.0,CO
+KNN · Random,KNN · Grid,0.0586,True,False,2.0,CO
+KNN · Bayesiano,KNN · Grid,0.0586,True,False,2.0,CO
+KNN · Genetico,KNN · Genetico,0.0586,True,False,2.0,CO
+Ridge · Grid,Ridge · Grid,0.0032,False,False,2.0,CO
+Ridge · Random,Ridge · Grid,0.0032,False,False,2.0,CO
+Ridge · Bayesiano,Ridge · Grid,0.0032,False,False,2.0,CO
+Ridge · Genetico,Ridge · Grid,0.0032,False,False,2.0,CO
+Lasso · Grid,Lasso · Grid,0.0032,False,False,2.0,CO
+Lasso · Random,Lasso · Grid,0.0032,False,False,2.0,CO
+Lasso · Bayesiano,Lasso · Grid,0.0032,False,False,2.0,CO
+Lasso · Genetico,Lasso · Grid,0.0032,False,False,2.0,CO
+Decision Tree · Grid,Decision Tree · Grid,0.0664,True,False,2.0,CO
+Decision Tree · Bayesiano,Decision Tree · Grid,0.0664,True,False,2.0,CO
+Decision Tree · Random,Decision Tree · Random,0.0664,True,False,2.0,CO
+Decision Tree · Genetico,Decision Tree · Random,0.0664,True,False,2.0,CO
+Random Forest · Grid,Random Forest · Grid,0.0764,True,False,2.0,CO
+Random Forest · Bayesiano,Random Forest · Grid,0.0764,True,False,2.0,CO
+Random Forest · Random,Random Forest · Random,0.095,True,False,2.0,CO
+Random Forest · Genetico,Random Forest · Genetico,0.0664,True,False,2.0,CO
+XGBoost · Grid,XGBoost · Grid,0.095,True,False,2.0,CO
+XGBoost · Random,XGBoost · Random,0.095,True,False,2.0,CO
+XGBoost · Bayesiano,XGBoost · Bayesiano,0.095,True,False,2.0,CO
+XGBoost · Genetico,XGBoost · Genetico,0.095,True,False,2.0,CO
+SVR lineal · Grid,SVR lineal · Grid,0.0032,False,False,2.0,CO
+SVR lineal · Random,SVR lineal · Grid,0.0032,False,False,2.0,CO
+SVR lineal · Bayesiano,SVR lineal · Grid,0.0032,False,False,2.0,CO
+SVR lineal · Genetico,SVR lineal · Grid,0.0032,False,False,2.0,CO
+Kernel operativo · Grid kernel,Kernel operativo · Grid kernel,1.0,True,True,2.0,CO
+KNN · Grid,KNN · Grid,0.2678,True,True,4.0,CO
+KNN · Random,KNN · Grid,0.2678,True,True,4.0,CO
+KNN · Bayesiano,KNN · Grid,0.2678,True,True,4.0,CO
+KNN · Genetico,KNN · Genetico,0.2678,True,True,4.0,CO
+Ridge · Grid,Ridge · Grid,0.069,True,False,4.0,CO
+Ridge · Random,Ridge · Grid,0.069,True,False,4.0,CO
+Ridge · Bayesiano,Ridge · Grid,0.069,True,False,4.0,CO
+Ridge · Genetico,Ridge · Grid,0.069,True,False,4.0,CO
+Lasso · Grid,Lasso · Grid,0.069,True,False,4.0,CO
+Lasso · Random,Lasso · Grid,0.069,True,False,4.0,CO
+Lasso · Bayesiano,Lasso · Grid,0.069,True,False,4.0,CO
+Lasso · Genetico,Lasso · Grid,0.069,True,False,4.0,CO
+Decision Tree · Grid,Decision Tree · Grid,0.2678,True,True,4.0,CO
+Decision Tree · Bayesiano,Decision Tree · Grid,0.2678,True,True,4.0,CO
+Decision Tree · Random,Decision Tree · Random,0.2678,True,True,4.0,CO
+Decision Tree · Genetico,Decision Tree · Random,0.2678,True,True,4.0,CO
+Random Forest · Grid,Random Forest · Grid,0.2678,True,True,4.0,CO
+Random Forest · Bayesiano,Random Forest · Grid,0.2678,True,True,4.0,CO
+Random Forest · Random,Random Forest · Random,0.2918,True,True,4.0,CO
+Random Forest · Genetico,Random Forest · Genetico,0.2678,True,True,4.0,CO
+XGBoost · Grid,XGBoost · Grid,0.2918,True,True,4.0,CO
+XGBoost · Random,XGBoost · Random,0.2918,True,True,4.0,CO
+XGBoost · Bayesiano,XGBoost · Bayesiano,0.2918,True,True,4.0,CO
+XGBoost · Genetico,XGBoost · Genetico,0.2918,True,True,4.0,CO
+SVR lineal · Grid,SVR lineal · Grid,0.0656,True,False,4.0,CO
+SVR lineal · Random,SVR lineal · Grid,0.0656,True,False,4.0,CO
+SVR lineal · Bayesiano,SVR lineal · Grid,0.0656,True,False,4.0,CO
+SVR lineal · Genetico,SVR lineal · Grid,0.0656,True,False,4.0,CO
+Kernel operativo · Grid kernel,Kernel operativo · Grid kernel,1.0,True,True,4.0,CO
+KNN · Grid,KNN · Grid,0.0,False,False,1.0,NOX
+KNN · Random,KNN · Grid,0.0,False,False,1.0,NOX
+KNN · Bayesiano,KNN · Grid,0.0,False,False,1.0,NOX
+KNN · Genetico,KNN · Genetico,0.0,False,False,1.0,NOX
+Ridge · Grid,Ridge · Grid,0.0,False,False,1.0,NOX
+Ridge · Random,Ridge · Grid,0.0,False,False,1.0,NOX
+Ridge · Bayesiano,Ridge · Grid,0.0,False,False,1.0,NOX
+Ridge · Genetico,Ridge · Grid,0.0,False,False,1.0,NOX
+Lasso · Grid,Lasso · Grid,0.0,False,False,1.0,NOX
+Lasso · Random,Lasso · Grid,0.0,False,False,1.0,NOX
+Lasso · Bayesiano,Lasso · Grid,0.0,False,False,1.0,NOX
+Lasso · Genetico,Lasso · Grid,0.0,False,False,1.0,NOX
+Decision Tree · Grid,Decision Tree · Grid,0.0,False,False,1.0,NOX
+Decision Tree · Bayesiano,Decision Tree · Grid,0.0,False,False,1.0,NOX
+Decision Tree · Random,Decision Tree · Random,0.0,False,False,1.0,NOX
+Decision Tree · Genetico,Decision Tree · Genetico,0.0,False,False,1.0,NOX
+Random Forest · Grid,Random Forest · Grid,0.0,False,False,1.0,NOX
+Random Forest · Random,Random Forest · Grid,0.0,False,False,1.0,NOX
+Random Forest · Bayesiano,Random Forest · Grid,0.0,False,False,1.0,NOX
+Random Forest · Genetico,Random Forest · Genetico,0.0,False,False,1.0,NOX
+XGBoost · Grid,XGBoost · Grid,0.0,False,False,1.0,NOX
+XGBoost · Bayesiano,XGBoost · Grid,0.0,False,False,1.0,NOX
+XGBoost · Genetico,XGBoost · Grid,0.0,False,False,1.0,NOX
+XGBoost · Random,XGBoost · Random,0.0,False,False,1.0,NOX
+SVR lineal · Grid,SVR lineal · Grid,0.0,False,False,1.0,NOX
+SVR lineal · Random,SVR lineal · Grid,0.0,False,False,1.0,NOX
+SVR lineal · Bayesiano,SVR lineal · Grid,0.0,False,False,1.0,NOX
+SVR lineal · Genetico,SVR lineal · Grid,0.0,False,False,1.0,NOX
+Kernel operativo · Grid kernel,Kernel operativo · Grid kernel,1.0,True,True,1.0,NOX
+KNN · Grid,KNN · Grid,0.0,False,False,2.0,NOX
+KNN · Random,KNN · Grid,0.0,False,False,2.0,NOX
+KNN · Bayesiano,KNN · Grid,0.0,False,False,2.0,NOX
+KNN · Genetico,KNN · Genetico,0.0,False,False,2.0,NOX
+Ridge · Grid,Ridge · Grid,0.0,False,False,2.0,NOX
+Ridge · Random,Ridge · Grid,0.0,False,False,2.0,NOX
+Ridge · Bayesiano,Ridge · Grid,0.0,False,False,2.0,NOX
+Ridge · Genetico,Ridge · Grid,0.0,False,False,2.0,NOX
+Lasso · Grid,Lasso · Grid,0.0,False,False,2.0,NOX
+Lasso · Random,Lasso · Grid,0.0,False,False,2.0,NOX
+Lasso · Bayesiano,Lasso · Grid,0.0,False,False,2.0,NOX
+Lasso · Genetico,Lasso · Grid,0.0,False,False,2.0,NOX
+Decision Tree · Grid,Decision Tree · Grid,0.0,False,False,2.0,NOX
+Decision Tree · Bayesiano,Decision Tree · Grid,0.0,False,False,2.0,NOX
+Decision Tree · Random,Decision Tree · Random,0.0,False,False,2.0,NOX
+Decision Tree · Genetico,Decision Tree · Genetico,0.0,False,False,2.0,NOX
+Random Forest · Grid,Random Forest · Grid,0.0,False,False,2.0,NOX
+Random Forest · Random,Random Forest · Grid,0.0,False,False,2.0,NOX
+Random Forest · Bayesiano,Random Forest · Grid,0.0,False,False,2.0,NOX
+Random Forest · Genetico,Random Forest · Genetico,0.0,False,False,2.0,NOX
+XGBoost · Grid,XGBoost · Grid,0.0,False,False,2.0,NOX
+XGBoost · Bayesiano,XGBoost · Grid,0.0,False,False,2.0,NOX
+XGBoost · Genetico,XGBoost · Grid,0.0,False,False,2.0,NOX
+XGBoost · Random,XGBoost · Random,0.0,False,False,2.0,NOX
+SVR lineal · Grid,SVR lineal · Grid,0.0,False,False,2.0,NOX
+SVR lineal · Random,SVR lineal · Grid,0.0,False,False,2.0,NOX
+SVR lineal · Bayesiano,SVR lineal · Grid,0.0,False,False,2.0,NOX
+SVR lineal · Genetico,SVR lineal · Grid,0.0,False,False,2.0,NOX
+Kernel operativo · Grid kernel,Kernel operativo · Grid kernel,1.0,True,True,2.0,NOX
+KNN · Grid,KNN · Grid,0.0006,False,False,4.0,NOX
+KNN · Random,KNN · Grid,0.0006,False,False,4.0,NOX
+KNN · Bayesiano,KNN · Grid,0.0006,False,False,4.0,NOX
+KNN · Genetico,KNN · Genetico,0.0006,False,False,4.0,NOX
+Ridge · Grid,Ridge · Grid,0.0006,False,False,4.0,NOX
+Ridge · Random,Ridge · Grid,0.0006,False,False,4.0,NOX
+Ridge · Bayesiano,Ridge · Grid,0.0006,False,False,4.0,NOX
+Ridge · Genetico,Ridge · Grid,0.0006,False,False,4.0,NOX
+Lasso · Grid,Lasso · Grid,0.0006,False,False,4.0,NOX
+Lasso · Random,Lasso · Grid,0.0006,False,False,4.0,NOX
+Lasso · Bayesiano,Lasso · Grid,0.0006,False,False,4.0,NOX
+Lasso · Genetico,Lasso · Grid,0.0006,False,False,4.0,NOX
+Decision Tree · Grid,Decision Tree · Grid,0.0006,False,False,4.0,NOX
+Decision Tree · Bayesiano,Decision Tree · Grid,0.0006,False,False,4.0,NOX
+Decision Tree · Random,Decision Tree · Random,0.0004,False,False,4.0,NOX
+Decision Tree · Genetico,Decision Tree · Genetico,0.0002,False,False,4.0,NOX
+Random Forest · Grid,Random Forest · Grid,0.0076,False,False,4.0,NOX
+Random Forest · Random,Random Forest · Grid,0.0076,False,False,4.0,NOX
+Random Forest · Bayesiano,Random Forest · Grid,0.0076,False,False,4.0,NOX
+Random Forest · Genetico,Random Forest · Genetico,0.0042,False,False,4.0,NOX
+XGBoost · Grid,XGBoost · Grid,0.0076,False,False,4.0,NOX
+XGBoost · Bayesiano,XGBoost · Grid,0.0076,False,False,4.0,NOX
+XGBoost · Genetico,XGBoost · Grid,0.0076,False,False,4.0,NOX
+XGBoost · Random,XGBoost · Random,0.0042,False,False,4.0,NOX
+SVR lineal · Grid,SVR lineal · Grid,0.0006,False,False,4.0,NOX
+SVR lineal · Random,SVR lineal · Grid,0.0006,False,False,4.0,NOX
+SVR lineal · Bayesiano,SVR lineal · Grid,0.0006,False,False,4.0,NOX
+SVR lineal · Genetico,SVR lineal · Grid,0.0006,False,False,4.0,NOX
+Kernel operativo · Grid kernel,Kernel operativo · Grid kernel,1.0,True,True,4.0,NOX
