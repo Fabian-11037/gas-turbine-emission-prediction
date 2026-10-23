@@ -4,7 +4,7 @@ from dash import Input,Output,dcc,html
 from . import figures as f
 from .components import disclosure,graph,metric,notice,number,table
 from .repository import filtered,sensors,sensor_audit
-from . import seasonality, partition_similarity
+from . import seasonality, partition_similarity,multivariate
 
 
 def layout():
@@ -19,12 +19,13 @@ def layout():
                     html.Div([html.Label('Período'),dcc.Dropdown(id='eda-period',options=[
                         {'label':'24 registros','value':24},{'label':'168 registros','value':168}],value=24,clearable=False)],
                         id='eda-period-controls',style={'display':'none'}),
-                    html.Label('Sensor'),dcc.Dropdown(id='eda-sensor',options=[{'label':s['id']+' · '+s['nombre'],'value':s['id']} for s in sensors()],
-                                                      value='TIT',clearable=False),
+                    html.Div([html.Label('Sensor'),dcc.Dropdown(id='eda-sensor',options=[{'label':s['id']+' · '+s['nombre'],'value':s['id']} for s in sensors()],
+                                                      value='TIT',clearable=False)],id='eda-sensor-controls'),
                     html.Div('Desarrollo: datos usados para entrenar. Fuente completa: todos los registros disponibles.',className='sidebar-note')],className='filter-sidebar',id='eda-filters'),
         html.Div([html.P('02 / EDA',className='eyebrow'),html.H2('Exploración de los datos'),
                   dcc.Tabs(id='eda-view',value='distribuciones',children=[
                       dcc.Tab(label='Distribuciones',value='distribuciones'),dcc.Tab(label='Relaciones',value='relaciones'),
+                      dcc.Tab(label='Multivariado',value='multivariado'),
                       dcc.Tab(label='Cambios anuales',value='temporal'),dcc.Tab(label='Estacionalidad',value='estacionalidad'),
                       dcc.Tab(label='Correlaciones',value='correlaciones'),
                       dcc.Tab(label='Particiones y similitud',value='particiones')],
@@ -36,12 +37,13 @@ def layout():
                   disclosure('Tablas del análisis seleccionado',html.Div(id='eda-table')),
                   disclosure('Calidad y valores extremos',html.Div(id='eda-quality')),
                   disclosure('Capacidad predictiva de cada sensor · CV',html.Div(id='eda-sensor-audit'))],id='eda-standard-content'),
-                  html.Div(id='eda-partition-content',style={'display':'none'})],className='workspace')
+                  html.Div(id='eda-partition-content',style={'display':'none'}),
+                  html.Div(multivariate.layout(),id='eda-multivariate-content',style={'display':'none'})],className='workspace')
     ],className='eda-layout',id='eda-root')
 
 
 def render(target, years, population, view, sensor, period=24):
-    if view == 'particiones':
+    if view in ['particiones','multivariado']:
         return f.empty(),f.empty(),[], '', [], [], []
     if view == 'estacionalidad':
         one,two,summary,insight,tables,_ = seasonality.render(target,years,population,period)
@@ -94,7 +96,8 @@ def audit_table(target):
 def register(app):
     app.callback(Output('eda-filters','style'),Output('eda-root','style'),
                  Output('eda-standard-content','style'),Output('eda-partition-content','style'),
-                 Output('eda-partition-content','children'),Input('eda-view','value'))(view_content)
+                 Output('eda-partition-content','children'),Output('eda-multivariate-content','style'),
+                 Output('eda-sensor-controls','style'),Input('eda-view','value'))(view_content)
     @app.callback(Output('eda-period-controls','style'),Input('eda-view','value'))
     def period_visibility(view):
         return {'display':'contents' if view == 'estacionalidad' else 'none'}
@@ -104,13 +107,18 @@ def register(app):
                  Output('eda-table','children'),Output('eda-quality','children'),Output('eda-sensor-audit','children'),
                  Input('eda-target','value'),Input('eda-years','value'),Input('eda-population','value'),
                  Input('eda-view','value'),Input('eda-sensor','value'),Input('eda-period','value'))(render)
+    multivariate.register(app)
 
 
 def view_visibility(view):
     if view == 'particiones':
         return {'display':'none'}, {'gridTemplateColumns':'minmax(0,1fr)'}, {'display':'none'}, {}
+    if view == 'multivariado':
+        return {}, {}, {'display':'none'}, {'display':'none'}
     return {}, {}, {}, {'display':'none'}
 
 
 def view_content(view):
-    return (*view_visibility(view), partition_similarity.layout() if view == 'particiones' else [])
+    return (*view_visibility(view), partition_similarity.layout() if view == 'particiones' else [],
+            {} if view == 'multivariado' else {'display':'none'},
+            {'display':'none'} if view == 'multivariado' else {})

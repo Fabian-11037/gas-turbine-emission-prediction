@@ -83,6 +83,9 @@ tbody tr:hover { background:#f7fafb; }
 .local-tabs .tab--selected { color:var(--teal)!important; border-bottom:2px solid var(--teal)!important; font-weight:600; }
 .chart-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; margin:8px 0; }
 .chart { min-width:0; height:350px; }
+.multivariate-color { max-width:280px; margin:12px 0 18px; }
+.multivariate-color>label { display:block; font-size:12px; font-weight:600; margin-bottom:7px; }
+.local-tabs.multivariate-tabs { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .model-selector { width:225px; flex-shrink:0; }
 .model-selector>label { display:block; font-size:12px; color:var(--muted); margin-bottom:5px; }
 .model-description { display:flex; align-items:center; gap:7px; flex-wrap:wrap; color:var(--muted); font-size:12px; padding-bottom:17px; border-bottom:1px solid var(--line); margin-bottom:24px; }
