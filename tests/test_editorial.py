@@ -11,6 +11,20 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class EditorialTests(unittest.TestCase):
+    def test_authors_on_dashboard_cover_and_book(self):
+        from app import app,AUTHORS
+        self.assertEqual(AUTHORS,'Gloria Bastidas y Fabian Manrique')
+        client = app.server.test_client()
+        header = client.get('/_dash-layout').get_json()['props']['children'][0]
+        self.assertEqual(header['type'],'Header')
+        header_text = json.dumps(header,ensure_ascii=False)
+        self.assertIn('Autores: '+AUTHORS,header_text)
+        self.assertIn('project-authors',header_text)
+        self.assertIn('name="author" content="'+AUTHORS+'"',client.get('/').get_data(as_text=True))
+        self.assertIn('author: '+AUTHORS,(ROOT/'book/_config.yml').read_text(encoding='utf-8'))
+        notebook = json.loads((ROOT/'book/gas_turbine_eda_hilo_conductor_redaccion.ipynb').read_text(encoding='utf-8'))
+        self.assertIn('**Autores:** '+AUTHORS,''.join(notebook['cells'][0]['source']))
+
     def test_plain_model_explanations_cover_registry(self):
         self.assertEqual(set(model_view.MODEL_EXPLANATIONS), set(registry()))
         for explanation in model_view.MODEL_EXPLANATIONS.values():
