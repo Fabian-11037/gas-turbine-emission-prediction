@@ -19,6 +19,7 @@ def layout():
         dcc.Tabs(id='kernel-section', value='arquitectura', children=[
             dcc.Tab(label='Arquitectura', value='arquitectura'),
             dcc.Tab(label='Fundamentos', value='matematicas'),
+            dcc.Tab(label='Código Python', value='codigo'),
             dcc.Tab(label='Aporte y literatura', value='aporte'),
             dcc.Tab(label='Evidencia', value='evidencia'),
             dcc.Tab(label='Validación', value='validacion'),
@@ -48,6 +49,16 @@ def render(model_id, target, section):
         return {}, kernel_validation.panel(target)
     if section == 'historial':
         return {}, experiment_history.layout()
+    if section == 'codigo':
+        from .kernel_code import INTRODUCTION, RUN_CODE, training_source
+        return {}, html.Div([
+            html.H3('Pipeline de entrenamiento'), html.P(INTRODUCTION),
+            html.P('El JBook incluye estas celdas ejecutables. El entrenamiento completo se inicia '
+                'activando EJECUTAR_ENTRENAMIENTO; esta página solo presenta el código.'),
+            disclosure('Pipeline completo · preprocesamiento, validación y stacking',
+                dcc.Markdown('```python\n'+training_source()+'\n```', className='training-code'), open=True),
+            html.H4('Ejecución desde el JBook'),
+            dcc.Markdown('```python\n'+RUN_CODE+'\n```', className='training-code')])
     import pandas as pd
     parameters = architecture()[target]
     w = parameters['pesos_svr']

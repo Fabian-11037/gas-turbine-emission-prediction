@@ -209,6 +209,10 @@ def parse_batch(contents, model_id):
 
 
 def register(app):
+    @app.callback(Output('model-importance-chart','style'), Input('model-importance-chart','figure'))
+    def importance_height(figure):
+        return {'height': str((figure or {}).get('layout', {}).get('height', 350))+'px', 'width': '100%'}
+
     assessment.register(app)
     explainability.register(app)
     kernel_view.register(app)

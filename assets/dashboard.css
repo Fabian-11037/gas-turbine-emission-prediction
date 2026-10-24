@@ -152,6 +152,9 @@ button:disabled { opacity:.5; cursor:not-allowed; }
 }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; } }
 .kernel-detail { padding-top:20px; line-height:1.7; min-width:0; }
+.training-code { min-width:0; max-width:100%; }
+.training-code pre { max-height:480px; max-width:100%; overflow:auto; padding:16px; background:var(--soft); border:1px solid var(--line); border-radius:4px; font-size:12px; line-height:1.6; }
+.training-code code { white-space:pre; overflow-wrap:normal; }
 .kernel-tabs .tab { padding:12px 10px!important; font-size:12px; min-width:0; white-space:normal; }
 .kernel-architecture { display:grid; grid-template-columns:minmax(260px,380px) minmax(0,1fr); gap:28px; align-items:start; }
 .kernel-architecture figure { margin:0; }

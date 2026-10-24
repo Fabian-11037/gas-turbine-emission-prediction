@@ -52,7 +52,7 @@ class KernelTests(unittest.TestCase):
     def test_panel_only_for_kernel(self):
         self.assertEqual(kernel_view.render('ridge', 'CO', 'arquitectura'), ({'display': 'none'}, None))
         for target in ['CO', 'NOX']:
-            for section in ['arquitectura', 'matematicas', 'aporte', 'evidencia']:
+            for section in ['arquitectura', 'matematicas', 'aporte', 'evidencia', 'codigo']:
                 style, content = kernel_view.render('kernel_operativo', target, section)
                 self.assertEqual(style, {})
                 self.assertIsNotNone(content)
@@ -143,7 +143,8 @@ class KernelTests(unittest.TestCase):
             'kernel-intro', 'kernel-math', 'kernel-results-text', 'kernel-results-code',
             'kernel-artifacts-text', 'kernel-inference-code', 'kernel-contribution',
             'kernel-statistics-code', 'kernel-validation-method',
-            'kernel-validation-results', 'kernel-validation-conclusion'})
+            'kernel-validation-results', 'kernel-validation-conclusion',
+            'kernel-training-text', 'kernel-training-code', 'kernel-training-run'})
         for cell in cells:
             if cell['cell_type'] == 'code':
                 self.assertIsNotNone(cell['execution_count'])

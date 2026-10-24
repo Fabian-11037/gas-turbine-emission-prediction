@@ -94,6 +94,12 @@ def audit_table(target):
 
 
 def register(app):
+    @app.callback(Output('eda-chart-one','style'), Output('eda-chart-two','style'),
+                  Input('eda-chart-one','figure'), Input('eda-chart-two','figure'))
+    def figure_heights(one, two):
+        return tuple({'height': str((fig or {}).get('layout', {}).get('height', 350))+'px',
+                      'width': '100%'} for fig in (one, two))
+
     app.callback(Output('eda-filters','style'),Output('eda-root','style'),
                  Output('eda-standard-content','style'),Output('eda-partition-content','style'),
                  Output('eda-partition-content','children'),Output('eda-multivariate-content','style'),

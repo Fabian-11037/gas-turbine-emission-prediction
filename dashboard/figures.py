@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
+from .sensor_labels import label_figure, sensor_label
 
 TEAL = '#157a7c'
 CORAL = '#b65346'
@@ -19,7 +20,7 @@ def style(fig, title, xlabel=None, ylabel=None):
                       hoverlabel={'font_size':12},uirevision=title)
     fig.update_xaxes(title=xlabel,gridcolor='#edf0f2',zeroline=False,automargin=True)
     fig.update_yaxes(title=ylabel,gridcolor='#edf0f2',zeroline=False,automargin=True)
-    return fig
+    return label_figure(fig)
 
 
 def empty(message='No hay observaciones con estos filtros.'):
@@ -58,8 +59,9 @@ def relationship(df, target, sensor):
     for color,(year,g) in zip(COLORS,sample.groupby('anio')):
         f.add_trace(go.Scattergl(x=g[sensor],y=g[target],mode='markers',name=str(year),
                                 marker={'color':color,'size':4,'opacity':.5},
-                                hovertemplate=f'{sensor}: %{{x:.2f}}<br>{target}: %{{y:.2f}}<extra>%{{fullData.name}}</extra>'))
-    return style(f,f'{sensor} y {target} · hasta 2.200 registros',sensor,f'{target} (mg/m³)')
+                                hovertemplate=f'{sensor_label(sensor, unit=True)}: %{{x:.2f}}<br>{target}: %{{y:.2f}}<extra>%{{fullData.name}}</extra>'))
+    return style(f,f'{sensor} y {target} · hasta 2.200 registros',
+                 sensor_label(sensor, unit=True, width=36, html=True),f'{target} (mg/m³)')
 
 
 def associations(df, target, features):

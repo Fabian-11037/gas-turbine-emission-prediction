@@ -10,6 +10,7 @@ from dash import Input,Output,dcc,html
 from . import figures as f
 from .components import disclosure,graph,metric,notice,number,table
 from .repository import DATA,filtered,sensors
+from .sensor_labels import label_figure
 
 LOCATION = DATA/'multivariate'
 INTRO = ('Se analizan los nueve sensores en conjunto para reconocer condiciones operativas similares '
@@ -38,7 +39,7 @@ def loadings_figure():
     f.style(fig,'Cargas de sensores · PCA','Componente','Sensor')
     fig.update_yaxes(autorange='reversed')
     fig.update_layout(height=380,margin={'l':53,'r':24,'t':70,'b':55})
-    return fig
+    return label_figure(fig)
 
 
 def map_figure(frame,color,target):
@@ -129,7 +130,7 @@ def group_profiles(frame):
     f.style(fig,'Perfil de los grupos','Grupo','Sensor')
     fig.update_yaxes(autorange='reversed')
     fig.update_layout(height=380,margin={'l':53,'r':24,'t':70,'b':55})
-    return fig
+    return label_figure(fig)
 
 
 def group_interpretation(frame,target):

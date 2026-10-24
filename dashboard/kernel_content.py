@@ -55,15 +55,42 @@ $$
 
 Se comparan las once variables del registro actual $z$ con un registro de referencia $z_i$. El **kernel RBF** devuelve un valor cercano a 1 cuando se parecen y a 0 cuando difieren. Los pesos $w_j$ hacen que algunas diferencias cuenten más. Se eligen entre cuatro combinaciones mediante validación interna; no son efectos causales ni los coeficientes que aprende Ridge al combinar predicciones.
 
-### Obtener dos estimaciones
+### Cómo aprende Extra Trees
+
+Cada árbol divide los registros en grupos cada vez más pequeños. En cada nodo se toma una **selección aleatoria de variables** y se propone un límite aleatorio para cada una. Se conserva la división que más reduce la dispersión de las emisiones entre esos candidatos, no entre todos los límites posibles.
+
+Para los $n_t$ registros de un nodo $t$, la dispersión se mide como:
 
 $$
-\widehat y_{SVR}=b_S+\sum_i c_iK(z,z_i),
-\qquad
-\widehat y_{ET}=\frac{1}{200}\sum_{t=1}^{200}\widehat y_t
+\bar y_t=\frac{1}{n_t}\sum_{i\in t}y_i,\qquad
+H(t)=\frac{1}{n_t}\sum_{i\in t}(y_i-\bar y_t)^2
 $$
 
-El símbolo $\widehat y$ significa «valor estimado». SVR combina semejanzas con registros de referencia, llamados **vectores soporte**: $c_i$ es su influencia aprendida y $b_S$ un ajuste constante. Extra Trees promedia las estimaciones $\widehat y_t$ de sus 200 árboles.
+$\bar y_t$ es el promedio de emisión del grupo y $H(t)$ su error cuadrático medio respecto a ese promedio. Una buena división produce grupos con emisiones más parecidas. Si $L$ y $R$ son los grupos resultantes, se elige el candidato con mayor reducción:
+
+$$
+\Delta H=H(t)-\frac{n_L}{n_t}H(L)-\frac{n_R}{n_t}H(R)
+$$
+
+Los cocientes ponderan cada grupo por su cantidad de registros. Cuando el árbol deja de dividir, la **hoja predice el promedio** de sus registros. El ensamble promedia las predicciones de todos los árboles:
+
+$$
+\widehat y_{ET}(x)=\frac{1}{B}\sum_{b=1}^{B}T_b(x),\qquad B=200
+$$
+
+$T_b(x)$ es la estimación del árbol $b$. Promediar árboles distintos ayuda a compensar errores individuales. Frente a Random Forest, Extra Trees añade aleatoriedad a los límites; en nuestra configuración no remuestrea registros y usa aproximadamente el 75 % de las variables como candidatas en cada división.
+
+Se fijaron **200 árboles**. La validación eligió entre **profundidad máxima 20 y mínimo 2 registros por hoja**, o **sin límite de profundidad y mínimo 5 por hoja**. Para ambas emisiones se seleccionó la primera opción. El escalado de sensores y emisión se aprende únicamente con el entrenamiento; las predicciones se devuelven a la escala original.
+
+Referencias: [Extra Trees](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees), [criterio de regresión](https://scikit-learn.org/stable/modules/tree.html#regression-criteria) y [parámetros del estimador](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html), documentación de scikit-learn.
+
+### Obtener la estimación de SVR
+
+$$
+\widehat y_{SVR}=b_S+\sum_i c_iK(z,z_i)
+$$
+
+El símbolo $\widehat y$ significa «valor estimado». SVR combina semejanzas con registros de referencia, llamados **vectores soporte**: $c_i$ es su influencia aprendida y $b_S$ un ajuste constante.
 
 SVR usa $C=20$ para controlar la penalización de errores, $\gamma=0{,}2$ para definir qué tan local es la semejanza y $\epsilon=0{,}1$ como margen de tolerancia, sobre la emisión estandarizada.
 

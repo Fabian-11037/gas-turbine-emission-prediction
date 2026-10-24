@@ -11,6 +11,7 @@ from .components import disclosure, graph, metric, number, table
 from .figures import style, TEAL, CORAL
 from .repository import DATA
 from .explainability_content import INTRODUCTION, METHOD
+from .sensor_labels import label_figure, predictor_axes, sensor_label
 
 DIRECTORY = DATA/'explainability'
 FEATURES = ['AT','AP','AH','AFDP','GTEP','TIT','TAT','TEY','CDP']
@@ -67,12 +68,12 @@ def global_summary(model_id,target):
                 'colorscale':[[0,TEAL],[.5,'#d7dddd'],[1,CORAL]],'showscale':index==0,
                 'colorbar':{'title':{'text':'Valor'},'tickvals':[0,1],'ticktext':['Bajo','Alto'],
                             'thickness':9,'len':.65}},customdata=custom,
-            hovertemplate=sensor+': %{customdata[0]:.3f}<br>SHAP: %{x:.3f} mg/m³<br>Año: %{customdata[1]:.0f}<br>Registro: %{customdata[2]:.0f}<extra></extra>'))
+            hovertemplate=sensor_label(sensor)+': %{customdata[0]:.3f}<br>SHAP: %{x:.3f} mg/m³<br>Año: %{customdata[1]:.0f}<br>Registro: %{customdata[2]:.0f}<extra></extra>'))
     style(fig,'Distribución de contribuciones · SHAP','Contribución a la estimación (mg/m³)','')
     fig.update_yaxes(tickvals=list(range(9)),ticktext=importance.sensor.tolist())
     fig.add_vline(x=0,line_color='#808b8c',line_dash='dot',line_width=1)
     fig.update_layout(height=410,margin={'l':58,'r':75,'t':56,'b':60})
-    return fig
+    return predictor_axes(fig, importance.sensor, range(9))
 
 
 def waterfall(model_id,target,case):
@@ -88,7 +89,7 @@ def waterfall(model_id,target,case):
     style(fig,'Cómo se forma la estimación · SHAP','Concentración y contribuciones (mg/m³)','')
     fig.update_yaxes(autorange='reversed')
     fig.update_layout(height=460,showlegend=False,margin={'l':90,'r':25,'t':55,'b':55})
-    return fig
+    return label_figure(fig)
 
 
 def lime_figure(model_id,target,case):
@@ -101,7 +102,7 @@ def lime_figure(model_id,target,case):
     style(fig,'Aproximación del caso · LIME','Peso del intervalo del sensor (mg/m³)','Sensor')
     fig.add_vline(x=0,line_color='#808b8c',line_width=1)
     fig.update_layout(height=460)
-    return fig
+    return label_figure(fig)
 
 
 def local_discussion(model_id,target,case):

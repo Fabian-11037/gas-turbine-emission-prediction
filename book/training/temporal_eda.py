@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from dashboard.sensor_labels import sensor_label
 from scipy import stats
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
@@ -112,10 +113,10 @@ def diagnostico_distribuciones(frame, entrenamiento, variables, objetivos, salid
         axes[i,1].legend(fontsize=8)
     plt.show()
     tabla = anual.pivot(index='variable',columns='anio',values='desplazamiento_media_SD_train').reindex(variables)
-    fig, ax = plt.subplots(figsize=(9,5),layout='constrained')
+    fig, ax = plt.subplots(figsize=(10,6),layout='constrained')
     im = ax.imshow(tabla,vmin=-2,vmax=2,cmap='coolwarm',aspect='auto')
     anios_ref = sorted(entrenamiento.anio.unique())
-    ax.set(xticks=range(len(years)),xticklabels=years,yticks=range(len(variables)),yticklabels=variables,
+    ax.set(xticks=range(len(years)),xticklabels=years,yticks=range(len(variables)),yticklabels=[sensor_label(v, width=28) for v in variables],
            title=f'Cambio de medias respecto a {anios_ref[0]}-{anios_ref[-1]} (SD de desarrollo)')
     for i in range(len(variables)):
         for j in range(len(years)): ax.text(j,i,f'{tabla.iloc[i,j]:.2f}',ha='center',va='center',fontsize=9)
