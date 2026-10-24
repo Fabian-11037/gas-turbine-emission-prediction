@@ -99,22 +99,30 @@ def statistical_view(target):
              'p_GW_Holm2':'p Wald condicional · Holm','p_DM_Holm2':'p DM-HLN · Holm','Cohen_dz_bloques':'Cohen dz · bloques'},digits=4),
         html.P('Diferencia positiva: menor error del kernel. Son contrastes adaptados sobre OOF; '
                'los resultados del conjunto de prueba permanecen separados.',className='caption'),
-        disclosure('Sensibilidad y valores p sin ajuste',[
-            html.P(SENSITIVITY_HELP),
-            table(pd.DataFrame(counts)),table(p_columns(sensitivity),{'bloques_medios':'Bloques medios',
-                'p_GW_Holm2':'p Wald · Holm','p_DM_Holm2':'p DM-HLN · Holm','IC95_inf':'IC95% inferior','IC95_sup':'IC95% superior'},digits=4),
-            table(p_columns(main[['p_GW','p_GW_Holm2','p_DM','p_DM_Holm2']]),
-                {'p_GW':'p Wald nominal','p_GW_Holm2':'p Wald Holm','p_DM':'p DM nominal','p_DM_Holm2':'p DM Holm'},digits=6)]),
+        disclosure('Método y comprobaciones estadísticas',[
+            dcc.Tabs(id='assessment-checks',value='metodo',children=[
+                dcc.Tab(label='Método',value='metodo',children=[
+                    dcc.Markdown(STATISTICS,mathjax=True,className='kernel-markdown')]),
+                dcc.Tab(label='Sensibilidad',value='sensibilidad',children=[
+                    html.P(SENSITIVITY_HELP),
+                    table(pd.DataFrame(counts)),
+                    table(p_columns(sensitivity),{'bloques_medios':'Bloques medios',
+                        'p_GW_Holm2':'p Wald · Holm','p_DM_Holm2':'p DM-HLN · Holm',
+                        'IC95_inf':'IC95% inferior','IC95_sup':'IC95% superior'},digits=4),
+                    html.H4('Valores p nominales y ajustados'),
+                    table(p_columns(main[['p_GW','p_GW_Holm2','p_DM','p_DM_Holm2']]),
+                        {'p_GW':'p Wald nominal','p_GW_Holm2':'p Wald Holm',
+                         'p_DM':'p DM nominal','p_DM_Holm2':'p DM Holm'},digits=6)]),
+                dcc.Tab(label='Rangos entre pliegues',value='rangos',children=[
+                    html.P(RANKING_HELP),
+                    html.P(f"Friedman: p = {aux['p_Friedman']:.2e}; cinco pliegues con entrenamiento compartido."),
+                    graph('assessment-critical-difference',critical_difference(target)),
+                    html.P('Los intervalos se superponen cuando la distancia entre rangos no supera la diferencia crítica de Nemenyi. '
+                           'Esta comprobación auxiliar no sustituye el análisis MCS por bloques.',className='caption')])],
+                className='local-tabs assessment-tabs',mobile_breakpoint=0)]),
         disclosure('Los 29 procedimientos y controles coincidentes',table(p_columns(all_rows),
             {'procedimiento':'Procedimiento','MSE_OOF':'MSE OOF','p_MCS':'p MCS','incluido_005':'MCS',
-             'representante':'Contraste compartido'},digits=4)),
-        disclosure('Friedman–Nemenyi · comprobación auxiliar',[
-            html.P(RANKING_HELP),
-            html.P(f"Friedman: p = {aux['p_Friedman']:.2e}; cinco pliegues con entrenamiento compartido."),
-            graph('assessment-critical-difference',critical_difference(target)),
-            html.P('Los intervalos se superponen cuando la distancia entre rangos no supera la diferencia crítica de Nemenyi. '
-                   'Esta comprobación auxiliar no sustituye el análisis MCS por bloques.',className='caption')]),
-        disclosure('Método de comparación',dcc.Markdown(STATISTICS,mathjax=True,className='kernel-markdown'))])
+             'representante':'Contraste compartido'},digits=4))])
 
 
 def latency(model_id,target):
@@ -151,7 +159,9 @@ def efficiency_view(model_id,target):
         graph('assessment-latency',latency(model_id,target)),
         html.P(computational_interpretation(frame.loc[frame.objetivo.eq(target)&frame.modelo_id.eq(model_id)]))
             if model_id=='kernel_operativo' else None,
-        disclosure('Detalle de ejecución · modelo seleccionado',[
+        disclosure('Método y detalle de ejecución',[
+            dcc.Markdown(EFFICIENCY,mathjax=True,className='kernel-markdown'),
+            html.H4('Ejecución del modelo seleccionado'),
             table(details[['modo','segundos_carga','segundos_lote_1','segundos_lote_100','segundos_lote_1000','RSS_pico_MB','error_maximo']],
                 {'modo':'Ejecución','segundos_carga':'Carga inicial (s)','segundos_lote_1':'Lote 1 (s)',
                  'segundos_lote_100':'Lote 100 (s)','segundos_lote_1000':'Lote 1.000 (s)',
@@ -164,8 +174,7 @@ def efficiency_view(model_id,target):
             read('efficiency','optimizacion_pareto').loc[lambda d:d.objetivo.eq(target),
                 ['modelo','optimizador','MSE_CV_externo','segundos_total','segundos_evaluacion_media','evaluaciones_unicas','Pareto']],
             {'modelo':'Modelo','optimizador':'Optimizador','MSE_CV_externo':'MSE externo','segundos_total':'Tiempo total histórico (s)',
-             'segundos_evaluacion_media':'Media por evaluación sin caché (s)','evaluaciones_unicas':'Evaluaciones únicas','Pareto':'En frente de Pareto'},digits=4)),
-        disclosure('Condiciones de medición',dcc.Markdown(EFFICIENCY,className='kernel-markdown'))])
+             'segundos_evaluacion_media':'Media por evaluación sin caché (s)','evaluaciones_unicas':'Evaluaciones únicas','Pareto':'En frente de Pareto'},digits=4))])
 
 
 def layout():

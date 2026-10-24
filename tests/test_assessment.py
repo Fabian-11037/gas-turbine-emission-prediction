@@ -27,15 +27,27 @@ def toy_frame():
 
 
 class AssessmentTests(unittest.TestCase):
-    def test_auxiliary_explanations_precede_tables_and_graphs(self):
+    def test_checks_are_grouped_and_explanations_precede_evidence(self):
         from dash import html
-        from dashboard.assessment_content import SENSITIVITY_HELP,RANKING_HELP
+        from dashboard.assessment_content import SENSITIVITY_HELP,RANKING_HELP,STATISTICS,EFFICIENCY
         for target in ['CO','NOX']:
             disclosures = {child.children[0].children:child.children[1].children
                 for child in assessment.statistical_view(target).children if isinstance(child,html.Details)}
-            for title,explanation in [('Sensibilidad y valores p sin ajuste',SENSITIVITY_HELP),
-                ('Friedman–Nemenyi · comprobación auxiliar',RANKING_HELP)]:
-                self.assertEqual(disclosures[title][0].children,explanation)
+            self.assertEqual(set(disclosures),{'Método y comprobaciones estadísticas',
+                'Los 29 procedimientos y controles coincidentes'})
+            tabs = disclosures['Método y comprobaciones estadísticas'][0]
+            self.assertEqual(tabs.value,'metodo')
+            panels = {tab.value:tab.children for tab in tabs.children}
+            self.assertEqual(panels['metodo'][0].children,STATISTICS)
+            self.assertEqual(panels['sensibilidad'][0].children,SENSITIVITY_HELP)
+            self.assertEqual(panels['rangos'][0].children,RANKING_HELP)
+            for model_id in ['ridge','kernel_operativo']:
+                cost = {child.children[0].children:child.children[1].children
+                    for child in assessment.efficiency_view(model_id,target).children if isinstance(child,html.Details)}
+                self.assertNotIn('Detalle de ejecución · modelo seleccionado',cost)
+                self.assertNotIn('Condiciones de medición',cost)
+                self.assertEqual(cost['Método y detalle de ejecución'][0].children,EFFICIENCY)
+                self.assertEqual(cost['Método y detalle de ejecución'][2].className,'table-scroll')
 
     def test_protected_models_and_validation(self):
         for folder in ['statistical_hierarchy','efficiency']:

@@ -185,3 +185,7 @@ button:disabled { opacity:.5; cursor:not-allowed; }
 .explain-modes { margin:12px 0 18px; flex-wrap:wrap; }
 .explain-case { display:flex; align-items:center; flex-wrap:wrap; gap:10px 20px; margin:14px 0; }
 .explain-case > label { font-weight:600; }
+.assessment-tabs { margin-bottom:18px; }
+@media(max-width:780px) {
+ .local-tabs.assessment-tabs { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
